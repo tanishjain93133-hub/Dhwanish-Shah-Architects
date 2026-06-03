@@ -18,15 +18,7 @@ export default function App() {
   const [inquiryOpen, setInquiryOpen] = useState(false);
   const [selectedHeroProject, setSelectedHeroProject] = useState<ProjectImageItem | null>(null);
   const [activeSection, setActiveSection] = useState("home");
-  const [loading, setLoading] = useState(true);
 
-  // Initial loader simulation to render neat blueprint drawings
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Update active section on window scroll
   useEffect(() => {
@@ -47,75 +39,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-black font-sans antialiased text-white select-none no-scrollbar">
       
-      {/* 1. Custom High-End Architecture Preloader */}
-      <AnimatePresence>
-        {loading && (
-          <motion.div
-            id="dsa-app-preloader"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="fixed inset-0 bg-[#050505] z-[100] flex flex-col justify-center items-center p-6"
-          >
-            {/* Geometric loading blueprint */}
-            <div className="relative w-48 h-48 mb-8 flex items-center justify-center">
-              {/* Outer drafting box */}
-              <motion.div
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.3 }}
-                className="absolute inset-0 border border-white/20"
-                style={{ originX: 0 }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
-              />
-              
-              {/* Spinning compass visual needle line */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-                className="w-14 h-[1px] bg-neon-cyan absolute origin-left left-1/2"
-              />
 
-              {/* Central high-end monolithic box drawing */}
-              <motion.div
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="text-center space-y-1 z-10"
-              >
-                <div className="text-white font-display text-3xl tracking-[0.25em] font-medium leading-none">
-                  PORTFOLIO
-                </div>
-                <div className="text-[6.5px] text-zinc-400 tracking-[0.5em] font-mono whitespace-nowrap uppercase">
-                  ARCHITECTURAL &amp; INTERIOR DESIGN
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Architectural metadata logs */}
-            <div className="space-y-1.5 text-center font-mono text-[9px] text-zinc-500 tracking-[0.15em] max-w-xs uppercase">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="text-neon-cyan font-semibold"
-              >
-                // COMPILING PLOT SCHEMATICS //
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-              >
-                RENDER SYSTEM: ACTIVE (v3.0.1)
-              </motion.div>
-              <div className="w-32 h-[1px] bg-zinc-900 mx-auto my-2" />
-              <div className="text-[7.5px] text-zinc-600">
-                MILAN | LA | TOKYO LUXURY
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* 2. Glassmorphic Sticky Header */}
       <Header
