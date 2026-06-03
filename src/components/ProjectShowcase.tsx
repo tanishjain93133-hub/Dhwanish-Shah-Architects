@@ -34,14 +34,103 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
     }
   };
 
-  // Gather all unique images: start with the original 16 dome images, then add the rest from PROJECTS_IMAGES
+  // Gather all unique images: filter out non-loading files and put all custom user-uploaded images first
   const domeImages = React.useMemo(() => {
+    const CORRUPTED_IMAGES = [
+      "1-muYkqhKVHIFcPnOTRMuHckfveopxo9M.jpg",
+      "10sHG9fUvsCcHyVbG2_bwNBtsMT9LXrnE.jpg",
+      "11XftRsAgmFH5D7qMo63aC_DJqsgxkg8W.jpg",
+      "12vmmKtDJg-KxJPSbW3wTTg8gOxsrMFwa.jpg",
+      "13dT40m1keBawrXj_LTFiqHf5L68DurIW.jpg",
+      "13nXjHCUV7Xwp08vBD9hlm7_OuAj5ojeA.jpg",
+      "13Q7hqay2vgWNX89s3LREPa6-6xR39cXr.jpg",
+      "13T307RnsS1YhLREczMaA3LxGwzKPGd99.jpg",
+      "16DTIb9D_Uc7F_EZNe2bUHR8Ho1yNrEia.jpg",
+      "17DcOSeL0NDn-RTmQu1UJs7FuquZ1hGkl.jpg",
+      "18SLksv2YuecX-2m5uf_0RjLZhSrBaF7P.jpg",
+      "18ZAqVZ_dUvWc_Ty2yITX2JVYMpQl0C96.jpg",
+      "18_7CMiYHoSYBhdpz3wpWKfoQkGwhUvof.jpg",
+      "1A-GMMiT7zVSVme_9ANjVRoJpd6cbuNjY.jpg",
+      "1aCHCMZzRq3yWKp1t2lsYUQoB8VAD9uTf.jpg",
+      "1BNBKIOSfwDEegRlGUvlblYBZr-DZIuWB.jpg",
+      "1bVVYnAZbYa0_9IOXRNHIvFMm6VlS8zXj.jpg",
+      "1cb-sHqV2zBhZm-q_xzutywoL5Mk38mOx.jpg",
+      "1CwpouFmp3RkObvO8v0kStEZr5Qho1upO.jpg",
+      "1EBDT9KSQ0tVHiK9YAPSf2V41Rkbmk_nV.jpg",
+      "1egyW-7Pk2mNGz2x_Yew2TvgZsTzTZhye.jpg",
+      "1EsMLe08jkprzx3ZDo1GAcmzZH3N-Frpp.jpg",
+      "1F3pCKJ3AoRscrUBLCp7lq3CuVY6H9qgW.jpg",
+      "1f3UEQQ1VViht-LPMzcJ1YR4XnJe3FEM1.jpg",
+      "1fRywdtBR8KPW3elUsh2gVq1DDGUKaCZO.jpg",
+      "1g-gFVfcAh7GKfJKGu8Ho_mxnW_KBXBRq.jpg",
+      "1hLLKbRkEReJrsKZTUt-WcNRZ-2jKmJXu.jpg",
+      "1iQmVJffURWt36pHSEUDtBVea6DohwNui.jpg",
+      "1IvJZ2tMlDc86dsptcjWoTjVBbn2GLJXe.jpg",
+      "1JB_YIBJWi0WTA9orjsZ7CkZ4idWl_czY.jpg",
+      "1JvdV2Oq0F3D9CZThPXoueFh-5jyeB0_P.jpg",
+      "1kB8bKqSplggAku-hV9hXCH1--RAFnbxE.jpg",
+      "1kBeDniq8YscJ_Y9hrfeT9AmRP1-FFg5b.jpg",
+      "1LIvIFzb6MjxslW3Cn78ocU-0FcZqJflW.jpg",
+      "1lSfBE5V_CdMKRaEKH7K6WcJvOPpxPorW.jpg",
+      "1M7c0BZg5Nbhje6pCXcx6ArpwXfzrfpW8.jpg",
+      "1mIw6i3D6_sdoSUAqZwnQvc1P5M_R8t35.jpg",
+      "1mWy1CeWH5709dOqETSpugRmcbvZPMn84.jpg",
+      "1N84kFIXt8RgGocPWEwGaF7Ei2E6TcQCl.jpg",
+      "1nCDhbW97MEx7Teo-E8-0FM74rds5iXr6.jpg",
+      "1NwhwZ0nGjvRJsBdTN4cdislcgS9PApia.jpg",
+      "1OIqQK1dHsNWH90MLsNi_TgL24y-qD-67.jpg",
+      "1OlTdX7oAFnvHokByvAo7CDRtG3Ev0jKh.jpg",
+      "1ougaUOsunQBGofdyvOBG9Khbgdk0vqUv.jpg",
+      "1qlBFCwSljLD0BHKzzcQLvhTz6CMEQ6vK.jpg",
+      "1QLoxtToMtlmg-ipEwkZmSlumXOUQN8xl.jpg",
+      "1QO4RG4r3lLjHg8LSxlGJgsL27ndNJQDR.jpg",
+      "1qyYGAq-QLx_c7RdlVOSRNkC5VI3Tg_xr.jpg",
+      "1Ru7DZbc773GZXuWnQv2_v5USMbOhiagQ.jpg",
+      "1sN2oH3O1ZuOl6CPssgOQXNVWE-gAe6Yf.jpg",
+      "1U7YxzdLn1xQcth_3bK9aNjKxS9XHEMJ9.jpg",
+      "1UfmiDAau64UhaDRwp63ecE7kzN41Ha-F.jpg",
+      "1uJkc_WYTa2QKKj2wXn2Ru6ZAixQQ1dHP.jpg",
+      "1v6qalvsM3Qea36VXgliizpmmhqogNXId.jpg",
+      "1VjfTyEtMHhfE8ISVmigmsRXnT6hq5Kys.jpg",
+      "1VmORiXXnSwLwAMa6ZFZNUyFSeODRuJvZ.jpg",
+      "1WC-BXDJSfS3GKFozaBavmZkHfrGeWE8k.jpg",
+      "1WcsfUWRrmZ3_KCXMIssJEjm0p6WzBCld.jpg",
+      "1WTeS-ivEHtUgCizv4QWCr-0OMg4-h8gT.jpg",
+      "1xkHElGhMv4jn-CIUb44MF-EULoI7tVN9.jpg",
+      "1xx9p6jmi5997vpWR9EBJmH1VS_ab2r6S.jpg",
+      "1YKi3G5pqqWpgkGck8vVD5lvCX6foAyHp.jpg",
+      "1YyyJgCvAd-Q9_dcwhd7A7YLY_MGaTjuF.jpg",
+      "1zLZcMS7ehDmOXqZ3xftn68HSZIpPf-eG.jpg",
+      "1zNL7CP90IA229Yj6BeTWvK_Su_mRzrRj.jpg",
+      "1_2JrbLu7tQ1Un6V5mZ5BdyDyF6LeS0cY.jpg",
+      "1_dQa9-W2cs1dPXmMbnpArSnl-DG6sIlb.jpg",
+      "1_WQe69FYXc7h9LienyBKK-gT7t7RPEiT.jpg"
+    ];
+
+    const isCorrupted = (path: string) => {
+      const parts = path.split("/");
+      const filename = parts[parts.length - 1];
+      return CORRUPTED_IMAGES.includes(filename);
+    };
+
     const customImages = [
+      "/images/custom-dome-11.png",
+      "/images/custom-dome-12.jpg",
       "/images/shlip-aaron-custom-1.jpg",
       "/images/shlip-aaron-custom-2.jpg",
       "/images/shlip-aaron-custom-3.jpg",
       "/images/shlip-aaron-custom-4.jpg",
-      "/images/shlip-aaron-custom-5.jpg"
+      "/images/shlip-aaron-custom-5.jpg",
+      "/images/custom-dome-1.jpg",
+      "/images/custom-dome-2.jpg",
+      "/images/custom-dome-3.jpg",
+      "/images/custom-dome-4.jpg",
+      "/images/custom-dome-5.jpg",
+      "/images/custom-dome-6.jpg",
+      "/images/custom-dome-7.jpg",
+      "/images/custom-dome-8.jpg",
+      "/images/custom-dome-9.jpg",
+      "/images/custom-dome-10.jpg"
     ];
 
     const original16 = [
@@ -63,11 +152,29 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
       "/images/1f9c0oNatpygcipVjuBuTEn6JukHXPiXT.jpg"
     ];
     
-    const imagesSet = new Set<string>([...customImages, ...original16]);
+    const imagesSet = new Set<string>();
+    
+    // Add valid custom images first
+    customImages.forEach(img => {
+      if (!isCorrupted(img)) imagesSet.add(img);
+    });
+
+    // Add remaining original 16 if not corrupted
+    original16.forEach(img => {
+      if (!isCorrupted(img)) imagesSet.add(img);
+    });
+    
+    // Add rest of projects images if not corrupted
     PROJECTS_IMAGES.forEach((project) => {
-      if (project.src) imagesSet.add(project.src);
+      if (project.src && !isCorrupted(project.src)) {
+        imagesSet.add(project.src);
+      }
       if (project.gallery) {
-        project.gallery.forEach((img) => imagesSet.add(img));
+        project.gallery.forEach((img) => {
+          if (!isCorrupted(img)) {
+            imagesSet.add(img);
+          }
+        });
       }
     });
     
