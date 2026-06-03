@@ -665,7 +665,19 @@ export default function DomeGallery({
                   onClick={onTileClick}
                   onPointerUp={onTilePointerUp}
                 >
-                  <img src={it.src} draggable={false} alt={it.alt} />
+                  <img
+                    src={it.src}
+                    draggable={false}
+                    alt={it.alt}
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      const match = it.src?.match(/\/images\/(1[a-zA-Z0-9_-]{32})\.jpg/);
+                      if (match && !img.dataset.fallbackTried) {
+                        img.dataset.fallbackTried = "true";
+                        img.src = `https://lh3.googleusercontent.com/d/${match[1]}`;
+                      }
+                    }}
+                  />
                 </div>
               </div>
             ))}
