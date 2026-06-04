@@ -113,6 +113,11 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
     };
 
     const customImages = [
+      "/images/shah-residence-custom-1.jpg",
+      "/images/shah-residence-custom-2.jpg",
+      "/images/shah-residence-custom-3.jpg",
+      "/images/shah-residence-custom-4.jpg",
+      "/images/shah-residence-custom-5.jpg",
       "/images/custom-dome-11.png",
       "/images/custom-dome-12.jpg",
       "/images/shlip-aaron-custom-1.jpg",
@@ -238,7 +243,7 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
                 name: "Dome Gallery",
                 img: "/images/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM.jpg",
                 type: "3D Experimental Canvas",
-                count: 16,
+                count: domeImages.length,
               },
             ].map((cat, idx) => {
               const isActive = activeFilter === cat.name;

@@ -46,16 +46,12 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
     category: "Residential",
     description: "The White House is a modern architectural masterpiece featuring clean lines, minimal aesthetics, and functional design tailored for luxury living.",
     gallery: [
-      "/images/1EsMLe08jkprzx3ZDo1GAcmzZH3N-Frpp.jpg",
       "/images/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE.jpg",
       "/images/1H6q1qNWQHacRX-hMgou8B1FiWhRQChA9.jpg",
-      "/images/1QLoxtToMtlmg-ipEwkZmSlumXOUQN8xl.jpg",
       "/images/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM.jpg",
       "/images/1-muYkqhKVHIFcPnOTRMuHckfveopxo9M.jpg",
       "/images/1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I.jpg",
-      "/images/1RAbB85Awvx_M7HDwpeLTHFHe_hVhD5Ei.jpg",
-      "/images/1iQmVJffURWt36pHSEUDtBVea6DohwNui.jpg",
-      "/images/18_7CMiYHoSYBhdpz3wpWKfoQkGwhUvof.jpg"
+      "/images/1RAbB85Awvx_M7HDwpeLTHFHe_hVhD5Ei.jpg"
     ],
     specs: {
       location: "Beverly Hills, USA",
@@ -63,6 +59,27 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
       year: "2024",
       architect: "DSA Residential Villa Group",
       materials: ["Poured Solid Chalk Concrete", "White Thassos Marble", "Extra-clear Optiwhite Glazing"]
+    }
+  },
+  {
+    id: "res-dsa-11",
+    src: "/images/shah-residence-custom-4.jpg",
+    alt: "Shah Residence",
+    category: "Residential",
+    description: "Shah Residence is a premium modern luxury apartment showcasing an exquisite entrance lobby with warm custom lighting, artificial grass accent walls, elegant fluted wooden paneling, and plush leather armchairs that exude cozy sophistication.",
+    gallery: [
+      "/images/shah-residence-custom-1.jpg",
+      "/images/shah-residence-custom-2.jpg",
+      "/images/shah-residence-custom-3.jpg",
+      "/images/shah-residence-custom-4.jpg",
+      "/images/shah-residence-custom-5.jpg"
+    ],
+    specs: {
+      location: "Mumbai, India",
+      area: "3,500 SQ. FT.",
+      year: "2026",
+      architect: "DSA India Studio",
+      materials: ["Custom Fluted Oak Panels", "Earthy Grass Accents", "Bespoke Leather Armchairs", "Digital Smart Access", "Polished Marble Floor"]
     }
   },
   {
