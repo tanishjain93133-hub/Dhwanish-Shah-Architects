@@ -368,15 +368,11 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
     category: "Residential",
     description: "Shela House is a modern residential interior designed with clean lines, warm lighting, and elegant finishes that create a calm and welcoming living experience.",
     gallery: [
-      "/images/1v6qalvsM3Qea36VXgliizpmmhqogNXId.jpg",
-      "/images/1A7n2KoNaNadZKVmfg8rAfJLm45iip4Ki.jpg",
-      "/images/1FpP771cL8vy2eMZZwTwtBGFve-Ip_sGU.jpg",
-      "/images/1egyW-7Pk2mNGz2x_Yew2TvgZsTzTZhye.jpg",
-      "/images/1lSfBE5V_CdMKRaEKH7K6WcJvOPpxPorW.jpg",
-      "/images/1uJkc_WYTa2QKKj2wXn2Ru6ZAixQQ1dHP.jpg",
-      "/images/1CwpouFmp3RkObvO8v0kStEZr5Qho1upO.jpg",
-      "/images/1VmORiXXnSwLwAMa6ZFZNUyFSeODRuJvZ.jpg",
-      "/images/1UfmiDAau64UhaDRwp63ecE7kzN41Ha-F.jpg"
+      "/images/shela-house-custom-1.jpg",
+      "/images/shela-house-custom-2.jpg",
+      "/images/shela-house-custom-3.jpg",
+      "/images/shela-house-custom-4.jpg",
+      "/images/shela-house-custom-5.jpg"
     ],
     specs: {
       location: "Vancouver, Canada",
