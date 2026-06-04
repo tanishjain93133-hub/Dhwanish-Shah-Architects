@@ -41,11 +41,17 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
   },
   {
     id: "res-dsa-02",
-    src: "/images/white-house-custom-1.jpg",
+    src: "/images/1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I.jpg",
     alt: "The White House",
     category: "Residential",
-    description: "The White House is a modern luxury residence featuring minimalist interior design, a bespoke bedroom with a rock-textured accent wall, arches, and a state-of-the-art open kitchen layout.",
+    description: "The White House is a modern architectural masterpiece featuring clean lines, minimal aesthetics, and functional design tailored for luxury living.",
     gallery: [
+      "/images/151kmI4LQypjKjzhQatTQCO-aAXyGuBhE.jpg",
+      "/images/1H6q1qNWQHacRX-hMgou8B1FiWhRQChA9.jpg",
+      "/images/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM.jpg",
+      "/images/1-muYkqhKVHIFcPnOTRMuHckfveopxo9M.jpg",
+      "/images/1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I.jpg",
+      "/images/1RAbB85Awvx_M7HDwpeLTHFHe_hVhD5Ei.jpg",
       "/images/white-house-custom-1.jpg",
       "/images/white-house-custom-2.jpg",
       "/images/white-house-custom-3.jpg",
@@ -54,10 +60,10 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
     ],
     specs: {
       location: "Beverly Hills, USA",
-      area: "6,200 SQ. FT.",
-      year: "2025",
+      area: "12,400 SQ. FT.",
+      year: "2024",
       architect: "DSA Residential Villa Group",
-      materials: ["Rock-textured Wall Panels", "Warm Integrated LED Strips", "Custom Wardrobes", "Modern Kitchen Appliances", "Polished Marble Floor"]
+      materials: ["Poured Solid Chalk Concrete", "White Thassos Marble", "Extra-clear Optiwhite Glazing"]
     }
   },
   {
