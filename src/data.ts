@@ -218,17 +218,11 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
     category: "Residential",
     description: "DHS House is a modern residential interior designed with clean lines, premium materials, and warm lighting to create a sophisticated and welcoming home environment.",
     gallery: [
-      "/images/14h7b7pMXC-VBaqBlaluV84FMPmJtgsv-.jpg",
-      "/images/1xkHElGhMv4jn-CIUb44MF-EULoI7tVN9.jpg",
-      "/images/18wghnSqoU4DceWGwb3OrGqMIb-bCrx_4.jpg",
-      "/images/1XPMjgJV5cm01cNRibpYxvZbUmkUY6NV4.jpg",
-      "/images/1qlBFCwSljLD0BHKzzcQLvhTz6CMEQ6vK.jpg",
-      "/images/1N84kFIXt8RgGocPWEwGaF7Ei2E6TcQCl.jpg",
-      "/images/1g-gFVfcAh7GKfJKGu8Ho_mxnW_KBXBRq.jpg",
-      "/images/1YKi3G5pqqWpgkGck8vVD5lvCX6foAyHp.jpg",
-      "/images/1mIw6i3D6_sdoSUAqZwnQvc1P5M_R8t35.jpg",
-      "/images/1bVVYnAZbYa0_9IOXRNHIvFMm6VlS8zXj.jpg",
-      "/images/1xx9p6jmi5997vpWR9EBJmH1VS_ab2r6S.jpg"
+      "/images/dhs-house-custom-1.jpg",
+      "/images/dhs-house-custom-2.jpg",
+      "/images/dhs-house-custom-3.jpg",
+      "/images/dhs-house-custom-4.jpg",
+      "/images/dhs-house-custom-5.jpg"
     ],
     specs: {
       location: "Hamptons, New York",
