@@ -94,7 +94,12 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
       "/images/serene-sanctuary-custom-7.jpg",
       "/images/serene-sanctuary-custom-8.jpg",
       "/images/serene-sanctuary-custom-9.jpg",
-      "/images/serene-sanctuary-custom-10.jpg"
+      "/images/serene-sanctuary-custom-10.jpg",
+      "/images/serene-sanctuary-custom-11.jpg",
+      "/images/serene-sanctuary-custom-12.jpg",
+      "/images/serene-sanctuary-custom-13.jpg",
+      "/images/serene-sanctuary-custom-14.jpg",
+      "/images/serene-sanctuary-custom-15.jpg"
     ],
     specs: {
       location: "Kyoto Outskirts, Japan",
