@@ -351,9 +351,9 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="relative z-20 px-6 md:px-12 py-24 bg-zinc-950/40 backdrop-blur-3xl border-t border-white/5"
+            className="relative z-20 px-6 md:px-12 py-12 bg-zinc-950/40 backdrop-blur-3xl border-t border-white/5"
           >
-            <div className="max-w-7xl mx-auto space-y-36">
+            <div className="max-w-7xl mx-auto space-y-16">
               {filteredProjects.map((project, i) => {
                 const isEven = i % 2 === 0;
                 return (
@@ -364,7 +364,7 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
                     viewport={{ once: true, margin: "-120px" }}
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     className={cn(
-                      "flex flex-col lg:flex-row gap-12 md:gap-20 items-center w-full pb-24 border-b border-zinc-900/40 last:border-b-0",
+                      "flex flex-col lg:flex-row gap-12 md:gap-20 items-center w-full pb-12 border-b border-zinc-900/40 last:border-b-0",
                       isEven ? "" : "lg:flex-row-reverse"
                     )}
                   >
