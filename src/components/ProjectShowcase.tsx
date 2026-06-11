@@ -128,7 +128,6 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
       "/images/shlip-aaron-custom-5.jpg",
       "/images/custom-dome-1.jpg",
       "/images/custom-dome-2.jpg",
-      "/images/custom-dome-3.jpg",
       "/images/custom-dome-4.jpg",
       "/images/custom-dome-5.jpg",
       "/images/custom-dome-6.jpg",
