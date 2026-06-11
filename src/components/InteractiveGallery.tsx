@@ -160,18 +160,25 @@ export const InteractiveGallery: React.FC<InteractiveGalleryProps> = ({ images, 
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full max-w-4xl h-[70vh] md:h-[80vh] rounded-xl overflow-hidden border border-zinc-800 shadow-2xl bg-zinc-950 flex items-center justify-center"
+              className="relative flex items-center justify-center bg-transparent"
               onClick={(e) => e.stopPropagation()}
             >
-              <SafeImage
+              <img
                 src={enrichedImages[lightboxIndex]}
                 alt={`${alt} Cinematic Zoom ${lightboxIndex + 1}`}
-                objectFit="contain"
-                className="w-full h-full max-h-semibold object-contain"
+                className="max-w-full max-h-[90vh] object-contain rounded-xl border border-zinc-800 shadow-2xl"
+                onError={(e) => {
+                  const img = e.currentTarget;
+                  const match = enrichedImages[lightboxIndex]?.match(/\/images\/(1[a-zA-Z0-9_-]{32})\.jpg/);
+                  if (match && !img.dataset.fallbackTried) {
+                    img.dataset.fallbackTried = "true";
+                    img.src = `https://lh3.googleusercontent.com/d/${match[1]}`;
+                  }
+                }}
               />
               
               {/* Bottom tag metrics overlay */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent p-4 flex justify-between font-mono text-[9px] text-zinc-400">
+              <div className="absolute inset-x-0 bottom-4 bg-black/60 backdrop-blur-md px-4 py-2 flex justify-between font-mono text-[9px] text-zinc-400 rounded-lg mx-auto max-w-[95%] pointer-events-none">
                 <span className="tracking-widest">HIGH-RESOLUTION INTERIOR RENDERING MODE</span>
                 <span className="text-neon-cyan">PATRIARCH SCALE APPROVED</span>
               </div>
