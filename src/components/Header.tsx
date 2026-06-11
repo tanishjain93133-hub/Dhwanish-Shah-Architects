@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Sun, Moon, ArrowRight } from "lucide-react";
 
 interface HeaderProps {
   lightMode: "day" | "evening";
@@ -73,43 +72,7 @@ export default function Header({
               )}
             </button>
           ))}
-
-          {/* Interactive LIGHTS mode switcher as requested in navigation */}
-          <div className="relative group/lights">
-            <button
-              id="nav-link-lights-toggle"
-              onClick={() => setLightMode(lightMode === "day" ? "evening" : "day")}
-              className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-mono py-1 px-3 rounded-full border border-zinc-800 hover:border-zinc-500 bg-neutral-900/60 transition-all duration-300 bg-linear-to-r hover:from-neutral-900 hover:to-zinc-950 text-white cursor-pointer group-hover/lights:text-blue-300"
-            >
-              <span className={`w-1.5 h-1.5 rounded-full ${
-                lightMode === "day" ? "bg-amber-400 animate-pulse" : "bg-indigo-400"
-              }`} />
-              Lights: <span className="font-semibold text-blue-400">{lightMode === "day" ? "Day" : "Evening"}</span>
-            </button>
-            
-            {/* Elegant sub-title indicator floating explaining the interactive day/night render changes */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 p-2 rounded-lg bg-zinc-950/95 border border-zinc-800 text-[9px] text-zinc-400 leading-normal opacity-0 group-hover/lights:opacity-100 transition-opacity duration-300 pointer-events-none text-center backdrop-blur-xs font-mono shadow-xl">
-              Toggle to watch project renders shift between sharp crisp daylight & premium ambient dusk.
-            </div>
-          </div>
         </nav>
-
-        {/* Right Side Controls (Day/Evening Compact Panel) */}
-        <div id="dsa-header-actions" className="flex items-center gap-4">
-          {/* Quick Mobile day/night mode switcher */}
-          <button
-            id="mobile-lights-switcher"
-            onClick={() => setLightMode(lightMode === "day" ? "evening" : "day")}
-            className="lg:hidden p-2 text-zinc-400 hover:text-white rounded-full bg-zinc-900/40 border border-zinc-800 "
-            title="Toggle Site Illumination Mode"
-          >
-            {lightMode === "day" ? (
-              <Sun className="w-4 h-4 text-amber-400" />
-            ) : (
-              <Moon className="w-4 h-4 text-indigo-400" />
-            )}
-          </button>
-        </div>
       </div>
     </header>
   );

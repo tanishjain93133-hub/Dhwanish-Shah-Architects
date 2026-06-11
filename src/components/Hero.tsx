@@ -217,18 +217,6 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
               />
             </div>
 
-            {/* Floating Solor Equinox Indicator */}
-            <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-black/85 backdrop-blur-md rounded-md border border-zinc-800 text-[9px] font-mono tracking-widest text-zinc-300">
-              {lightMode === "day" ? (
-                <span className="flex items-center gap-1.5 uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" /> SOLAR EQUINOX 14:00 (DAYLIGHT)
-                </span>
-              ) : (
-                <span className="flex items-center gap-1.5 uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse" /> AMBIENT DUSK REVEAL 19:45
-                </span>
-              )}
-            </div>
 
           </div>
 
