@@ -176,12 +176,7 @@ export const InteractiveGallery: React.FC<InteractiveGalleryProps> = ({ images, 
                   }
                 }}
               />
-              
-              {/* Bottom tag metrics overlay */}
-              <div className="absolute inset-x-0 bottom-4 bg-black/60 backdrop-blur-md px-4 py-2 flex justify-between font-mono text-[9px] text-zinc-400 rounded-lg mx-auto max-w-[95%] pointer-events-none">
-                <span className="tracking-widest">HIGH-RESOLUTION INTERIOR RENDERING MODE</span>
-                <span className="text-neon-cyan">PATRIARCH SCALE APPROVED</span>
-              </div>
+
             </motion.div>
           </motion.div>
         )}
