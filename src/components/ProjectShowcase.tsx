@@ -213,9 +213,7 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
             <h2 className="text-zinc-900 text-3xl sm:text-4xl md:text-5xl font-display font-light tracking-wide uppercase">
               PROJECT <span className="text-blue-600 font-bold tracking-widest">SPHERES</span>
             </h2>
-            <p className="text-zinc-550 font-mono text-[9px] tracking-wider mt-2 uppercase">
-              SELECT A MATERIAL DISCIPLINE TO OUTLINE THE SCHEMATICS
-            </p>
+
           </motion.div>
 
           {/* Interactive Bento Box Category selection */}
