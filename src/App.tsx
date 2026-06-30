@@ -82,7 +82,7 @@ export default function App() {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-zinc-200 pb-8 gap-6">
                   <button
                     onClick={() => setSelectedHeroProject(null)}
-                    className="flex items-center gap-2.5 text-zinc-500 hover:text-blue-600 font-mono text-[11px] uppercase tracking-[0.25em] transition-colors cursor-pointer"
+                    className="flex items-center gap-2 text-zinc-500 hover:text-blue-600 font-mono text-[9px] uppercase tracking-[0.2em] transition-colors cursor-pointer"
                   >
                     &larr; BACK TO PORTFOLIO
                   </button>
