@@ -324,11 +324,8 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
             className="relative w-full h-[650px] bg-white py-16"
           >
             <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 text-center pointer-events-none">
-              <span className="text-blue-600 text-[10px] font-black tracking-[1em] uppercase block mb-1 font-mono">
-                SYSTEM: DOME_PANORAMIC_VIEWER_V2
-              </span>
-              <span className="text-[9px] font-mono text-zinc-500 tracking-[0.25em] uppercase">
-                COORDINATES: DRAG MOUSE / SWIPE LEFT-RIGHT | RADIUS: 700px
+              <span className="text-blue-600 text-[10px] font-black tracking-[1em] uppercase block font-mono">
+                DSA EARTH
               </span>
             </div>
             <DomeGallery
