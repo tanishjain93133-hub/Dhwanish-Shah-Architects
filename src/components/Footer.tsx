@@ -9,7 +9,7 @@ export default function Footer() {
         {/* Left Side: Circular stamp seal logo */}
         <div className="flex items-center justify-center">
           <img
-            src="/images/dsa-logo-black.png"
+            src="/images/dsa-logo-white.jpg"
             alt="DSA Seal"
             className="w-20 h-20 object-contain animate-[spin_40s_linear_infinite] hover:[animation-play-state:paused] cursor-pointer rounded-full"
           />

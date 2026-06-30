@@ -18,15 +18,6 @@ export default function App() {
   const [inquiryOpen, setInquiryOpen] = useState(false);
   const [selectedHeroProject, setSelectedHeroProject] = useState<ProjectImageItem | null>(null);
   const [activeSection, setActiveSection] = useState("home");
-  const [loading, setLoading] = useState(true);
-
-  // Initial loading screen simulation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Update active section on window scroll
   useEffect(() => {
@@ -45,35 +36,12 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white font-sans antialiased text-zinc-900 select-none no-scrollbar">
-      
-      {/* 1. Custom High-End Preloader with Official Logo */}
-      <AnimatePresence>
-        {loading && (
-          <motion.div
-            id="dsa-app-preloader"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="fixed inset-0 bg-[#000000] z-[9999] flex flex-col justify-center items-center p-6 select-none"
-          >
-            <motion.img
-              src="/images/dsa-logo-black.png"
-              alt="DSA Logo"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ 
-                opacity: 1, 
-                scale: [1, 1.04, 1],
-              }}
-              transition={{
-                opacity: { duration: 0.6, ease: "easeOut" },
-                scale: { repeat: Infinity, duration: 2.2, ease: "easeInOut" }
-              }}
-              className="w-[75px] h-[75px] md:w-[110px] md:h-[110px] object-contain"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="min-h-screen bg-white font-sans antialiased text-zinc-900 select-none no-scrollbar"
+    >
       {/* 2. Glassmorphic Sticky Header */}
       <Header
         lightMode={lightMode}
@@ -166,6 +134,6 @@ export default function App() {
           : "bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.02),transparent_50%)]"
       }`} />
 
-    </div>
+    </motion.div>
   );
 }
