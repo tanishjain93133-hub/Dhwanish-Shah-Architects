@@ -40,7 +40,9 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
       "/images/aa-wealth-custom-9.jpg",
       "/images/aa-wealth-custom-10.jpg",
       "/images/aa-wealth-custom-11.jpg",
-      "/images/aa-wealth-custom-12.jpg"
+      "/images/aa-wealth-custom-12.jpg",
+      "/images/aa-wealth-custom-13.jpg",
+      "/images/aa-wealth-custom-14.jpg"
     ],
     specs: {
       location: "Financial District, Milan",
