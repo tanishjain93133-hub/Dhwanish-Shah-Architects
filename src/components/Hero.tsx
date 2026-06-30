@@ -160,8 +160,8 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
 
           {/* Left Social Links */}
           <div id="hero-social-links" className="flex items-center gap-6 pt-4 border-t border-zinc-250">
-            <span className="text-[10px] font-mono text-zinc-400 tracking-[0.3em] uppercase">CONNECT ON SOCIALS</span>
-            <div className="flex gap-4">
+            <span className="text-[12px] font-mono text-zinc-500 tracking-[0.3em] uppercase">CONNECT ON SOCIALS</span>
+            <div className="flex gap-4 items-center">
               <a
                 href="https://www.instagram.com/dsa.architects.and.interiors"
                 target="_blank"
@@ -169,7 +169,7 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
                 id="hero-social-instagram"
                 className="text-zinc-500 hover:text-blue-600 transition-colors duration-300"
               >
-                <Instagram className="w-4 h-4" />
+                <Instagram className="w-5 h-5" />
               </a>
               <a
                 href="https://www.facebook.com/dsa.architects.and.interiors"
@@ -178,7 +178,7 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
                 id="hero-social-facebook"
                 className="text-zinc-500 hover:text-blue-600 transition-colors duration-300"
               >
-                <Facebook className="w-4 h-4" />
+                <Facebook className="w-5 h-5" />
               </a>
               <a
                 href="https://www.linkedin.com/company/dsa-architects-interiors/?viewAsMember=true"
@@ -187,7 +187,7 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
                 id="hero-social-linkedin"
                 className="text-zinc-500 hover:text-blue-600 transition-colors duration-300"
               >
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="w-5 h-5" />
               </a>
             </div>
           </div>
