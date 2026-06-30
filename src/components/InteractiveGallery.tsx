@@ -131,15 +131,7 @@ export const InteractiveGallery: React.FC<InteractiveGalleryProps> = ({ images, 
             className="fixed inset-0 bg-black/98 z-100 flex items-center justify-center p-4 sm:p-10 select-none backdrop-blur-md"
           >
             {/* Top Bar with metadata and controls */}
-            <div className="absolute top-6 inset-x-6 flex justify-between items-center z-110 pointer-events-none">
-              <div className="flex flex-col gap-1">
-                <span className="text-[10px] font-mono text-blue-500 tracking-[0.3em] uppercase font-bold">
-                  {alt.toUpperCase()}
-                </span>
-                <span className="text-[9px] font-mono text-zinc-400 uppercase tracking-widest">
-                  FRAME NOD_{lightboxIndex + 1 < 10 ? `0${lightboxIndex + 1}` : lightboxIndex + 1} // {enrichedImages.length}
-                </span>
-              </div>
+            <div className="absolute top-6 inset-x-6 flex justify-end items-center z-110 pointer-events-none">
               <button
                 onClick={() => setLightboxIndex(null)}
                 className="pointer-events-auto p-3 bg-white/90 hover:bg-zinc-100 text-zinc-650 hover:text-zinc-900 rounded-lg border border-zinc-200 transition-colors cursor-pointer flex items-center justify-center shadow-sm"
