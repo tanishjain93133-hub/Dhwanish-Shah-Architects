@@ -78,7 +78,12 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
       "/images/white-house-custom-14.jpg",
       "/images/white-house-custom-15.jpg",
       "/images/white-house-custom-16.jpg",
-      "/images/white-house-custom-17.jpg"
+      "/images/white-house-custom-17.jpg",
+      "/images/white-house-custom-18.jpg",
+      "/images/white-house-custom-19.jpg",
+      "/images/white-house-custom-20.jpg",
+      "/images/white-house-custom-21.jpg",
+      "/images/white-house-custom-22.jpg"
     ],
     specs: {
       location: "Beverly Hills, USA",
