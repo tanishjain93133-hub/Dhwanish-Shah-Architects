@@ -41,8 +41,93 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
         <div className="absolute top-2/3 left-0 right-0 h-[1px] bg-zinc-200" />
       </div>
 
-      {/* Main split-screen Layout */}
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 py-12 md:py-20">
+      {/* Mobile Layout (lg:hidden) */}
+      <div className="lg:hidden max-w-7xl mx-auto w-full px-6 flex flex-col gap-6 relative z-10 pb-12 pt-4">
+        {/* Title / Header portion */}
+        <div className="flex flex-col">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-1 h-1 bg-blue-600 rounded-xs animate-ping" />
+            <span className="text-[9px] font-mono font-bold tracking-[0.3em] text-blue-600 uppercase">
+              ARCHITECTURAL PORTFOLIO
+            </span>
+          </div>
+          <h1 className="text-3xl font-sans font-bold text-zinc-900 tracking-tight uppercase leading-none">
+            PROJECTS
+          </h1>
+        </div>
+
+        {/* 1. Project Data Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="p-5 rounded-xl bg-white border border-zinc-200 shadow-sm relative overflow-hidden"
+        >
+          <div className="absolute -top-1/2 -right-1/2 w-32 h-32 bg-blue-600/5 rounded-full blur-2xl pointer-events-none" />
+          <span className="text-[9px] font-mono text-zinc-400 tracking-[0.2em] uppercase block mb-1">FEATURED RESIDENCE</span>
+          <h3 className="text-xl font-display font-medium text-zinc-900 tracking-widest mb-1 uppercase">
+            {currentProject.alt}
+          </h3>
+          <p className="text-xs text-zinc-600 font-sans tracking-wide mb-4 line-clamp-2">
+            {currentProject.description}
+          </p>
+          <button
+            id={`hero-mobile-view-proj-${currentProject.id}`}
+            onClick={() => onSelectProject(currentProject)}
+            className="text-[9px] font-mono text-zinc-900 hover:text-blue-600 tracking-[0.2em] uppercase flex items-center gap-2 cursor-pointer transition-colors"
+          >
+            <span>DISCOVER ARCHITECTURE</span>
+            <ArrowRight className="w-3 h-3 text-blue-600" />
+          </button>
+        </motion.div>
+
+        {/* 2. Image */}
+        <div className="relative w-full aspect-16/10 rounded-xl overflow-hidden border border-zinc-200 shadow-md">
+          <SafeImage
+            src={currentProject.src}
+            alt={currentProject.alt}
+            objectFit="cover"
+            className="w-full h-full select-none"
+          />
+        </div>
+
+        {/* 3. Slider Navigation (Arrows + Dots) */}
+        <div className="flex items-center justify-between mt-2">
+          <div className="flex gap-2">
+            <button
+              id="hero-mobile-prev-slide-btn"
+              onClick={prevSlide}
+              className="p-2.5 text-zinc-500 hover:text-zinc-900 border border-zinc-200 rounded-lg bg-white shadow-xs cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              id="hero-mobile-next-slide-btn"
+              onClick={nextSlide}
+              className="p-2.5 text-zinc-500 hover:text-zinc-900 border border-zinc-200 rounded-lg bg-white shadow-xs cursor-pointer"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+          
+          <div className="flex gap-1.5">
+            {sliderProjects.map((proj, idx) => (
+              <button
+                key={proj.id}
+                id={`hero-mobile-slide-dot-${idx}`}
+                onClick={() => setCurrentIndex(idx)}
+                className={`h-1 cursor-pointer transition-all duration-500 ${
+                  idx === currentIndex ? "w-6 bg-blue-600 rounded-full" : "w-2 bg-zinc-300 rounded-sm"
+                }`}
+                title={`View Project ${proj.alt}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop split-screen Layout (hidden lg:grid) */}
+      <div className="hidden lg:grid max-w-7xl mx-auto w-full px-6 md:px-12 lg:grid-cols-12 gap-8 items-center relative z-10 py-12 md:py-20">
         
         {/* Left Side: Typography & Metadata (5 Columns) */}
         <div id="hero-left-content" className="lg:col-span-5 flex flex-col justify-center relative">
@@ -82,7 +167,7 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
             </motion.div>
           </div>
 
-          {/* Luxury Description (exactly as requested) */}
+          {/* Luxury Description */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -125,7 +210,7 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
           </motion.div>
 
           {/* Navigation Slider Arrows and Progress Indicators */}
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between">
             <div className="flex gap-2.5">
               <button
                 id="hero-prev-slide-btn"
@@ -158,40 +243,6 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
             </div>
           </div>
 
-          {/* Left Social Links */}
-          <div id="hero-social-links" className="flex items-center gap-6 pt-4 border-t border-zinc-250">
-            <span className="text-[12px] font-mono text-zinc-500 tracking-[0.3em] uppercase">CONNECT ON SOCIALS</span>
-            <div className="flex gap-4 items-center">
-              <a
-                href="https://www.instagram.com/dsa.architects.and.interiors"
-                target="_blank"
-                rel="noreferrer"
-                id="hero-social-instagram"
-                className="text-zinc-500 hover:text-blue-600 transition-colors duration-300"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.facebook.com/dsa.architects.and.interiors"
-                target="_blank"
-                rel="noreferrer"
-                id="hero-social-facebook"
-                className="text-zinc-500 hover:text-blue-600 transition-colors duration-300"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/dsa-architects-interiors/?viewAsMember=true"
-                target="_blank"
-                rel="noreferrer"
-                id="hero-social-linkedin"
-                className="text-zinc-500 hover:text-blue-600 transition-colors duration-300"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-
         </div>
 
         {/* Right Side: Major Cinematic Image Frame with Glass Spec HUD (7 Columns) */}
@@ -199,7 +250,7 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
           
           <div className="relative w-full aspect-16/10 md:aspect-16/9 lg:aspect-4/3 rounded-2xl overflow-hidden border border-zinc-200 shadow-lg">
             
-            {/* Golden hour dusk overlays */}
+            {/* Dusk overlays */}
             <div className={`absolute inset-0 z-10 pointer-events-none transition-all duration-1000 ${
               lightMode === "evening"
                 ? "bg-gradient-to-t from-black/30 via-black/5 to-transparent"
@@ -216,7 +267,6 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
                 className="w-full h-full select-none hover:scale-103 transition-transform duration-[3s]"
               />
             </div>
-
 
           </div>
 
