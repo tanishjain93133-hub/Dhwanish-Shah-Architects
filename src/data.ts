@@ -565,7 +565,9 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
       "/images/shlip-aaron-custom-2.jpg",
       "/images/shlip-aaron-custom-3.jpg",
       "/images/shlip-aaron-custom-4.jpg",
-      "/images/shlip-aaron-custom-5.jpg"
+      "/images/shlip-aaron-custom-5.jpg",
+      "/images/shlip-aaron-custom-6.jpg",
+      "/images/shlip-aaron-custom-7.jpg"
     ],
     specs: {
       location: "Stockholm, Sweden",
