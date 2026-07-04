@@ -228,7 +228,7 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
               },
               {
                 name: "Residential",
-                img: "/images/1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I.jpg",
+                img: "/images/residential-category-bg.jpg",
                 type: "Living Spaces & Villas",
                 count: PROJECTS_IMAGES.filter(p => p.category === "Residential").length,
               },
