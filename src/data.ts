@@ -558,13 +558,13 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
     gallery: [
       "/images/10bqHIbfF1VJqrGk1I_iC9AyLh_aKscph.jpg",
       "/images/1W3WQQZozxeLqmqfLGkhsrE2YFcShJycD.jpg",
-      "/images/shlip-aaron-custom-1.jpg",
       "/images/shlip-aaron-custom-2.jpg",
-      "/images/shlip-aaron-custom-3.jpg",
+      "/images/shlip-aaron-custom-1.jpg",
       "/images/shlip-aaron-custom-4.jpg",
-      "/images/shlip-aaron-custom-5.jpg",
+      "/images/shlip-aaron-custom-3.jpg",
       "/images/shlip-aaron-custom-6.jpg",
-      "/images/shlip-aaron-custom-7.jpg"
+      "/images/shlip-aaron-custom-7.jpg",
+      "/images/shlip-aaron-custom-5.jpg"
     ],
     specs: {
       location: "Stockholm, Sweden",
