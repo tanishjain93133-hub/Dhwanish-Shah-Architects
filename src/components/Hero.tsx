@@ -45,12 +45,6 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
       <div className="lg:hidden max-w-7xl mx-auto w-full px-6 flex flex-col gap-6 relative z-10 pb-12 pt-4">
         {/* Title / Header portion */}
         <div className="flex flex-col">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-1 h-1 bg-blue-600 rounded-xs animate-ping" />
-            <span className="text-[9px] font-mono font-bold tracking-[0.3em] text-blue-600 uppercase">
-              ARCHITECTURAL PORTFOLIO
-            </span>
-          </div>
           <h1 className="text-3xl font-sans font-bold text-zinc-900 tracking-tight uppercase leading-none">
             PROJECTS
           </h1>
@@ -132,19 +126,6 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
         {/* Left Side: Typography & Metadata (5 Columns) */}
         <div id="hero-left-content" className="lg:col-span-5 flex flex-col justify-center relative">
           
-          {/* Small label: ARCHITECTURAL PORTFOLIO */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <span className="w-1.5 h-1.5 bg-blue-600 rounded-xs animate-ping" />
-            <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.4em] text-blue-600 uppercase">
-              ARCHITECTURAL PORTFOLIO
-            </span>
-          </motion.div>
-
           {/* Massive Heading: PROJECTS */}
           <div id="hero-massive-heading" className="relative mb-6">
             <motion.h1
@@ -155,16 +136,6 @@ export default function Hero({ projects, lightMode, onSelectProject }: HeroProps
             >
               PROJECTS
             </motion.h1>
-            
-            {/* Elegant luxury project code index overlaid */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.2 }}
-              transition={{ delay: 0.5 }}
-              className="absolute -top-10 left-32 text-8xl md:text-9xl font-display font-black text-zinc-350 tracking-widest hidden md:block select-none pointer-events-none"
-            >
-              0{currentIndex + 1}
-            </motion.div>
           </div>
 
           {/* Luxury Description */}
