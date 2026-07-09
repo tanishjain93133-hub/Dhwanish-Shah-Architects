@@ -349,6 +349,7 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
       "/images/subtle-sanctuary-custom-2.jpg",
       "/images/subtle-sanctuary-custom-9.jpg",
       "/images/subtle-sanctuary-custom-29.jpg",
+      "/images/subtle-sanctuary-custom-31.jpg",
       "/images/subtle-sanctuary-custom-25.jpg",
       "/images/subtle-sanctuary-custom-4.jpg",
       "/images/subtle-sanctuary-custom-11.jpg",
