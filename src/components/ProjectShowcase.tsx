@@ -4,7 +4,7 @@ import { PROJECTS_IMAGES, ProjectImageItem } from "../data";
 import { SafeImage } from "./SafeImage";
 import DomeGallery from "./DomeGallery";
 import { InteractiveGallery } from "./InteractiveGallery";
-import Footer from "./Footer";
+import Footer from "./ShowcaseFooter";
 import { cn } from "../lib/utils";
 import { X, Sparkles, Compass, Award, ExternalLink, SlidersHorizontal, Layers, LayoutGrid } from "lucide-react";
 

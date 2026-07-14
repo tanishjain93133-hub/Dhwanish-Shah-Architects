@@ -1,37 +1,20 @@
-import React, { useEffect, useMemo, useRef, useCallback } from "react";
-import { useGesture } from "@use-gesture/react";
+import React, { useEffect, useMemo, useRef, useCallback, useState } from 'react';
+import { useGesture } from '@use-gesture/react';
+import { extractDriveId } from './SafeImage';
+import './DomeGallery.css';
 
-export interface DomeGalleryImage {
-  src: string;
-  alt?: string;
-}
-
-export type DomeGalleryImageItem = string | DomeGalleryImage;
-
-const DEFAULT_IMAGES: DomeGalleryImage[] = [
+const DEFAULT_IMAGES = [
   {
-    src: "https://images.unsplash.com/photo-1755331039789-7e5680e26e8f?q=80&w=774&auto=format&fit=crop",
-    alt: "Abstract art"
+    src: 'https://images.unsplash.com/photo-1755331039789-7e5680e26e8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Abstract art'
   },
   {
-    src: "https://images.unsplash.com/photo-1755569309049-98410b94f66d?q=80&w=772&auto=format&fit=crop",
-    alt: "Modern sculpture"
+    src: 'https://images.unsplash.com/photo-1755569309049-98410b94f66d?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Modern sculpture'
   },
   {
-    src: "https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop",
-    alt: "Digital artwork"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1755353985163-c2a0fe5ac3d8?q=80&w=774&auto=format&fit=crop",
-    alt: "Contemporary art"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1745965976680-d00be7dc0377?q=80&w=774&auto=format&fit=crop",
-    alt: "Geometric pattern"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1752588975228-21f44630bb3c?q=80&w=774&auto=format&fit=crop",
-    alt: "Textured surface"
+    src: 'https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    alt: 'Digital artwork'
   }
 ];
 
@@ -48,22 +31,168 @@ const wrapAngleSigned = (deg: number) => {
   const a = (((deg + 180) % 360) + 360) % 360;
   return a - 180;
 };
-const getDataNumber = (el: HTMLElement, name: string, fallback: number): number => {
+const getDataNumber = (el: HTMLElement, name: string, fallback: number) => {
   const attr = el.dataset[name] ?? el.getAttribute(`data-${name}`);
   const n = attr == null ? NaN : parseFloat(attr);
   return Number.isFinite(n) ? n : fallback;
 };
 
-interface BuiltItem {
-  x: number;
-  y: number;
-  sizeX: number;
-  sizeY: number;
-  src: string;
-  alt: string;
-}
+const ARCHITECTURAL_FALLBACKS = [
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1000&auto=format&fit=crop'
+];
 
-function buildItems(pool: DomeGalleryImageItem[], seg: number): BuiltItem[] {
+const LOADED_HIGH_RES_CACHE = new Set<string>();
+
+const DomeImageComponent: React.FC<{ src: string; alt?: string; className?: string }> = ({ src, alt, className }) => {
+  const fallbackSrc = src;
+
+  const getLowResUrl = (originalUrl: string) => {
+    if (!originalUrl) return '';
+    const driveId = extractDriveId(originalUrl);
+    if (driveId) {
+      return `/api/image-proxy?id=${driveId}&w=300`;
+    }
+    return originalUrl;
+  };
+
+  const getHighResUrl = (originalUrl: string) => {
+    if (!originalUrl) return '';
+    const driveId = extractDriveId(originalUrl);
+    if (driveId) {
+      return `/api/image-proxy?id=${driveId}&w=800`;
+    }
+    return originalUrl;
+  };
+
+  const hasLoadedHighRes = src ? LOADED_HIGH_RES_CACHE.has(src) : false;
+
+  const [currentSrc, setCurrentSrc] = useState(() => {
+    if (hasLoadedHighRes) {
+      return getHighResUrl(src);
+    }
+    return getLowResUrl(src);
+  });
+  const [isHighRes, setIsHighRes] = useState(hasLoadedHighRes);
+  const [isLoaded, setIsLoaded] = useState(hasLoadedHighRes);
+  const [isVisible, setIsVisible] = useState(hasLoadedHighRes);
+  const [retryCount, setRetryCount] = useState(0);
+
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Sync state if src changes
+  useEffect(() => {
+    const cached = src ? LOADED_HIGH_RES_CACHE.has(src) : false;
+    setIsHighRes(cached);
+    setIsLoaded(cached);
+    setIsVisible(cached);
+    setRetryCount(0);
+    setCurrentSrc(cached ? getHighResUrl(src) : getLowResUrl(src));
+  }, [src]);
+
+  // Subscribe to 'dg-visible' event on the closest .item parent
+  useEffect(() => {
+    const imgEl = imgRef.current;
+    if (!imgEl || isVisible || !src) return;
+
+    const itemEl = imgEl.closest('.item');
+    if (!itemEl) return;
+
+    if (itemEl.getAttribute('data-visible') === 'true') {
+      setIsVisible(true);
+      return;
+    }
+
+    const onVisible = () => {
+      setIsVisible(true);
+    };
+
+    itemEl.addEventListener('dg-visible', onVisible);
+    return () => {
+      itemEl.removeEventListener('dg-visible', onVisible);
+    };
+  }, [src, isVisible]);
+
+  // Handle progressive high-res loading in the background once visible
+  useEffect(() => {
+    if (!isVisible || isHighRes || !src) return;
+
+    const highResUrl = getHighResUrl(src);
+    const img = new Image();
+    img.referrerPolicy = 'no-referrer';
+    img.src = highResUrl;
+
+    const handleSuccess = () => {
+      LOADED_HIGH_RES_CACHE.add(src);
+      setIsHighRes(true);
+      setCurrentSrc(highResUrl);
+    };
+
+    const handleFail = () => {
+      if (retryCount < 3) {
+        const nextAttempt = retryCount + 1;
+        const driveId = extractDriveId(src);
+        if (driveId) {
+          const width = nextAttempt === 1 ? '800' : '1200';
+          setRetryCount(nextAttempt);
+          img.src = `/api/image-proxy?id=${driveId}&w=${width}`;
+        } else {
+          setCurrentSrc(fallbackSrc);
+        }
+      } else {
+        setCurrentSrc(fallbackSrc);
+      }
+    };
+
+    img.onload = () => {
+      if (img.naturalWidth > 0 && img.naturalWidth < 10) {
+        handleFail();
+      } else {
+        handleSuccess();
+      }
+    };
+    img.onerror = handleFail;
+
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [src, isVisible, isHighRes, retryCount]);
+
+  const handleInitialLoad = () => {
+    setIsLoaded(true);
+  };
+
+  const handleInitialError = () => {
+    setIsLoaded(true); // Don't block display if low-res breaks
+  };
+
+  return (
+    <img
+      ref={imgRef}
+      src={currentSrc}
+      draggable={false}
+      alt={alt}
+      onLoad={handleInitialLoad}
+      onError={handleInitialError}
+      loading="lazy"
+      decoding="async"
+      referrerPolicy="no-referrer"
+      className={`${className} transition-all duration-500 ${
+        !isLoaded 
+          ? "opacity-0 scale-105 blur-sm" 
+          : isHighRes 
+            ? "opacity-100 scale-100 blur-0" 
+            : "opacity-80 scale-100 blur-[1px]"
+      }`}
+    />
+  );
+};
+
+const DomeImage = React.memo(DomeImageComponent);
+
+function buildItems(pool: (string | { src: string; alt?: string })[], seg: number) {
   const xCols = Array.from({ length: seg }, (_, i) => -37 + i * 2);
   const evenYs = [-4, -2, 0, 2, 4];
   const oddYs = [-3, -1, 1, 3, 5];
@@ -74,42 +203,51 @@ function buildItems(pool: DomeGalleryImageItem[], seg: number): BuiltItem[] {
   });
 
   const totalSlots = coords.length;
-  if (pool.length === 0) {
-    return coords.map(c => ({ ...c, src: "", alt: "" }));
-  }
-  if (pool.length > totalSlots) {
-    console.warn(
-      `[DomeGallery] Provided image count (${pool.length}) exceeds available tiles (${totalSlots}). Some images will not be shown.`
-    );
+  if (!pool || pool.length === 0) {
+    return coords.map(c => ({ ...c, src: '', alt: '' }));
   }
 
-  const normalizedImages = pool.map(image => {
-    if (typeof image === "string") {
-      return { src: image, alt: "" };
+  // Automatic duplicate detection and extraction based on URL / Google Drive ID
+  const uniqueImagesMap = new Map<string, { src: string; alt: string }>();
+  pool.forEach(image => {
+    let src = '';
+    let alt = '';
+    if (typeof image === 'string') {
+      src = image;
+    } else if (image && typeof image === 'object') {
+      src = image.src || '';
+      alt = image.alt || '';
     }
-    return { src: image.src || "", alt: image.alt || "" };
+    if (!src) return;
+    
+    const driveId = extractDriveId(src);
+    const key = driveId ? driveId.toLowerCase() : src.trim().toLowerCase();
+    if (!uniqueImagesMap.has(key)) {
+      uniqueImagesMap.set(key, { src, alt });
+    }
   });
-
-  const usedImages = Array.from({ length: totalSlots }, (_, i) => normalizedImages[i % normalizedImages.length]);
-
-  for (let i = 1; i < usedImages.length; i++) {
-    if (usedImages[i].src === usedImages[i - 1].src) {
-      for (let j = i + 1; j < usedImages.length; j++) {
-        if (usedImages[j].src !== usedImages[i].src) {
-          const tmp = usedImages[i];
-          usedImages[i] = usedImages[j];
-          usedImages[j] = tmp;
-          break;
-        }
-      }
-    }
+  
+  const uniqueImages = Array.from(uniqueImagesMap.values());
+  const N = uniqueImages.length;
+  if (N === 0) {
+    return coords.map(c => ({ ...c, src: '', alt: '' }));
   }
 
-  return coords.map((c, i) => ({
-    ...c,
-    src: usedImages[i].src,
-    alt: usedImages[i].alt
-  }));
+  // To meet the requirements: "Remove repeated duplicate images", "Every image should be unique",
+  // and "Maintain balanced distribution", we map each unique image to coordinates spaced
+  // evenly across the total slot count. This results in exactly N unique floating tiles with 0 empty frames or duplicate copies.
+  const selectedCoords: { x: number; y: number; sizeX: number; sizeY: number; src: string; alt: string }[] = [];
+  for (let i = 0; i < N; i++) {
+    const coordIdx = Math.floor((i * totalSlots) / N);
+    const c = coords[coordIdx];
+    selectedCoords.push({
+      ...c,
+      src: uniqueImages[i].src,
+      alt: uniqueImages[i].alt
+    });
+  }
+
+  return selectedCoords;
 }
 
 function computeItemBaseRotation(offsetX: number, offsetY: number, sizeX: number, sizeY: number, segments: number) {
@@ -119,10 +257,10 @@ function computeItemBaseRotation(offsetX: number, offsetY: number, sizeX: number
   return { rotateX, rotateY };
 }
 
-export interface DomeGalleryProps {
-  images?: DomeGalleryImageItem[];
+interface DomeGalleryProps {
+  images?: (string | { src: string; alt?: string })[];
   fit?: number;
-  fitBasis?: "auto" | "min" | "max" | "width" | "height";
+  fitBasis?: 'auto' | 'min' | 'max' | 'width' | 'height';
   minRadius?: number;
   maxRadius?: number;
   padFactor?: number;
@@ -142,34 +280,34 @@ export interface DomeGalleryProps {
 export default function DomeGallery({
   images = DEFAULT_IMAGES,
   fit = 0.5,
-  fitBasis = "auto",
+  fitBasis = 'auto',
   minRadius = 600,
   maxRadius = Infinity,
   padFactor = 0.25,
-  overlayBlurColor = "#120F17",
+  overlayBlurColor = '#120F17',
   maxVerticalRotationDeg = DEFAULTS.maxVerticalRotationDeg,
   dragSensitivity = DEFAULTS.dragSensitivity,
   enlargeTransitionMs = DEFAULTS.enlargeTransitionMs,
   segments = DEFAULTS.segments,
   dragDampening = 2,
-  openedImageWidth = "250px",
-  openedImageHeight = "350px",
-  imageBorderRadius = "30px",
-  openedImageBorderRadius = "30px",
+  openedImageWidth = '250px',
+  openedImageHeight = '350px',
+  imageBorderRadius = '30px',
+  openedImageBorderRadius = '30px',
   grayscale = true
 }: DomeGalleryProps) {
-  const rootRef = useRef<HTMLDivElement | null>(null);
-  const mainRef = useRef<HTMLElement | null>(null);
-  const sphereRef = useRef<HTMLDivElement | null>(null);
-  const frameRef = useRef<HTMLDivElement | null>(null);
-  const viewerRef = useRef<HTMLDivElement | null>(null);
-  const scrimRef = useRef<HTMLDivElement | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
+  const sphereRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const viewerRef = useRef<HTMLDivElement>(null);
+  const scrimRef = useRef<HTMLDivElement>(null);
   const focusedElRef = useRef<HTMLElement | null>(null);
-  const originalTilePositionRef = useRef<{ left: number; top: number; width: number; height: number } | null>(null);
+  const originalTilePositionRef = useRef<{left: number, top: number, width: number, height: number} | null>(null);
 
   const rotationRef = useRef({ x: 0, y: 0 });
   const startRotRef = useRef({ x: 0, y: 0 });
-  const startPosRef = useRef<{ x: number; y: number } | null>(null);
+  const startPosRef = useRef<{x: number, y: number} | null>(null);
   const draggingRef = useRef(false);
   const movedRef = useRef(false);
   const inertiaRAF = useRef<number | null>(null);
@@ -181,23 +319,77 @@ export default function DomeGallery({
   const lockScroll = useCallback(() => {
     if (scrollLockedRef.current) return;
     scrollLockedRef.current = true;
-    document.body.classList.add("dg-scroll-lock");
+    document.body.classList.add('dg-scroll-lock');
   }, []);
   const unlockScroll = useCallback(() => {
     if (!scrollLockedRef.current) return;
-    if (rootRef.current?.getAttribute("data-enlarging") === "true") return;
+    if (rootRef.current?.getAttribute('data-enlarging') === 'true') return;
     scrollLockedRef.current = false;
-    document.body.classList.remove("dg-scroll-lock");
+    document.body.classList.remove('dg-scroll-lock');
   }, []);
 
-  const items = useMemo(() => buildItems(images, segments), [images, segments]);
+  const serializedImages = useMemo(() => JSON.stringify(images), [images]);
+  const items = useMemo(() => buildItems(images, segments), [serializedImages, segments]);
+
+  const itemElementsRef = useRef<{ el: HTMLElement; rotateY: number; src: string }[]>([]);
+
+  // Update visibility based on current sphere rotation Y with 3D horizontal culling
+  const updateVisibility = (sphereRotY: number) => {
+    const itemsList = itemElementsRef.current;
+    if (itemsList.length === 0) return;
+
+    for (let i = 0; i < itemsList.length; i++) {
+      const item = itemsList[i];
+      // Compute the absolute horizontal direction of this item relative to the front view
+      const worldYawDeg = item.rotateY + sphereRotY;
+      const rad = (worldYawDeg * Math.PI) / 180;
+      const cosVal = Math.cos(rad);
+
+      // We use a safe threshold (-0.28) to cull items on the back side of the sphere.
+      // This completely relieves the GPU & browser rendering engine from processing invisible off-screen items.
+      if (cosVal >= -0.28) {
+        if (item.el.style.visibility !== 'visible') {
+          item.el.style.visibility = 'visible';
+          item.el.style.pointerEvents = 'auto';
+        }
+        // Emit event to trigger high-res image preloading for this visible item
+        if (item.el.getAttribute('data-visible') !== 'true') {
+          item.el.setAttribute('data-visible', 'true');
+          item.el.dispatchEvent(new CustomEvent('dg-visible'));
+        }
+      } else {
+        if (item.el.style.visibility !== 'hidden') {
+          item.el.style.visibility = 'hidden';
+          item.el.style.pointerEvents = 'none';
+        }
+      }
+    }
+  };
 
   const applyTransform = (xDeg: number, yDeg: number) => {
     const el = sphereRef.current;
     if (el) {
       el.style.transform = `translateZ(calc(var(--radius) * -1)) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
     }
+    updateVisibility(yDeg);
   };
+
+  // Build the list of active items once after they are rendered in the DOM
+  useEffect(() => {
+    const sphere = sphereRef.current;
+    if (!sphere) return;
+    const elements = Array.from(sphere.querySelectorAll('.item')) as HTMLElement[];
+    const unit = 360 / segments / 2;
+    itemElementsRef.current = elements.map(el => {
+      const x = getDataNumber(el, 'offsetX', 0);
+      const sizeX = getDataNumber(el, 'sizeX', 2);
+      const rotateY = unit * (x + (sizeX - 1) / 2);
+      const src = el.getAttribute('data-src') || '';
+      return { el, rotateY, src };
+    });
+    // Immediately calculate visibility after constructing the DOM list
+    updateVisibility(rotationRef.current.y);
+  }, [items, segments]);
 
   const lockedRadiusRef = useRef<number | null>(null);
 
@@ -211,18 +403,18 @@ export default function DomeGallery({
       const minDim = Math.min(w, h),
         maxDim = Math.max(w, h),
         aspect = w / h;
-      let basis: number;
+      let basis;
       switch (fitBasis) {
-        case "min":
+        case 'min':
           basis = minDim;
           break;
-        case "max":
+        case 'max':
           basis = maxDim;
           break;
-        case "width":
+        case 'width':
           basis = w;
           break;
-        case "height":
+        case 'height':
           basis = h;
           break;
         default:
@@ -235,22 +427,22 @@ export default function DomeGallery({
       lockedRadiusRef.current = Math.round(radius);
 
       const viewerPad = Math.max(8, Math.round(minDim * padFactor));
-      root.style.setProperty("--radius", `${lockedRadiusRef.current}px`);
-      root.style.setProperty("--viewer-pad", `${viewerPad}px`);
-      root.style.setProperty("--overlay-blur-color", overlayBlurColor);
-      root.style.setProperty("--tile-radius", imageBorderRadius);
-      root.style.setProperty("--enlarge-radius", openedImageBorderRadius);
-      root.style.setProperty("--image-filter", grayscale ? "grayscale(1)" : "none");
+      root.style.setProperty('--radius', `${lockedRadiusRef.current}px`);
+      root.style.setProperty('--viewer-pad', `${viewerPad}px`);
+      root.style.setProperty('--overlay-blur-color', overlayBlurColor);
+      root.style.setProperty('--tile-radius', imageBorderRadius);
+      root.style.setProperty('--enlarge-radius', openedImageBorderRadius);
+      root.style.setProperty('--image-filter', grayscale ? 'grayscale(1)' : 'none');
       applyTransform(rotationRef.current.x, rotationRef.current.y);
 
-      const enlargedOverlay = viewerRef.current?.querySelector(".enlarge") as HTMLElement | null;
+      const enlargedOverlay = viewerRef.current?.querySelector('.enlarge') as HTMLElement;
       if (enlargedOverlay && frameRef.current && mainRef.current) {
         const frameR = frameRef.current.getBoundingClientRect();
         const mainR = mainRef.current.getBoundingClientRect();
 
         const hasCustomSize = openedImageWidth && openedImageHeight;
         if (hasCustomSize) {
-          const tempDiv = document.createElement("div");
+          const tempDiv = document.createElement('div');
           tempDiv.style.cssText = `position: absolute; width: ${openedImageWidth}; height: ${openedImageHeight}; visibility: hidden;`;
           document.body.appendChild(tempDiv);
           const tempRect = tempDiv.getBoundingClientRect();
@@ -334,7 +526,7 @@ export default function DomeGallery({
       onDragStart: ({ event }) => {
         if (focusedElRef.current) return;
         stopInertia();
-        const evt = event as unknown as PointerEvent;
+        const evt = event as PointerEvent;
         draggingRef.current = true;
         movedRef.current = false;
         startRotRef.current = { ...rotationRef.current };
@@ -342,7 +534,7 @@ export default function DomeGallery({
       },
       onDrag: ({ event, last, velocity = [0, 0], direction = [0, 0], movement }) => {
         if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
-        const evt = event as unknown as PointerEvent;
+        const evt = event as PointerEvent;
         const dxTotal = evt.clientX - startPosRef.current.x;
         const dyTotal = evt.clientY - startPosRef.current.y;
         if (!movedRef.current) {
@@ -376,7 +568,7 @@ export default function DomeGallery({
         }
       }
     },
-    { target: mainRef as React.RefObject<EventTarget>, eventOptions: { passive: true } }
+    { target: mainRef, eventOptions: { passive: true } }
   );
 
   useEffect(() => {
@@ -386,27 +578,26 @@ export default function DomeGallery({
       if (performance.now() - openStartedAtRef.current < 250) return;
       const el = focusedElRef.current;
       if (!el) return;
-      const parent = el.parentElement as HTMLElement | null;
-      if (!parent) return;
-      const overlay = viewerRef.current?.querySelector(".enlarge") as HTMLElement | null;
+      const parent = el.parentElement as HTMLElement;
+      const overlay = viewerRef.current?.querySelector('.enlarge') as HTMLElement;
       if (!overlay) return;
-      const refDiv = parent.querySelector(".item__image--reference") as HTMLElement | null;
+      const refDiv = parent.querySelector('.item__image--reference');
       const originalPos = originalTilePositionRef.current;
-      if (!originalPos) {
+      if (!originalPos || !rootRef.current) {
         overlay.remove();
         if (refDiv) refDiv.remove();
-        parent.style.setProperty("--rot-y-delta", "0deg");
-        parent.style.setProperty("--rot-x-delta", "0deg");
-        el.style.visibility = "";
-        el.style.zIndex = "0";
+        parent.style.setProperty('--rot-y-delta', '0deg');
+        parent.style.setProperty('--rot-x-delta', '0deg');
+        el.style.visibility = '';
+        el.style.zIndex = '0';
         focusedElRef.current = null;
-        rootRef.current?.removeAttribute("data-enlarging");
+        rootRef.current?.removeAttribute('data-enlarging');
         openingRef.current = false;
         unlockScroll();
         return;
       }
       const currentRect = overlay.getBoundingClientRect();
-      const rootRect = rootRef.current!.getBoundingClientRect();
+      const rootRect = rootRef.current.getBoundingClientRect();
       const originalPosRelativeToRoot = {
         left: originalPos.left - rootRect.left,
         top: originalPos.top - rootRect.top,
@@ -419,65 +610,65 @@ export default function DomeGallery({
         width: currentRect.width,
         height: currentRect.height
       };
-      const animatingOverlay = document.createElement("div");
-      animatingOverlay.className = "enlarge-closing";
+      const animatingOverlay = document.createElement('div');
+      animatingOverlay.className = 'enlarge-closing';
       animatingOverlay.style.cssText = `position:absolute;left:${overlayRelativeToRoot.left}px;top:${overlayRelativeToRoot.top}px;width:${overlayRelativeToRoot.width}px;height:${overlayRelativeToRoot.height}px;z-index:9999;border-radius: var(--enlarge-radius, 32px);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:all ${enlargeTransitionMs}ms ease-out;pointer-events:none;margin:0;transform:none;`;
-      const originalImg = overlay.querySelector("img");
+      const originalImg = overlay.querySelector('img');
       if (originalImg) {
-        const img = originalImg.cloneNode() as HTMLElement;
-        img.style.cssText = "width:100%;height:100%;object-fit:cover;";
+        const img = originalImg.cloneNode() as HTMLImageElement;
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
         animatingOverlay.appendChild(img);
       }
       overlay.remove();
-      rootRef.current!.appendChild(animatingOverlay);
+      rootRef.current.appendChild(animatingOverlay);
       void animatingOverlay.getBoundingClientRect();
       requestAnimationFrame(() => {
-        animatingOverlay.style.left = originalPosRelativeToRoot.left + "px";
-        animatingOverlay.style.top = originalPosRelativeToRoot.top + "px";
-        animatingOverlay.style.width = originalPosRelativeToRoot.width + "px";
-        animatingOverlay.style.height = originalPosRelativeToRoot.height + "px";
-        animatingOverlay.style.opacity = "0";
+        animatingOverlay.style.left = originalPosRelativeToRoot.left + 'px';
+        animatingOverlay.style.top = originalPosRelativeToRoot.top + 'px';
+        animatingOverlay.style.width = originalPosRelativeToRoot.width + 'px';
+        animatingOverlay.style.height = originalPosRelativeToRoot.height + 'px';
+        animatingOverlay.style.opacity = '0';
       });
       const cleanup = () => {
         animatingOverlay.remove();
         originalTilePositionRef.current = null;
         if (refDiv) refDiv.remove();
-        parent.style.transition = "none";
-        el.style.transition = "none";
-        parent.style.setProperty("--rot-y-delta", "0deg");
-        parent.style.setProperty("--rot-x-delta", "0deg");
+        parent.style.transition = 'none';
+        el.style.transition = 'none';
+        parent.style.setProperty('--rot-y-delta', '0deg');
+        parent.style.setProperty('--rot-x-delta', '0deg');
         requestAnimationFrame(() => {
-          el.style.visibility = "";
-          el.style.opacity = "0";
-          el.style.zIndex = "0";
+          el.style.visibility = '';
+          el.style.opacity = '0';
+          el.style.zIndex = '0';
           focusedElRef.current = null;
-          rootRef.current?.removeAttribute("data-enlarging");
+          rootRef.current?.removeAttribute('data-enlarging');
           requestAnimationFrame(() => {
-            parent.style.transition = "";
-            el.style.transition = "opacity 300ms ease-out";
+            parent.style.transition = '';
+            el.style.transition = 'opacity 300ms ease-out';
             requestAnimationFrame(() => {
-              el.style.opacity = "1";
+              el.style.opacity = '1';
               setTimeout(() => {
-                el.style.transition = "";
-                el.style.opacity = "";
+                el.style.transition = '';
+                el.style.opacity = '';
                 openingRef.current = false;
-                if (!draggingRef.current && rootRef.current?.getAttribute("data-enlarging") !== "true")
-                  document.body.classList.remove("dg-scroll-lock");
+                if (!draggingRef.current && rootRef.current?.getAttribute('data-enlarging') !== 'true')
+                  document.body.classList.remove('dg-scroll-lock');
               }, 300);
             });
           });
         });
       };
-      animatingOverlay.addEventListener("transitionend", cleanup, { once: true });
+      animatingOverlay.addEventListener('transitionend', cleanup, { once: true });
     };
-    scrim.addEventListener("click", close);
+    scrim.addEventListener('click', close);
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
+      if (e.key === 'Escape') close();
     };
-    window.addEventListener("keydown", onKey);
+    window.addEventListener('keydown', onKey);
     return () => {
-      scrim.removeEventListener("click", close);
-      window.removeEventListener("keydown", onKey);
+      scrim.removeEventListener('click', close);
+      window.addEventListener('keydown', onKey);
     };
   }, [enlargeTransitionMs, unlockScroll]);
 
@@ -487,25 +678,24 @@ export default function DomeGallery({
       openingRef.current = true;
       openStartedAtRef.current = performance.now();
       lockScroll();
-      const parent = el.parentElement as HTMLElement | null;
-      if (!parent) return;
+      const parent = el.parentElement as HTMLElement;
       focusedElRef.current = el;
-      el.setAttribute("data-focused", "true");
-      const offsetX = getDataNumber(parent, "offsetX", 0);
-      const offsetY = getDataNumber(parent, "offsetY", 0);
-      const sizeX = getDataNumber(parent, "sizeX", 2);
-      const sizeY = getDataNumber(parent, "sizeY", 2);
+      el.setAttribute('data-focused', 'true');
+      const offsetX = getDataNumber(parent, 'offsetX', 0);
+      const offsetY = getDataNumber(parent, 'offsetY', 0);
+      const sizeX = getDataNumber(parent, 'sizeX', 2);
+      const sizeY = getDataNumber(parent, 'sizeY', 2);
       const parentRot = computeItemBaseRotation(offsetX, offsetY, sizeX, sizeY, segments);
       const parentY = normalizeAngle(parentRot.rotateY);
       const globalY = normalizeAngle(rotationRef.current.y);
       let rotY = -(parentY + globalY) % 360;
       if (rotY < -180) rotY += 360;
       const rotX = -parentRot.rotateX - rotationRef.current.x;
-      parent.style.setProperty("--rot-y-delta", `${rotY}deg`);
-      parent.style.setProperty("--rot-x-delta", `${rotX}deg`);
-      const refDiv = document.createElement("div");
-      refDiv.className = "item__image item__image--reference";
-      refDiv.style.opacity = "0";
+      parent.style.setProperty('--rot-y-delta', `${rotY}deg`);
+      parent.style.setProperty('--rot-x-delta', `${rotX}deg`);
+      const refDiv = document.createElement('div');
+      refDiv.className = 'item__image item__image--reference';
+      refDiv.style.opacity = '0';
       refDiv.style.transform = `rotateX(${-parentRot.rotateX}deg) rotateY(${-parentRot.rotateY}deg)`;
       parent.appendChild(refDiv);
 
@@ -515,7 +705,7 @@ export default function DomeGallery({
       const mainR = mainRef.current?.getBoundingClientRect();
       const frameR = frameRef.current?.getBoundingClientRect();
 
-      if (!mainR || !frameR || tileR.width <= 0 || tileR.height <= 0) {
+      if (!mainR || !frameR || tileR.width <= 0 || tileR.height <= 0 || !viewerRef.current) {
         openingRef.current = false;
         focusedElRef.current = null;
         parent.removeChild(refDiv);
@@ -524,25 +714,35 @@ export default function DomeGallery({
       }
 
       originalTilePositionRef.current = { left: tileR.left, top: tileR.top, width: tileR.width, height: tileR.height };
-      el.style.visibility = "hidden";
-      el.style.zIndex = "0";
-      const overlay = document.createElement("div");
-      overlay.className = "enlarge";
-      overlay.style.position = "absolute";
-      overlay.style.left = frameR.left - mainR.left + "px";
-      overlay.style.top = frameR.top - mainR.top + "px";
-      overlay.style.width = frameR.width + "px";
-      overlay.style.height = frameR.height + "px";
-      overlay.style.opacity = "0";
-      overlay.style.zIndex = "30";
-      overlay.style.willChange = "transform, opacity";
-      overlay.style.transformOrigin = "top left";
+      el.style.visibility = 'hidden';
+      el.style.zIndex = '0';
+      const overlay = document.createElement('div');
+      overlay.className = 'enlarge';
+      overlay.style.position = 'absolute';
+      overlay.style.left = frameR.left - mainR.left + 'px';
+      overlay.style.top = frameR.top - mainR.top + 'px';
+      overlay.style.width = frameR.width + 'px';
+      overlay.style.height = frameR.height + 'px';
+      overlay.style.opacity = '0';
+      overlay.style.zIndex = '30';
+      overlay.style.willChange = 'transform, opacity';
+      overlay.style.transformOrigin = 'top left';
       overlay.style.transition = `transform ${enlargeTransitionMs}ms ease, opacity ${enlargeTransitionMs}ms ease`;
-      const rawSrc = parent.dataset.src || el.querySelector("img")?.src || "";
-      const img = document.createElement("img");
-      img.src = rawSrc;
+      const rawSrc = parent.dataset.src || el.querySelector('img')?.src || '';
+      const img = document.createElement('img');
+      img.referrerPolicy = 'no-referrer';
+      
+      const driveId = extractDriveId(rawSrc);
+      if (driveId) {
+        img.src = `/api/image-proxy?id=${driveId}&w=1200`;
+        img.onerror = () => {
+          img.src = `/api/image-proxy?id=${driveId}`;
+        };
+      } else {
+        img.src = rawSrc;
+      }
       overlay.appendChild(img);
-      viewerRef.current!.appendChild(overlay);
+      viewerRef.current.appendChild(overlay);
       const tx0 = tileR.left - frameR.left;
       const ty0 = tileR.top - frameR.top;
       const sx0 = tileR.width / frameR.width;
@@ -555,25 +755,25 @@ export default function DomeGallery({
 
       setTimeout(() => {
         if (!overlay.parentElement) return;
-        overlay.style.opacity = "1";
-        overlay.style.transform = "translate(0px, 0px) scale(1, 1)";
-        rootRef.current?.setAttribute("data-enlarging", "true");
+        overlay.style.opacity = '1';
+        overlay.style.transform = 'translate(0px, 0px) scale(1, 1)';
+        rootRef.current?.setAttribute('data-enlarging', 'true');
       }, 16);
 
       const wantsResize = openedImageWidth || openedImageHeight;
       if (wantsResize) {
         const onFirstEnd = (ev: TransitionEvent) => {
-          if (ev.propertyName !== "transform") return;
-          overlay.removeEventListener("transitionend", onFirstEnd);
+          if (ev.propertyName !== 'transform') return;
+          overlay.removeEventListener('transitionend', onFirstEnd as any);
           const prevTransition = overlay.style.transition;
-          overlay.style.transition = "none";
+          overlay.style.transition = 'none';
           const tempWidth = openedImageWidth || `${frameR.width}px`;
           const tempHeight = openedImageHeight || `${frameR.height}px`;
           overlay.style.width = tempWidth;
           overlay.style.height = tempHeight;
           const newRect = overlay.getBoundingClientRect();
-          overlay.style.width = frameR.width + "px";
-          overlay.style.height = frameR.height + "px";
+          overlay.style.width = frameR.width + 'px';
+          overlay.style.height = frameR.height + 'px';
           void overlay.offsetWidth;
           overlay.style.transition = `left ${enlargeTransitionMs}ms ease, top ${enlargeTransitionMs}ms ease, width ${enlargeTransitionMs}ms ease, height ${enlargeTransitionMs}ms ease`;
           const centeredLeft = frameR.left - mainR.left + (frameR.width - newRect.width) / 2;
@@ -585,12 +785,12 @@ export default function DomeGallery({
             overlay.style.height = tempHeight;
           });
           const cleanupSecond = () => {
-            overlay.removeEventListener("transitionend", cleanupSecond);
+            overlay.removeEventListener('transitionend', cleanupSecond);
             overlay.style.transition = prevTransition;
           };
-          overlay.addEventListener("transitionend", cleanupSecond, { once: true });
+          overlay.addEventListener('transitionend', cleanupSecond, { once: true });
         };
-        overlay.addEventListener("transitionend", onFirstEnd);
+        overlay.addEventListener('transitionend', onFirstEnd as any);
       }
     },
     [enlargeTransitionMs, lockScroll, openedImageHeight, openedImageWidth, segments, unlockScroll]
@@ -602,26 +802,26 @@ export default function DomeGallery({
       if (movedRef.current) return;
       if (performance.now() - lastDragEndAt.current < 80) return;
       if (openingRef.current) return;
-      openItemFromElement(e.currentTarget);
+      openItemFromElement(e.currentTarget as HTMLElement);
     },
     [openItemFromElement]
   );
 
   const onTilePointerUp = useCallback(
     (e: React.PointerEvent<HTMLDivElement>) => {
-      if (e.pointerType !== "touch") return;
+      if (e.pointerType !== 'touch') return;
       if (draggingRef.current) return;
       if (movedRef.current) return;
       if (performance.now() - lastDragEndAt.current < 80) return;
       if (openingRef.current) return;
-      openItemFromElement(e.currentTarget);
+      openItemFromElement(e.currentTarget as HTMLElement);
     },
     [openItemFromElement]
   );
 
   useEffect(() => {
     return () => {
-      document.body.classList.remove("dg-scroll-lock");
+      document.body.classList.remove('dg-scroll-lock');
     };
   }, []);
 
@@ -630,13 +830,13 @@ export default function DomeGallery({
       ref={rootRef}
       className="sphere-root"
       style={{
-        "--segments-x": segments,
-        "--segments-y": segments,
-        "--overlay-blur-color": overlayBlurColor,
-        "--tile-radius": imageBorderRadius,
-        "--enlarge-radius": openedImageBorderRadius,
-        "--image-filter": grayscale ? "grayscale(1)" : "none"
-      } as React.CSSProperties}
+        ['--segments-x' as any]: segments,
+        ['--segments-y' as any]: segments,
+        ['--overlay-blur-color' as any]: overlayBlurColor,
+        ['--tile-radius' as any]: imageBorderRadius,
+        ['--enlarge-radius' as any]: openedImageBorderRadius,
+        ['--image-filter' as any]: grayscale ? 'grayscale(1)' : 'none'
+      }}
     >
       <main ref={mainRef} className="sphere-main">
         <div className="stage">
@@ -651,33 +851,21 @@ export default function DomeGallery({
                 data-size-x={it.sizeX}
                 data-size-y={it.sizeY}
                 style={{
-                  "--offset-x": it.x,
-                  "--offset-y": it.y,
-                  "--item-size-x": it.sizeX,
-                  "--item-size-y": it.sizeY
-                } as React.CSSProperties}
+                  ['--offset-x' as any]: it.x,
+                  ['--offset-y' as any]: it.y,
+                  ['--item-size-x' as any]: it.sizeX,
+                  ['--item-size-y' as any]: it.sizeY
+                }}
               >
                 <div
                   className="item__image"
                   role="button"
                   tabIndex={0}
-                  aria-label={it.alt || "Open image"}
+                  aria-label={it.alt || 'Open image'}
                   onClick={onTileClick}
                   onPointerUp={onTilePointerUp}
                 >
-                  <img
-                    src={it.src}
-                    draggable={false}
-                    alt={it.alt}
-                    onError={(e) => {
-                      const img = e.currentTarget;
-                      const match = it.src?.match(/\/images\/(1[a-zA-Z0-9_-]{32})\.jpg/);
-                      if (match && !img.dataset.fallbackTried) {
-                        img.dataset.fallbackTried = "true";
-                        img.src = `https://lh3.googleusercontent.com/d/${match[1]}`;
-                      }
-                    }}
-                  />
+                  <DomeImage src={it.src} alt={it.alt || ''} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
                 </div>
               </div>
             ))}

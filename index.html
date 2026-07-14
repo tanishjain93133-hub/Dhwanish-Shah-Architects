@@ -1,46 +1,138 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DSA | Dhwanish Shah Architects & Interiors</title>
-    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
-    <meta name="google-site-verification" content="qYxjTB_V_OQVTRZod6bHiNY5b7bqP8VCaWpr55dvnWQ" />
-    <!-- SEO Metadata -->
-    <meta name="title" content="Project - DSA | Dhwanish Shah Architects & Interiors" />
-    <meta name="description" content="A premium luxury architecture and interior design portfolio showcasing signature minimalist villas, high-end penthouses, and bespoke modern residences." />
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="DSA | Dhwanish Shah Architects & Interiors" />
-    <meta property="og:description" content="A premium luxury architecture and interior design portfolio showcasing signature minimalist villas, high-end penthouses, and bespoke modern residences." />
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="DSA | Dhwanish Shah Architects & Interiors" />
-    <meta property="twitter:description" content="A premium luxury architecture and interior design portfolio showcasing signature minimalist villas, high-end penthouses, and bespoke modern residences." />
     <script>
       (function() {
         try {
           var originalFetch = window.fetch;
-          var customFetch = originalFetch;
-          Object.defineProperty(window, 'fetch', {
-            get: function() {
-              return customFetch;
-            },
-            set: function(val) {
-              customFetch = val;
-            },
-            configurable: true,
-            enumerable: true
-          });
+          var currentFetch = originalFetch;
+          
+          function defineOn(obj) {
+            Object.defineProperty(obj, 'fetch', {
+              get: function() { return currentFetch; },
+              set: function(val) { currentFetch = val; },
+              configurable: true,
+              enumerable: true
+            });
+          }
+          
+          try { defineOn(window); } catch(e1) {
+            try { defineOn(Window.prototype); } catch(e2) {
+              try { defineOn(globalThis); } catch(e3) {
+                console.warn('Fetch proxy could not be defined:', e3);
+              }
+            }
+          }
         } catch (e) {
-          console.warn("Fetch safe-guard hook failed to bind:", e);
+          console.warn('Setup fetch proxy error:', e);
         }
       })();
     </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    
+    <!-- Primary SEO Metadata -->
+    <title>DSA | Dhwanish Shah Architects | Luxury Architecture & Interior Design in Ahmedabad</title>
+    <meta name="description" content="Dhwanish Shah Architects (DSA) is a premium architecture and interior design studio in Ahmedabad specializing in luxury residential, commercial, office interiors, villas, bungalows, renovation, planning, and bespoke spaces." />
+    <meta name="keywords" content="architecture firm Ahmedabad, interior designer Ahmedabad, luxury home designer, residential architect, commercial architect, villa architect, bungalow design, office interior design, modern architecture, architect near me, best architect Ahmedabad, Dhwanish Shah Architects, DSA Architects, interior design Gujarat" />
+    <meta name="robots" content="index, follow" />
+    <meta name="google-site-verification" content="qYxjTB_V_OQVTRZod6bHiNY5b7bqP8VCaWpr55dvnWQ" />
+    <link rel="canonical" href="https://dsa-architects-and-interiors.vercel.app" />
+
+    <!-- Favicon and Apple Touch Icon Configuration -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dsa-architects-and-interiors.vercel.app" />
+    <meta property="og:title" content="DSA | Dhwanish Shah Architects | Luxury Architecture & Interior Design in Ahmedabad" />
+    <meta property="og:description" content="Dhwanish Shah Architects (DSA) is a premium architecture and interior design studio in Ahmedabad specializing in luxury residential, commercial, office interiors, villas, bungalows, renovation, planning, and bespoke spaces." />
+    <meta property="og:image" content="https://dsa-architects-and-interiors.vercel.app/logo.png" />
+    <meta property="og:site_name" content="Dhwanish Shah Architects" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://dsa-architects-and-interiors.vercel.app" />
+    <meta name="twitter:title" content="DSA | Dhwanish Shah Architects | Luxury Architecture & Interior Design in Ahmedabad" />
+    <meta name="twitter:description" content="Dhwanish Shah Architects (DSA) is a premium architecture and interior design studio in Ahmedabad specializing in luxury residential, commercial, office interiors, villas, bungalows, renovation, planning, and bespoke spaces." />
+    <meta name="twitter:image" content="https://dsa-architects-and-interiors.vercel.app/logo.png" />
+
+    <!-- Schema.org JSON-LD Structured Data for LocalBusiness, Architect & Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Architect",
+          "@id": "https://dsa-architects-and-interiors.vercel.app/#architect",
+          "name": "Dhwanish Shah Architects",
+          "alternateName": "DSA",
+          "url": "https://dsa-architects-and-interiors.vercel.app",
+          "logo": "https://dsa-architects-and-interiors.vercel.app/logo.png",
+          "image": "https://dsa-architects-and-interiors.vercel.app/logo.png",
+          "description": "Dhwanish Shah Architects (DSA) is a premium architecture and interior design studio in Ahmedabad specializing in luxury residential, commercial, office interiors, villas, bungalows, renovation, planning, and bespoke spaces.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "601, Anikedhya Capitol 2, Opp. Pentagon Merlin, Mahalaxmi Five Cross Road, Paldi",
+            "addressLocality": "Ahmedabad",
+            "addressRegion": "Gujarat",
+            "postalCode": "380007",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "23.009403",
+            "longitude": "72.557454"
+          },
+          "telephone": "+919879819691",
+          "email": "dshaharchitects@gmail.com",
+          "priceRange": "$$$$",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              "opens": "10:00",
+              "closes": "19:00"
+            }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/dsa.architects.and.interiors",
+            "https://www.facebook.com/dsa.architects.and.interiors",
+            "https://www.linkedin.com/company/dsa-architects-interiors/?viewAsMember=true",
+            "https://wa.me/919879819691"
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://dsa-architects-and-interiors.vercel.app/#organization",
+          "name": "Dhwanish Shah Architects",
+          "url": "https://dsa-architects-and-interiors.vercel.app",
+          "logo": "https://dsa-architects-and-interiors.vercel.app/logo.png",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+919879819691",
+            "contactType": "customer service",
+            "email": "dshaharchitects@gmail.com",
+            "availableLanguage": ["English", "Hindi", "Gujarati"]
+          }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://lh3.googleusercontent.com" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
