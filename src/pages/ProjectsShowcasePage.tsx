@@ -6,7 +6,7 @@ import Hero from "../components/ShowcaseHero";
 import ProjectShowcase from "../components/ProjectShowcase";
 import { InteractiveGallery } from "../components/InteractiveGallery";
 import InquiryModal from "../components/InquiryModal";
-import Footer from "../components/ShowcaseFooter";
+import { Footer } from "../components/Footer";
 import { SEO } from "../components/SEO";
 
 export const ProjectsShowcasePage: React.FC = () => {
