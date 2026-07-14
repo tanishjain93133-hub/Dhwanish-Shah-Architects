@@ -43,7 +43,7 @@ function getDynamicBlogIds(): string[] {
 }
 
 function generateSitemap() {
-  const domain = "https://dsa-architects-and-interiors.vercel.app";
+  const domain = "https://dhwanishshaharchitects.com";
   const staticPages = [
     "",
     "/about",
@@ -108,7 +108,7 @@ function generateRobots() {
   const robotsTxt = `User-agent: *
 Allow: /
 
-Sitemap: https://dsa-architects-and-interiors.vercel.app/sitemap.xml`;
+Sitemap: https://dhwanishshaharchitects.com/sitemap.xml`;
 
   const distDir = path.join(process.cwd(), "dist");
   if (!fs.existsSync(distDir)) {

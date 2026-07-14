@@ -470,7 +470,7 @@ async function startServer() {
 
   // Dynamic SEO HTML Hydration Injector
   function injectSeoTags(html: string, reqPath: string): string {
-    const domain = "https://dsa-architects-and-interiors.vercel.app";
+    const domain = "https://dhwanishshaharchitects.com";
     const canonicalUrl = `${domain}${reqPath === "/" ? "" : reqPath}`;
     
     let title = "DSA | Dhwanish Shah Architects";
@@ -540,7 +540,7 @@ async function startServer() {
       "@type": "Architect",
       "name": "Dhwanish Shah Architects",
       "alternateName": "DSA",
-      "url": "https://dsa-architects-and-interiors.vercel.app",
+      "url": "https://dhwanishshaharchitects.com",
       "logo": `${domain}/logo.png`,
       "image": `${domain}/logo.png`
     };
@@ -573,7 +573,7 @@ async function startServer() {
       "@type": "WebSite",
       "name": "DSA",
       "alternateName": "Dhwanish Shah Architects",
-      "url": "https://dsa-architects-and-interiors.vercel.app"
+      "url": "https://dhwanishshaharchitects.com"
     };
 
     const breadcrumbItems = [
@@ -639,7 +639,7 @@ async function startServer() {
 
   // 1. Dynamic Sitemap.xml Route
   app.get("/sitemap.xml", (req, res) => {
-    const domain = "https://dsa-architects-and-interiors.vercel.app";
+    const domain = "https://dhwanishshaharchitects.com";
     const staticPages = [
       "",
       "/about",
@@ -691,7 +691,7 @@ ${sitemapEntries.join("\n")}
     const robotsTxt = `User-agent: *
 Allow: /
 
-Sitemap: https://dsa-architects-and-interiors.vercel.app/sitemap.xml`;
+Sitemap: https://dhwanishshaharchitects.com/sitemap.xml`;
 
     res.header("Content-Type", "text/plain");
     return res.status(200).send(robotsTxt);
