@@ -295,13 +295,6 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
                       )}
                     />
                   </div>
-
-
-
-                  {/* Artistic outline number background */}
-                  <div className="absolute top-2 left-4 text-6xl sm:top-4 sm:left-6 sm:text-8xl font-display font-black text-white/5 select-none pointer-events-none group-hover:text-white/10 transition-colors">
-                    0{idx + 1}
-                  </div>
                 </button>
               );
             })}
