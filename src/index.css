@@ -476,6 +476,30 @@
     --tw-text-opacity: 1 !important;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
   }
+
+  /* Our Projects Section White Text Overrides */
+  .our-projects-card h3,
+  .our-projects-card .card-title,
+  .our-projects-card * h3 {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+    --tw-text-opacity: 1 !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .our-projects-card span,
+  .our-projects-card p,
+  .our-projects-card .card-subtitle,
+  .our-projects-card * span {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+    opacity: 1 !important;
+    --tw-text-opacity: 1 !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6) !important;
+  }
 }
 
 @layer utilities {

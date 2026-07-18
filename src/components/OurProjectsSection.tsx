@@ -1,0 +1,182 @@
+import React, { useState } from 'react';
+import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import { SafeImage } from './SafeImage';
+import { cn } from '../lib/utils';
+
+interface ProjectCardItem {
+  id: string;
+  filterName: string;
+  title: string;
+  subtitle: string;
+  image: string;
+}
+
+const projectCards: ProjectCardItem[] = [
+  {
+    id: 'all',
+    filterName: 'All',
+    title: 'ALL',
+    subtitle: 'Complete Portfolio',
+    image: '/images/all-portfolio-bg.jpg',
+  },
+  {
+    id: 'residential',
+    filterName: 'Residential',
+    title: 'RESIDENTIAL',
+    subtitle: 'Luxury Homes, Villas & Apartments',
+    image: '/images/residential-category-bg.jpg',
+  },
+  {
+    id: 'commercial',
+    filterName: 'Commercial',
+    title: 'COMMERCIAL',
+    subtitle: 'Corporate Offices, Retail & Hospitality',
+    image: '/images/commercial-category-bg.jpg',
+  },
+  {
+    id: 'sphere',
+    filterName: 'Sphere',
+    title: 'SPHERE',
+    subtitle: '3D Visualization, Planning & Execution',
+    image: '/images/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM.jpg',
+  },
+];
+
+export const OurProjectsSection: React.FC = () => {
+  const navigate = useNavigate();
+  const [selectedFilter, setSelectedFilter] = useState<string>('All');
+
+  const handleCardClick = (filterName: string) => {
+    setSelectedFilter(filterName);
+    sessionStorage.setItem('projects-active-filter', filterName);
+    navigate('/projects');
+  };
+
+  return (
+    <section className="bg-white py-20 border-b border-zinc-200/60 relative overflow-hidden">
+      {/* Subtle ambient light glow */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
+        <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/5 rounded-full blur-[140px]" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-amber-600/5 rounded-full blur-[140px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-3xl mx-auto mb-14"
+        >
+          <span className="text-amber-600 text-[10px] font-mono font-black tracking-[0.8em] uppercase block mb-3">
+            OUR PROJECTS
+          </span>
+          <h2 className="text-zinc-950 text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight uppercase leading-tight">
+            Luxury Residential &amp; Commercial Projects
+          </h2>
+        </motion.div>
+
+        {/* 4 Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+          {projectCards.map((card, index) => {
+            const isActive = selectedFilter === card.filterName;
+
+            return (
+              <motion.div
+                key={card.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                onClick={() => handleCardClick(card.filterName)}
+                className={cn(
+                  "relative h-[280px] sm:h-[340px] rounded-[24px] overflow-hidden group transition-all duration-500 cursor-pointer shadow-md hover:shadow-2xl hover:scale-[1.03] border bg-zinc-900 our-projects-card",
+                  isActive
+                    ? "ring-2 ring-blue-600 ring-offset-2 ring-offset-white border-blue-600 shadow-xl"
+                    : "border-zinc-200/80 hover:border-blue-500/50"
+                )}
+              >
+                {/* Card Image */}
+                <SafeImage
+                  src={card.image}
+                  alt={card.title}
+                  objectFit="cover"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+                />
+
+                {/* Premium dark gradient overlay for optimal readability */}
+                <div 
+                  className="absolute inset-0 z-10 transition-opacity duration-500" 
+                  style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.2) 100%)' }}
+                />
+
+                {/* Highlight blue tint when active or hovered */}
+                <div 
+                  className={cn(
+                    "absolute inset-0 z-10 transition-opacity duration-500 bg-blue-600/15",
+                    isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                  )} 
+                />
+
+                {/* Content Overlay */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-end z-20">
+                  <span 
+                    className="text-zinc-300 text-xs sm:text-sm font-sans font-medium leading-snug mb-2 card-subtitle"
+                    style={{
+                      color: 'rgba(255, 255, 255, 0.9)',
+                      fontWeight: 500,
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.6)'
+                    }}
+                  >
+                    {card.subtitle}
+                  </span>
+
+                  <h3 
+                    className="text-2xl sm:text-3xl font-display font-bold text-white tracking-wider uppercase card-title"
+                    style={{
+                      color: '#ffffff',
+                      fontWeight: 700,
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.6)'
+                    }}
+                  >
+                    {card.title}
+                  </h3>
+
+                  {/* Blue Underline when active or hovered */}
+                  <div 
+                    className={cn(
+                      "h-[3px] bg-blue-600 mt-4 transition-all duration-500 rounded-full",
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    )} 
+                  />
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* View All Projects Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <button
+            onClick={() => {
+              sessionStorage.setItem('projects-active-filter', 'All');
+              navigate('/projects');
+            }}
+            className="inline-flex items-center gap-3 bg-zinc-950 hover:bg-amber-600 text-white font-mono text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 border border-zinc-800 cursor-pointer"
+          >
+            <span>View All Projects</span>
+            <ArrowRight size={16} />
+          </button>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
