@@ -58,18 +58,24 @@ export const OurProjectsSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Header Section - Single Line on Desktop with exact Our Services typography */}
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-6xl mx-auto mb-16 px-2"
+          className="text-center max-w-[1200px] mx-auto"
         >
-          <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] font-bold mb-6 tracking-tighter text-zinc-950 sm:whitespace-nowrap">
-            Luxury Residential &amp; Commercial Projects.
+          <h2 
+            className="text-[40px] sm:text-[58px] md:text-[76px] lg:text-[88px] font-[900] tracking-[-0.04em] leading-[0.9] text-center mb-6 font-['Geist','Inter',sans-serif]"
+          >
+            <span style={{ color: '#0D0D0D' }}>Luxury Residential</span>{' '}
+            <span style={{ color: '#4A4A4A' }}>&amp; bespoke Commercial Projects</span>
           </h2>
-          <p className="text-zinc-900 text-lg sm:text-xl md:text-2xl font-light tracking-wide max-w-3xl mx-auto">
+
+          <p 
+            className="text-[16px] sm:text-[18px] lg:text-[22px] font-normal tracking-normal leading-[1.8] text-[#6B7280] text-center max-w-[850px] mx-auto mt-0 mb-[60px] font-['Geist','Inter',sans-serif]"
+          >
             Thoughtfully designed spaces that blend timeless aesthetics, intelligent planning, and exceptional craftsmanship.
           </p>
         </motion.div>
