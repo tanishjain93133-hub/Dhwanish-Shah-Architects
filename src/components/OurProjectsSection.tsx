@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { SafeImage } from './SafeImage';
 import { cn } from '../lib/utils';
 
@@ -58,7 +58,7 @@ export const OurProjectsSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Header Section */}
+        {/* Header Section - Exactly matching Our Services typography */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,12 +69,12 @@ export const OurProjectsSection: React.FC = () => {
           <span className="text-amber-600 text-[10px] font-mono font-black tracking-[0.8em] uppercase block mb-3">
             OUR PROJECTS
           </span>
-          <h2 className="text-zinc-950 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-medium tracking-tight uppercase leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
+          <h2 className="text-zinc-950 text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight uppercase leading-tight">
             Luxury Residential &amp; Commercial Projects
           </h2>
         </motion.div>
 
-        {/* 4 Cards Grid - Squarer cards & lighter overlay */}
+        {/* 4 Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {projectCards.map((card, index) => {
             const isActive = selectedFilter === card.filterName;
@@ -145,7 +145,7 @@ export const OurProjectsSection: React.FC = () => {
           })}
         </div>
 
-        {/* VIEW ALL PROJECTS Button - Matched with Testimonials section button style */}
+        {/* VIEW ALL PROJECTS Button - Exact Testimonials 'More Testimonials' style */}
         <div className="flex justify-center mt-12">
           <motion.button
             whileHover={{ scale: 1.05, y: -2 }}
@@ -154,12 +154,12 @@ export const OurProjectsSection: React.FC = () => {
               sessionStorage.setItem('projects-active-filter', 'All');
               navigate('/projects');
             }}
-            className="px-10 py-5 h-14 rounded-full bg-zinc-950 border border-zinc-800 hover:border-amber-600/50 hover:bg-black transition-all duration-300 flex items-center justify-center gap-3 shadow-md hover:shadow-lg group cursor-pointer"
+            className="px-10 py-5 h-14 rounded-full bg-white border border-zinc-200 hover:border-amber-600/50 hover:bg-zinc-50 transition-all duration-300 flex items-center justify-center gap-3 shadow-md hover:shadow-lg group cursor-pointer"
           >
-            <span className="text-white text-xs uppercase tracking-[0.2em] font-mono font-bold">
+            <span className="text-zinc-800 text-xs uppercase tracking-[0.2em] font-bold group-hover:text-amber-600 transition-colors">
               VIEW ALL PROJECTS
             </span>
-            <ArrowRight size={16} className="text-white group-hover:translate-x-1 transition-all" />
+            <ChevronRight size={16} className="text-zinc-500 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
           </motion.button>
         </div>
       </div>
