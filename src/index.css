@@ -375,6 +375,45 @@
   .keep-dark .text-white\/20, .keep-dark .text-white\/10 {
     color: rgba(255, 255, 255, 0.15) !important;
   }
+
+  /* Inquire Modal & Keep Dark container text overrides */
+  .inquire-modal-container h1,
+  .inquire-modal-container h2,
+  .inquire-modal-container h3,
+  .inquire-modal-card h1,
+  .inquire-modal-card h2,
+  .inquire-modal-card h3 {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    --tw-text-opacity: 1 !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .inquire-modal-container p,
+  .inquire-modal-card p {
+    color: rgba(255, 255, 255, 0.85) !important;
+    opacity: 1 !important;
+    --tw-text-opacity: 1 !important;
+  }
+
+  .inquire-modal-container span:not(.step-number),
+  .inquire-modal-card span:not(.step-number) {
+    color: rgba(255, 255, 255, 0.9) !important;
+    opacity: 1 !important;
+    --tw-text-opacity: 1 !important;
+  }
+
+  .inquire-modal-container .text-neon-cyan,
+  .inquire-modal-card .text-neon-cyan {
+    color: #00F0FF !important;
+    opacity: 1 !important;
+  }
+
+  .inquire-modal-container button svg,
+  .inquire-modal-card button svg {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+  }
 }
 
 @layer utilities {

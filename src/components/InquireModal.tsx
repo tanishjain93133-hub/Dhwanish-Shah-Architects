@@ -26,15 +26,15 @@ export const InquireModal: React.FC<InquireModalProps> = ({ isOpen, onClose }) =
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-xl z-20 my-auto"
+            className="relative w-full max-w-xl z-20 my-auto inquire-modal-container keep-dark"
           >
-            <div className="relative">
+            <div className="relative inquire-modal-card">
               <button 
                 onClick={onClose}
-                className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-all border border-white/10 shadow-lg cursor-pointer"
+                className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all border border-white/20 shadow-lg cursor-pointer"
                 aria-label="Close modal"
               >
-                <X size={16} />
+                <X size={16} className="text-white stroke-[2.5]" />
               </button>
 
             <Stepper
