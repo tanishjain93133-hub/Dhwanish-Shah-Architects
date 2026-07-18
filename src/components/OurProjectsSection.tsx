@@ -50,7 +50,7 @@ export const OurProjectsSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-white pt-8 pb-16 border-b border-zinc-200/60 relative overflow-hidden">
+    <section className="bg-white pt-12 pb-20 border-b border-zinc-200/60 relative overflow-hidden">
       {/* Subtle ambient light glow */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
         <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/5 rounded-full blur-[140px]" />
@@ -58,21 +58,18 @@ export const OurProjectsSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Header Section - Identical match to Our Services typography & tagline style */}
+        {/* Header Section - Exact match to Our Services typography & style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-3xl mx-auto mb-14"
+          className="text-center max-w-4xl mx-auto mb-16"
         >
-          <span className="text-amber-600 text-[10px] font-mono font-black tracking-[0.8em] uppercase block mb-3">
-            OUR PROJECTS
-          </span>
-          <h2 className="text-zinc-950 text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight uppercase leading-tight mb-4">
-            Luxury Residential &amp; Commercial Projects
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-8 tracking-tighter text-zinc-950 leading-tight">
+            Luxury Residential &amp; Commercial Projects.
           </h2>
-          <p className="text-zinc-600 text-sm sm:text-base leading-relaxed tracking-wide font-normal max-w-2xl mx-auto">
+          <p className="text-zinc-900 text-xl md:text-3xl font-light tracking-wide max-w-3xl mx-auto">
             Thoughtfully designed spaces that blend timeless aesthetics, intelligent planning, and exceptional craftsmanship.
           </p>
         </motion.div>
