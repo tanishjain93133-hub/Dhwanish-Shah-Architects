@@ -1,67 +1,72 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { PencilRuler, Armchair, Box, Hammer } from 'lucide-react';
+import { Home, Building2, Landmark, Box } from 'lucide-react';
 
-const services = [
+interface ServiceItem {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+}
+
+const services: ServiceItem[] = [
   {
-    icon: <PencilRuler className="w-8 h-8" />,
-    title: "Architecture Design",
-    desc: "We design innovative and well-planned architectural spaces that combine functionality, aesthetics, and long-term value.",
-    color: "from-neon-cyan to-white/20",
-    theme: "dark-icon"
+    icon: <Home className="w-[42px] h-[42px] text-[#111111] stroke-[1.5]" />,
+    title: "Home Design",
+    desc: "Design beautiful, functional, and luxurious homes tailored to your lifestyle with elegant architecture and premium interiors."
   },
   {
-    icon: <Armchair className="w-8 h-8" />,
-    title: "Interior Design",
-    desc: "We create stylish and practical interiors that reflect your personality while ensuring comfort and usability.",
-    color: "from-electric-purple to-white/20",
-    theme: "light-icon"
+    icon: <Building2 className="w-[42px] h-[42px] text-[#111111] stroke-[1.5]" />,
+    title: "Office Design",
+    desc: "Create modern office environments that improve productivity, reflect your brand, and inspire your team."
   },
   {
-    icon: <Box className="w-8 h-8" />,
+    icon: <Landmark className="w-[42px] h-[42px] text-[#111111] stroke-[1.5]" />,
+    title: "Residential Design",
+    desc: "Premium residential architecture and interior solutions designed for comfort, functionality, and timeless elegance."
+  },
+  {
+    icon: <Box className="w-[42px] h-[42px] text-[#111111] stroke-[1.5]" />,
     title: "3D Visualization",
-    desc: "We provide realistic 3D views to help you visualize your space before execution, ensuring clarity and confidence in design decisions.",
-    color: "from-neon-cyan to-electric-purple",
-    theme: "light-icon"
-  },
-  {
-    icon: <Hammer className="w-8 h-8" />,
-    title: "Renovation & Remodeling",
-    desc: "We transform existing spaces into modern, efficient, and visually appealing environments with smart design solutions.",
-    color: "from-[#C9A66B] to-[#C9A66B]/30",
-    theme: "light-icon"
+    desc: "High-quality 3D renders and walkthroughs that help you visualize every detail before construction begins."
   }
 ];
 
 export const Services: React.FC = () => {
   return (
-    <section id="services" className="pt-8 pb-8 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-12">
+    <section id="services" className="py-20 bg-zinc-50 border-b border-zinc-200/60 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.span 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-amber-600 text-[11px] font-mono font-black tracking-[0.6em] uppercase block mb-3"
+          >
+            OUR SERVICES
+          </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-6xl md:text-9xl font-bold mb-10 tracking-tighter"
+            transition={{ delay: 0.1 }}
+            className="text-zinc-950 text-3xl sm:text-4xl md:text-5xl font-['Montserrat',sans-serif] font-bold tracking-tight uppercase leading-tight mb-4"
           >
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-white to-electric-purple">Services.</span>
+            Tailored Architecture &amp; Design Solutions
           </motion.h2>
-          <motion.div 
+          <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="max-w-3xl mx-auto space-y-4"
+            transition={{ delay: 0.2 }}
+            className="text-[#555555] text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto"
           >
-            <p className="text-white text-xl md:text-3xl font-light tracking-wide">
-              Complete design and execution solutions.
-            </p>
-            <p className="text-white/60 text-base md:text-xl font-light">
-              Tailored for functional, modern, and elegant spaces.
-            </p>
-          </motion.div>
+            Comprehensive design and planning services tailored to deliver functional, modern, and elegant environments.
+          </motion.p>
         </div>
 
+        {/* 4 Premium Service Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <motion.div
@@ -69,28 +74,29 @@ export const Services: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative bg-white p-12 rounded-[3.5rem] border-[1.5px] border-[#9CA3AF] shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-all duration-700 overflow-hidden"
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="bg-white border border-zinc-200/80 rounded-[28px] p-8 sm:p-10 shadow-sm transition-all duration-350 ease-out hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(200,169,106,0.25)] hover:border-[#C8A96A]/40 flex flex-col justify-between group cursor-pointer"
             >
-              {/* Background Glow */}
-              <div className={`absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-700`} />
-              
-              <div className="relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-white border-2 border-black flex items-center justify-center mb-10 shadow-lg group-hover:scale-110 transition-transform duration-500 service-icon-custom">
+              <div>
+                {/* 80x80px White Icon Container with 18px Border Radius */}
+                <div className="w-[80px] h-[80px] bg-white rounded-[18px] shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-zinc-100 flex items-center justify-center mb-8 group-hover:shadow-[0_8px_24px_rgba(200,169,106,0.3)] transition-all duration-350">
                   {service.icon}
                 </div>
-                
-                <h3 className="text-3xl font-bold text-white mb-6 group-hover:text-neon-cyan transition-colors duration-500">{service.title}</h3>
-                
-                <p className="text-white/70 text-lg leading-relaxed font-light mb-10 group-hover:text-white/90 transition-colors duration-500">
+
+                {/* Card Title */}
+                <h3 className="text-[#111111] text-2xl sm:text-3xl font-bold font-['Montserrat',sans-serif] tracking-tight mb-4 group-hover:text-amber-600 transition-colors duration-300">
+                  {service.title}
+                </h3>
+
+                {/* Card Description */}
+                <p className="text-[#555555] text-base sm:text-lg font-medium leading-relaxed">
                   {service.desc}
                 </p>
-
-
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
