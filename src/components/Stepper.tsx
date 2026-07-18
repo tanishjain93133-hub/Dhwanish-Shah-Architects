@@ -137,7 +137,7 @@ export default function Stepper({
               )}
               {(!isLastStep || showCompleteButton) && (
                 <button onClick={isLastStep ? handleComplete : handleNext} className="next-button" {...nextButtonProps}>
-                  {isLastStep ? 'Complete' : nextButtonText}
+                  <span className="text-white font-bold">{isLastStep ? 'Complete' : nextButtonText}</span>
                 </button>
               )}
             </div>
@@ -258,19 +258,19 @@ function StepIndicator({ step, currentStep, onClickStep, disableStepIndicators }
     >
       <motion.div
         variants={{
-          inactive: { scale: 1, backgroundColor: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.3)' },
-          active: { scale: 1.1, backgroundColor: '#00F0FF', color: '#00F0FF' },
-          complete: { scale: 1, backgroundColor: '#00F0FF', color: '#000' }
+          inactive: { scale: 1, backgroundColor: 'rgba(0,0,0,0.06)', color: '#666666' },
+          active: { scale: 1.1, backgroundColor: '#00F0FF', color: '#000000' },
+          complete: { scale: 1, backgroundColor: '#00F0FF', color: '#000000' }
         }}
         transition={{ duration: 0.3 }}
         className="step-indicator-inner"
       >
         {status === 'complete' ? (
-          <CheckIcon className="check-icon" />
+          <CheckIcon className="check-icon text-black" />
         ) : status === 'active' ? (
           <div className="active-dot" />
         ) : (
-          <span className="step-number">{step}</span>
+          <span className="step-number text-zinc-600 font-semibold">{step}</span>
         )}
       </motion.div>
     </motion.div>

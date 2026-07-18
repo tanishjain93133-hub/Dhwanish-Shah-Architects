@@ -422,6 +422,23 @@
     color: #111111 !important;
     stroke: #111111 !important;
   }
+
+  /* Force pure white text (#FFFFFF) for the Continue/Next button in Stepper */
+  .inquire-modal-card .next-button,
+  .inquire-modal-container .next-button,
+  .step-circle-container .next-button,
+  .next-button {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+  }
+  .inquire-modal-card .next-button *,
+  .inquire-modal-container .next-button *,
+  .step-circle-container .next-button *,
+  .next-button * {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    --tw-text-opacity: 1 !important;
+  }
 }
 
 @layer utilities {
