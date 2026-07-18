@@ -603,6 +603,9 @@ async function startServer() {
     <!-- Standard Meta Tags -->
     <title>${title}</title>
     <meta name="description" content="${description}" />
+    <meta name="application-name" content="DSA" />
+    <meta name="apple-mobile-web-app-title" content="DSA" />
+    <meta name="msapplication-TileName" content="DSA" />
     <link rel="canonical" href="${canonicalUrl}" />
 
     <!-- Open Graph / Facebook -->
