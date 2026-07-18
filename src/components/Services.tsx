@@ -36,36 +36,27 @@ export const Services: React.FC = () => {
     <section id="services" className="py-20 bg-white border-b border-zinc-200/60 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.span 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-amber-600 text-[11px] font-mono font-black tracking-[0.6em] uppercase block mb-3"
-          >
-            OUR SERVICES
-          </motion.span>
+        {/* Exact Original Section Header Font Style */}
+        <div className="text-center mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-zinc-950 text-3xl sm:text-4xl md:text-5xl font-['Montserrat',sans-serif] font-bold tracking-tight uppercase leading-tight mb-4"
+            className="text-6xl md:text-9xl font-bold mb-10 tracking-tighter text-zinc-950"
           >
-            Our Services.
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-zinc-900 to-amber-700">Services.</span>
           </motion.h2>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="space-y-2"
+            transition={{ delay: 0.1 }}
+            className="max-w-3xl mx-auto space-y-4"
           >
-            <p className="text-zinc-800 text-lg sm:text-xl font-medium tracking-wide">
+            <p className="text-zinc-900 text-xl md:text-3xl font-light tracking-wide">
               Complete design and execution solutions.
             </p>
-            <p className="text-[#555555] text-base sm:text-lg font-normal">
+            <p className="text-zinc-600 text-base md:text-xl font-light">
               Tailored for functional, modern, and elegant spaces.
             </p>
           </motion.div>
