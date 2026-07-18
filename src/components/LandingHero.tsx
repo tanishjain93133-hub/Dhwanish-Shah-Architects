@@ -3,26 +3,22 @@ import { motion, AnimatePresence } from 'motion/react';
 import BlurText from './BlurText';
 
 const getHeroImages = (): string[] => {
-  const originalHero = '/images/drive_1QzCXp_vMHvJvz2x2S0Czff8Fk2IsXN7h.png';
-  let additionalImages: string[] = [];
-
   try {
     const glob = import.meta.glob('/public/hero-images/*.{jpg,jpeg,png,webp,avif}', { eager: true, import: 'default' });
     const paths = Object.keys(glob).map(key => key.replace('/public', ''));
     if (paths.length > 0) {
-      additionalImages = paths.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+      return paths.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
     }
   } catch {
-    additionalImages = [
-      '/hero-images/slide-1.jpg',
-      '/hero-images/slide-2.jpg',
-      '/hero-images/slide-3.jpg',
-      '/hero-images/slide-4.jpg'
-    ];
+    // Fallback if glob import is unavailable
   }
-
-  // Slide 1 is always the original hero image, followed by all hero-images
-  return [originalHero, ...additionalImages];
+  return [
+    '/hero-images/slide-1.jpg',
+    '/hero-images/slide-2.jpg',
+    '/hero-images/slide-3.jpg',
+    '/hero-images/slide-4.jpg',
+    '/hero-images/slide-5.jpg'
+  ];
 };
 
 export const Hero: React.FC = () => {
