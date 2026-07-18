@@ -140,14 +140,15 @@ export const Hero: React.FC = () => {
               DHWANISH SHAH
             </h1>
 
-            {/* Layer 2: White Fill Smoothly Sweeping Left-to-Right Over 1.4 Seconds */}
+            {/* Layer 2: Pure White Fill Sweeping Left-to-Right Slower (2.4 Seconds) */}
             <motion.h1
               initial={{ clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' }}
               animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-              transition={{ duration: 1.4, ease: [0.65, 0, 0.35, 1] }}
+              transition={{ duration: 2.4, ease: [0.65, 0, 0.35, 1] }}
               className="text-[28px] sm:text-[50px] md:text-[68px] lg:text-[84px] font-['Montserrat',sans-serif] font-[900] tracking-[0.05em] uppercase text-white leading-none text-center select-none absolute inset-0 py-1 px-2"
               style={{
                 WebkitTextStroke: '3.5px #000000',
+                WebkitTextFillColor: '#FFFFFF',
                 paintOrder: 'stroke fill',
                 textShadow: '0 4px 20px rgba(0,0,0,0.5)'
               }}
@@ -170,14 +171,15 @@ export const Hero: React.FC = () => {
               ARCHITECTS
             </div>
 
-            {/* Layer 2: White Fill Smoothly Sweeping Left-to-Right Over 1.4 Seconds */}
+            {/* Layer 2: Pure White Fill Sweeping Left-to-Right Slower (2.4 Seconds) */}
             <motion.div
               initial={{ clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' }}
               animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-              transition={{ delay: 0.3, duration: 1.4, ease: [0.65, 0, 0.35, 1] }}
+              transition={{ delay: 0.4, duration: 2.4, ease: [0.65, 0, 0.35, 1] }}
               className="text-[12px] sm:text-[18px] md:text-[22px] font-['Montserrat',sans-serif] font-[800] tracking-[0.4em] uppercase text-white leading-none text-center select-none absolute inset-0 py-1 px-2 pl-[0.4em]"
               style={{
                 WebkitTextStroke: '1.5px #000000',
+                WebkitTextFillColor: '#FFFFFF',
                 paintOrder: 'stroke fill',
                 textShadow: '0 2px 10px rgba(0,0,0,0.7)'
               }}
