@@ -64,7 +64,7 @@ export const OurProjectsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto mb-16"
+          className="text-center max-w-5xl mx-auto mb-16"
         >
           <span className="text-amber-600 text-[10px] font-mono font-black tracking-[0.8em] uppercase block mb-3">
             OUR PROJECTS
@@ -75,7 +75,7 @@ export const OurProjectsSection: React.FC = () => {
         </motion.div>
 
         {/* 4 Cards Grid - Squarer cards & lighter overlay */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {projectCards.map((card, index) => {
             const isActive = selectedFilter === card.filterName;
 
@@ -145,24 +145,23 @@ export const OurProjectsSection: React.FC = () => {
           })}
         </div>
 
-        {/* View All Projects Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <button
+        {/* VIEW ALL PROJECTS Button - Matched with Testimonials section button style */}
+        <div className="flex justify-center mt-12">
+          <motion.button
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => {
               sessionStorage.setItem('projects-active-filter', 'All');
               navigate('/projects');
             }}
-            className="inline-flex items-center gap-3 bg-zinc-950 hover:bg-amber-600 text-white font-mono text-xs tracking-[0.2em] uppercase px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 border border-zinc-800 cursor-pointer"
+            className="px-10 py-5 h-14 rounded-full bg-zinc-950 border border-zinc-800 hover:border-amber-600/50 hover:bg-black transition-all duration-300 flex items-center justify-center gap-3 shadow-md hover:shadow-lg group cursor-pointer"
           >
-            <span>View All Projects</span>
-            <ArrowRight size={16} />
-          </button>
-        </motion.div>
+            <span className="text-white text-xs uppercase tracking-[0.2em] font-mono font-bold">
+              VIEW ALL PROJECTS
+            </span>
+            <ArrowRight size={16} className="text-white group-hover:translate-x-1 transition-all" />
+          </motion.button>
+        </div>
       </div>
     </section>
   );
