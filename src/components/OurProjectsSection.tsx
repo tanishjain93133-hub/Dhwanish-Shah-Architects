@@ -58,7 +58,7 @@ export const OurProjectsSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Header Section - Larger Headline (66px) & Compact Smaller Tagline (16px) */}
+        {/* Header Section - Luxury Residential & in pure black */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,8 +69,8 @@ export const OurProjectsSection: React.FC = () => {
           <h2 
             className="text-[30px] sm:text-[42px] md:text-[54px] lg:text-[66px] font-[900] tracking-[-0.03em] leading-[1.08] text-center mb-5 font-['Geist','Inter',sans-serif]"
           >
-            <span style={{ color: '#0D0D0D' }}>Luxury Residential</span>{' '}
-            <span style={{ color: '#4A4A4A' }}>&amp; bespoke Commercial Projects</span>
+            <span style={{ color: '#000000' }}>Luxury Residential &amp;</span>{' '}
+            <span style={{ color: '#4A4A4A' }}>bespoke Commercial Projects</span>
           </h2>
 
           <p 
