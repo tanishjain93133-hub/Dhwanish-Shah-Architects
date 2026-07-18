@@ -58,18 +58,18 @@ export const OurProjectsSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Header Section - Exact match to Our Services typography & style */}
+        {/* Header Section - Single Line on Desktop with exact Our Services typography */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto mb-16"
+          className="text-center max-w-6xl mx-auto mb-16 px-2"
         >
-          <h2 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-8 tracking-tighter text-zinc-950 leading-tight">
+          <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-[46px] xl:text-[52px] font-bold mb-6 tracking-tighter text-zinc-950 sm:whitespace-nowrap">
             Luxury Residential &amp; Commercial Projects.
           </h2>
-          <p className="text-zinc-900 text-xl md:text-3xl font-light tracking-wide max-w-3xl mx-auto">
+          <p className="text-zinc-900 text-lg sm:text-xl md:text-2xl font-light tracking-wide max-w-3xl mx-auto">
             Thoughtfully designed spaces that blend timeless aesthetics, intelligent planning, and exceptional craftsmanship.
           </p>
         </motion.div>
