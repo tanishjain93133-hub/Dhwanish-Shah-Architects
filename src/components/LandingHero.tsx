@@ -29,7 +29,6 @@ export const Hero: React.FC = () => {
   const [slides, setSlides] = useState<string[]>([]);
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
 
   useEffect(() => {
     const images = getHeroImages();
@@ -43,15 +42,15 @@ export const Hero: React.FC = () => {
     setCurrentIndex(prev => (prev + 1) % validSlides.length);
   }, [validSlides.length]);
 
-  // Autoplay 5-second interval
+  // Autoplay every 3 seconds (3000ms), pauseOnHover: false, disableOnInteraction: false
   useEffect(() => {
-    if (isPaused || validSlides.length <= 1) return;
+    if (validSlides.length <= 1) return;
     const interval = setInterval(() => {
       handleNext();
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval);
-  }, [handleNext, isPaused, validSlides.length]);
+  }, [handleNext, validSlides.length]);
 
   const handleImageError = (src: string) => {
     setFailedImages(prev => {
@@ -71,35 +70,42 @@ export const Hero: React.FC = () => {
   return (
     <section 
       id="home" 
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       className="relative w-full h-[75vh] md:h-[85vh] lg:h-screen flex items-center justify-center overflow-hidden bg-zinc-950 select-none"
     >
-      {/* Hidden Preloader for 60fps instant transitions */}
+      {/* Hidden Full HD Preloader Container */}
       <div className="hidden" aria-hidden="true">
-        {validSlides.map(src => (
-          <img key={src} src={src} alt="" />
+        {validSlides.map((src, i) => (
+          <img 
+            key={src} 
+            src={src} 
+            alt="" 
+            loading={i === 0 ? "eager" : "lazy"} 
+            decoding={i === 0 ? "sync" : "async"}
+          />
         ))}
       </div>
 
-      {/* Fullscreen Cinematic Image Slider with Slow Zoom Effect */}
+      {/* Fullscreen HD Image Slider with 1000ms Fade & Crisp Native Resolution Rendering */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <AnimatePresence mode="popLayout">
           <motion.img
             key={currentSlideSrc}
             src={currentSlideSrc}
             alt={`Dhwanish Shah Architects Slide ${currentIndex + 1}`}
-            initial={{ opacity: 0, scale: 1 }}
-            animate={{ opacity: 1, scale: 1.06 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{
-              opacity: { duration: 1, ease: 'easeInOut' },
-              scale: { duration: 5.5, ease: 'linear' }
-            }}
+            transition={{ duration: 1, ease: 'easeInOut' }}
             loading={currentIndex === 0 ? "eager" : "lazy"}
-            decoding="async"
+            decoding={currentIndex === 0 ? "sync" : "async"}
             onError={() => handleImageError(currentSlideSrc)}
-            style={{ imageRendering: 'auto' }}
+            style={{ 
+              imageRendering: 'auto',
+              filter: 'none',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+              willChange: 'opacity'
+            }}
             className="w-full h-full object-cover object-center absolute inset-0"
           />
         </AnimatePresence>
