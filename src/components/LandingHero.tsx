@@ -110,105 +110,89 @@ export const Hero: React.FC = () => {
       <div 
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background: 'linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25))'
+          background: 'linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30))'
         }}
       />
 
-      {/* Hero Title & Animated Branding Overlay */}
-      <div className="absolute top-[75px] md:top-[90px] left-0 right-0 z-20 flex justify-center text-center px-4 pointer-events-none">
-        <motion.div 
-          initial={{ opacity: 0, scale: 1 }}
-          animate={{ 
-            opacity: 1, 
-            scale: [1, 1.05, 1] 
-          }}
-          transition={{ 
-            duration: 3, 
-            ease: [0.25, 0.1, 0.25, 1],
-            times: [0, 0.7, 1]
-          }}
-          className="flex flex-col items-center max-w-5xl mx-auto w-full select-none"
-        >
-          {/* DSA Monogram Emblem Logo */}
+      {/* Hero Title & Centered Branding Overlay */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 pointer-events-none">
+        <div className="flex flex-col items-center max-w-5xl mx-auto w-full select-none">
+          
+          {/* DSA Monogram Logo */}
           <motion.div
-            initial={{ opacity: 0, y: -12 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-1 sm:mb-2"
+            className="mb-4 sm:mb-6"
           >
             <img 
               src="/logo.png" 
-              alt="DSA Monogram Logo" 
-              className="h-10 sm:h-14 md:h-16 w-auto object-contain filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] brightness-0 invert" 
+              alt="DSA Logo" 
+              className="h-14 sm:h-18 md:h-22 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] brightness-0 invert" 
             />
           </motion.div>
 
-          {/* Top Thin Accent Line with Center Light Reflection */}
+          {/* Top Thin Accent Line */}
           <motion.div 
             initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 0.85, scaleX: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="flex items-center justify-center w-full max-w-xl sm:max-w-2xl mb-2 sm:mb-3"
-          >
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white to-transparent" />
-            <div className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_#ffffff]" />
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white to-transparent" />
-          </motion.div>
+            animate={{ opacity: 0.8, scaleX: 1 }}
+            transition={{ duration: 1.0, ease: "easeOut" }}
+            className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mb-4 sm:mb-6"
+          />
 
-          {/* Main Title Container with Left-to-Right Stroke Draw + Liquid White Fill + Glossy Shine Sweep */}
-          <div className="relative overflow-hidden py-1 px-4 max-w-full">
-            {/* Title: DHWANISH SHAH */}
+          {/* Main Title Container: DHWANISH SHAH */}
+          <div className="relative py-1 px-2">
+            {/* Layer 1: Black Outline Always Visible First */}
+            <h1
+              className="text-[28px] sm:text-[50px] md:text-[68px] lg:text-[84px] font-['Montserrat',sans-serif] font-[900] tracking-[0.05em] uppercase leading-none text-center select-none"
+              style={{
+                WebkitTextStroke: '3.5px #000000',
+                WebkitTextFillColor: 'transparent',
+                textShadow: '0 4px 20px rgba(0,0,0,0.5)'
+              }}
+            >
+              DHWANISH SHAH
+            </h1>
+
+            {/* Layer 2: White Fill Smoothly Sweeping Left-to-Right Over 1.2 Seconds */}
             <motion.h1
               initial={{ clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' }}
               animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-              transition={{ duration: 1.8, ease: [0.65, 0, 0.35, 1] }}
-              className="text-[26px] sm:text-[48px] md:text-[66px] lg:text-[80px] font-['Montserrat',sans-serif] font-[900] tracking-[0.06em] uppercase text-white leading-none text-center relative z-10"
+              transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
+              className="text-[28px] sm:text-[50px] md:text-[68px] lg:text-[84px] font-['Montserrat',sans-serif] font-[900] tracking-[0.05em] uppercase text-white leading-none text-center select-none absolute inset-0 py-1 px-2"
               style={{
-                WebkitTextStroke: '2.5px #000000',
+                WebkitTextStroke: '3.5px #000000',
                 paintOrder: 'stroke fill',
-                textShadow: '0 4px 20px rgba(0,0,0,0.45)',
-                filter: 'drop-shadow(0 0 14px rgba(255,255,255,0.45)) drop-shadow(0 4px 25px rgba(0,0,0,0.7))'
+                textShadow: '0 4px 20px rgba(0,0,0,0.5)'
               }}
             >
               DHWANISH SHAH
             </motion.h1>
-
-            {/* Glossy Shine Sweep Moving Across Letters Once */}
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: '200%' }}
-              transition={{ delay: 1.8, duration: 1.0, ease: [0.4, 0, 0.2, 1] }}
-              className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg]"
-            />
           </div>
 
-          {/* Subtitle: A R C H I T E C T S */}
+          {/* Subtitle: ARCHITECTS (20-30px Spacing, 0.4em Letter Spacing) */}
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 1.0, ease: "easeOut" }}
-            className="mt-1 sm:mt-2 text-[11px] sm:text-[16px] md:text-[20px] lg:text-[22px] font-['Montserrat',sans-serif] font-[800] tracking-[0.45em] sm:tracking-[0.55em] uppercase text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] text-center pl-[0.45em]"
+            transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+            className="mt-5 sm:mt-7 text-[12px] sm:text-[18px] md:text-[22px] font-['Montserrat',sans-serif] font-[800] tracking-[0.4em] uppercase text-white text-center pl-[0.4em]"
             style={{
               WebkitTextStroke: '1.2px #000000',
               paintOrder: 'stroke fill',
-              textShadow: '0 2px 12px rgba(0,0,0,0.6)'
+              textShadow: '0 2px 10px rgba(0,0,0,0.7)'
             }}
           >
             ARCHITECTS
           </motion.div>
 
-          {/* Bottom Thin Accent Line with Center Light Reflection */}
+          {/* Bottom Thin Accent Line */}
           <motion.div 
             initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 0.85, scaleX: 1 }}
-            transition={{ delay: 1.2, duration: 1.2, ease: "easeOut" }}
-            className="flex items-center justify-center w-full max-w-xl sm:max-w-2xl mt-2 sm:mt-3"
-          >
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white to-transparent" />
-            <div className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_#ffffff]" />
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-white to-transparent" />
-          </motion.div>
-        </motion.div>
+            animate={{ opacity: 0.8, scaleX: 1 }}
+            transition={{ delay: 0.8, duration: 1.0, ease: "easeOut" }}
+            className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mt-5 sm:mt-7"
+          />
+        </div>
       </div>
 
       {/* Minimal Slide Indicator Dots */}
