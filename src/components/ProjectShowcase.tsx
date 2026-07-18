@@ -223,25 +223,21 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
               {
                 name: "All",
                 img: "/images/all-portfolio-bg.jpg",
-                type: "Complete portfolio",
                 count: PROJECTS_IMAGES.length,
               },
               {
                 name: "Residential",
                 img: "/images/residential-category-bg.jpg",
-                type: "Living Spaces & Villas",
                 count: PROJECTS_IMAGES.filter(p => p.category === "Residential").length,
               },
               {
                 name: "Commercial",
                 img: "/images/commercial-category-bg.jpg",
-                type: "Bespoke Retail & Offices",
                 count: PROJECTS_IMAGES.filter(p => p.category === "Commercial").length,
               },
               {
                 name: "Sphere",
                 img: "/images/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM.jpg",
-                type: "3D Experimental Canvas",
                 count: domeImages.length,
               },
             ].map((cat, idx) => {
@@ -280,19 +276,6 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
 
                   {/* Inner text content card */}
                   <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end z-20">
-                    <span 
-                      className={cn(
-                        "text-[9px] sm:text-[10px] font-mono tracking-[0.3em] uppercase transition-all mb-1.5 font-medium category-subtitle",
-                        isActive ? "text-blue-300" : "text-white/90"
-                      )}
-                      style={{
-                        color: isActive ? '#93c5fd' : 'rgba(255, 255, 255, 0.9)',
-                        fontWeight: 500,
-                        textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)'
-                      }}
-                    >
-                      {cat.type}
-                    </span>
                     <h3 
                       className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-white tracking-widest uppercase category-title"
                       style={{
@@ -380,8 +363,6 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
                         className="w-full h-full transition-transform duration-[2.5s] ease-out group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
-                      
-
                     </div>
 
                     {/* Description Narrative card */}

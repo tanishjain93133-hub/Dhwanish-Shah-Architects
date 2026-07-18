@@ -329,10 +329,10 @@ export const ProjectsPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {[
-              { name: 'All', img: '/images/drive_151kmI4LQypjKjzhQatTQCO-aAXyGuBhE.jpg', type: 'Complete' },
-              { name: 'Residential', img: '/images/drive_1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I.jpg', type: 'Living' },
-              { name: 'Commercial', img: '/images/drive_1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41.jpg', type: 'Luxe Retail' },
-              { name: 'Dome Gallery', img: '/images/drive_1XibxVzxzjgvmI85XDUywtUpJTUus7bzM.jpg', type: 'Concept' }
+              { name: 'All', img: '/images/drive_151kmI4LQypjKjzhQatTQCO-aAXyGuBhE.jpg' },
+              { name: 'Residential', img: '/images/drive_1zaZHAGa2m57NF8IZXKgQfkCN6--SVy3I.jpg' },
+              { name: 'Commercial', img: '/images/drive_1lT_rM9G9pB9t4vHywDCfQy7h5OHwJM41.jpg' },
+              { name: 'Dome Gallery', img: '/images/drive_1XibxVzxzjgvmI85XDUywtUpJTUus7bzM.jpg' }
             ].map((cat, idx) => (
               <motion.button
                 key={cat.name}
@@ -380,7 +380,7 @@ export const ProjectsPage: React.FC = () => {
                       "text-[9px] font-black tracking-[0.4em] uppercase transition-all",
                       activeFilter === cat.name ? "text-neon-cyan" : "text-white/70"
                     )}>
-                      {cat.type} 0{idx + 1}
+                      0{idx + 1}
                     </span>
                     <h3 className="text-3xl font-display font-medium text-white tracking-tight leading-tight">
                       {cat.name}
