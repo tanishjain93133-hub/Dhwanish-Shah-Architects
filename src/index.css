@@ -376,43 +376,51 @@
     color: rgba(255, 255, 255, 0.15) !important;
   }
 
-  /* Inquire Modal & Keep Dark container text overrides */
+  /* Inquire Modal Light Theme Overrides (#FFFFFF background, #111111 headings, #444444 text) */
+  .inquire-modal-card,
+  .step-circle-container {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25) !important;
+  }
+
   .inquire-modal-container h1,
   .inquire-modal-container h2,
   .inquire-modal-container h3,
   .inquire-modal-card h1,
   .inquire-modal-card h2,
   .inquire-modal-card h3 {
-    color: #ffffff !important;
+    color: #111111 !important;
     opacity: 1 !important;
     --tw-text-opacity: 1 !important;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6) !important;
+    text-shadow: none !important;
   }
 
   .inquire-modal-container p,
   .inquire-modal-card p {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: #444444 !important;
     opacity: 1 !important;
     --tw-text-opacity: 1 !important;
   }
 
-  .inquire-modal-container span:not(.step-number),
-  .inquire-modal-card span:not(.step-number) {
-    color: rgba(255, 255, 255, 0.9) !important;
+  .inquire-modal-container span:not(.text-white):not(.step-number),
+  .inquire-modal-card span:not(.text-white):not(.step-number) {
+    color: #444444 !important;
     opacity: 1 !important;
     --tw-text-opacity: 1 !important;
   }
 
   .inquire-modal-container .text-neon-cyan,
   .inquire-modal-card .text-neon-cyan {
-    color: #00F0FF !important;
+    color: #b45309 !important; /* warm luxury amber accent */
     opacity: 1 !important;
   }
 
-  .inquire-modal-container button svg,
-  .inquire-modal-card button svg {
-    color: #ffffff !important;
-    stroke: #ffffff !important;
+  .inquire-modal-card button.close-btn svg,
+  .inquire-modal-container button.close-btn svg {
+    color: #111111 !important;
+    stroke: #111111 !important;
   }
 }
 

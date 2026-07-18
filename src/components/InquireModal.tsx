@@ -26,15 +26,15 @@ export const InquireModal: React.FC<InquireModalProps> = ({ isOpen, onClose }) =
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-xl z-20 my-auto inquire-modal-container keep-dark"
+            className="relative w-full max-w-xl z-20 my-auto inquire-modal-container"
           >
-            <div className="relative inquire-modal-card">
+            <div className="relative inquire-modal-card bg-white rounded-3xl p-1 shadow-2xl">
               <button 
                 onClick={onClose}
-                className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all border border-white/20 shadow-lg cursor-pointer"
+                className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-900 flex items-center justify-center transition-all border border-zinc-200 shadow-sm cursor-pointer close-btn"
                 aria-label="Close modal"
               >
-                <X size={16} className="text-white stroke-[2.5]" />
+                <X size={16} className="text-zinc-900 stroke-[2.5]" />
               </button>
 
             <Stepper
@@ -48,10 +48,10 @@ export const InquireModal: React.FC<InquireModalProps> = ({ isOpen, onClose }) =
             >
               <Step>
                 <div className="text-center py-4">
-                  <h2 className="text-3xl md:text-5xl font-extralight tracking-tight text-white mb-4">
-                    Welcome to <span className="text-neon-cyan font-normal">DSA!</span>
+                  <h2 className="text-3xl md:text-5xl font-extralight tracking-tight text-zinc-900 mb-4">
+                    Welcome to <span className="text-amber-600 font-normal">DSA!</span>
                   </h2>
-                  <p className="text-white/40 text-lg font-light leading-relaxed max-w-sm mx-auto">
+                  <p className="text-zinc-600 text-lg font-light leading-relaxed max-w-sm mx-auto">
                     We're excited to help you transform your vision into an architectural masterpiece.
                   </p>
                 </div>
@@ -59,17 +59,17 @@ export const InquireModal: React.FC<InquireModalProps> = ({ isOpen, onClose }) =
 
               <Step>
                 <div className="text-center py-2 relative">
-                  <h2 className="text-2xl md:text-4xl font-light text-white mb-2 leading-tight">
-                    Ready to design your <span className="text-neon-cyan">dream home</span> with DSA?
+                  <h2 className="text-2xl md:text-4xl font-light text-zinc-900 mb-2 leading-tight">
+                    Ready to design your <span className="text-amber-600 font-semibold">dream home</span> with DSA?
                   </h2>
-                  <div className="w-full max-h-[160px] aspect-[2.5/1] rounded-2xl overflow-hidden mb-3 border border-white/10 shadow-2xl bg-white/5 relative group">
+                  <div className="w-full max-h-[160px] aspect-[2.5/1] rounded-2xl overflow-hidden mb-3 border border-zinc-200 shadow-md bg-zinc-50 relative group">
                     <SafeImage 
                       src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2070&auto=format&fit=crop" 
                       alt="Dream Home" 
                       className="w-full h-full object-cover transition-all duration-700"
                     />
                   </div>
-                  <p className="text-white/40 font-medium tracking-widest text-[10px] uppercase mb-4">
+                  <p className="text-zinc-500 font-semibold tracking-widest text-[10px] uppercase mb-4">
                     Check out the next step!
                   </p>
 

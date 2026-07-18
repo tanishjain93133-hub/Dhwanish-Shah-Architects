@@ -13,12 +13,10 @@
   margin-right: auto;
   width: 100%;
   max-width: 32rem;
-  background: linear-gradient(145deg, rgba(22, 22, 28, 0.98), rgba(14, 14, 18, 0.98));
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 2rem;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85), 0 0 40px rgba(0, 240, 255, 0.08);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25), 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -38,7 +36,7 @@
 .step-default {
   padding-left: 2rem;
   padding-right: 2rem;
-  color: white;
+  color: #111111;
 }
 
 .footer-container {
@@ -64,19 +62,20 @@
   transition: all 0.3s ease;
   border-radius: 100px;
   padding: 0.75rem 1.75rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: #444444;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .back-button:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
+  color: #111111;
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.3);
 }
 
 .back-button.inactive {
@@ -90,22 +89,22 @@
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  background-color: white;
-  color: black;
+  background-color: #111111;
+  color: #ffffff;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-size: 0.75rem;
   padding: 0.875rem 2rem;
   cursor: pointer;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .next-button:hover {
-  background-color: #00F0FF;
-  color: black;
+  background-color: #000000;
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(0, 240, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
 .next-button:active {
