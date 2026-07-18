@@ -4,21 +4,26 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import BlurText from './BlurText';
 
 const getHeroImages = (): string[] => {
+  const originalHero = '/images/drive_1QzCXp_vMHvJvz2x2S0Czff8Fk2IsXN7h.png';
+  let additionalImages: string[] = [];
+
   try {
     const glob = import.meta.glob('/public/hero-images/*.{jpg,jpeg,png,webp,avif}', { eager: true, import: 'default' });
     const paths = Object.keys(glob).map(key => key.replace('/public', ''));
     if (paths.length > 0) {
-      return paths.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+      additionalImages = paths.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
     }
   } catch {
-    // Fallback if glob import is unavailable
+    additionalImages = [
+      '/hero-images/slide-1.jpg',
+      '/hero-images/slide-2.jpg',
+      '/hero-images/slide-3.jpg',
+      '/hero-images/slide-4.jpg'
+    ];
   }
-  return [
-    '/hero-images/slide-1.jpg',
-    '/hero-images/slide-2.jpg',
-    '/hero-images/slide-3.jpg',
-    '/hero-images/slide-4.jpg'
-  ];
+
+  // Slide 1 is always the original hero image, followed by hero-images
+  return [originalHero, ...additionalImages];
 };
 
 export const Hero: React.FC = () => {
@@ -58,40 +63,41 @@ export const Hero: React.FC = () => {
       id="home" 
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="relative w-full h-[70vh] md:h-[80vh] lg:h-screen flex items-center justify-center overflow-hidden bg-zinc-950 select-none"
+      className="relative w-full h-[70vh] md:h-[80vh] lg:h-screen flex items-center justify-center overflow-hidden select-none"
+      style={{
+        background: 'linear-gradient(180deg, #fafafa 0%, #f2f2f2 100%)'
+      }}
     >
-      {/* Hidden preloader for 60fps instant transitions without white flashes */}
-      <div className="hidden" aria-hidden="true">
-        {slides.map(src => (
-          <img key={src} src={src} alt="" />
-        ))}
-      </div>
-
-      {/* Smooth Cross-Fade Image Slideshow */}
-      <div className="absolute inset-0 w-full h-full z-0">
+      {/* Crisp HD Image Container with object-contain to prevent stretching & cropping */}
+      <div className="absolute inset-0 w-full h-full z-0 flex items-center justify-center p-2 sm:p-4 md:p-6">
         <AnimatePresence mode="popLayout">
           <motion.img
             key={currentIndex}
             src={slides[currentIndex]}
-            alt={`Dhwanish Shah Architects Architecture Slide ${currentIndex + 1}`}
+            alt={`Dhwanish Shah Architects Slide ${currentIndex + 1}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1, ease: 'easeInOut' }}
-            className="w-full h-full object-cover object-center absolute inset-0"
+            loading={currentIndex === 0 ? "eager" : "lazy"}
+            decoding="async"
+            style={{
+              imageRendering: 'auto'
+            }}
+            className="w-full h-full object-contain object-center transition-all duration-500 drop-shadow-md"
           />
         </AnimatePresence>
       </div>
 
-      {/* Luxury Subtle Gradient Overlay */}
+      {/* Subtle luxury ambient gradient overlay */}
       <div 
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.28) 50%, rgba(0,0,0,0.45) 100%)'
+          background: 'linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.02) 50%, rgba(0,0,0,0.06) 100%)'
         }}
       />
 
-      {/* Branding Overlay */}
+      {/* Branding Header Text Overlay */}
       <div className="absolute top-[84px] md:top-[105px] left-0 right-0 z-20 flex justify-center text-center px-6 pointer-events-none">
         <div className="flex flex-col items-center w-full">
           <BlurText
@@ -99,7 +105,7 @@ export const Hero: React.FC = () => {
             delay={150}
             animateBy="words"
             direction="top"
-            className="dsa-title-sub text-[16px] sm:text-[20px] md:text-[24px] lg:text-[28px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-white font-extrabold select-none justify-center w-full drop-shadow-md"
+            className="dsa-title-sub text-[16px] sm:text-[20px] md:text-[24px] lg:text-[28px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-zinc-950 font-extrabold select-none justify-center w-full"
           />
         </div>
       </div>
@@ -108,7 +114,7 @@ export const Hero: React.FC = () => {
       <button
         onClick={handlePrev}
         aria-label="Previous Slide"
-        className="absolute left-4 sm:left-8 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-black/30 hover:bg-black/60 text-white backdrop-blur-md border border-white/10 flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-lg group cursor-pointer"
+        className="absolute left-4 sm:left-8 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-zinc-950/70 hover:bg-zinc-950 text-white backdrop-blur-md border border-zinc-700/40 flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-xl group cursor-pointer"
       >
         <ChevronLeft className="w-6 h-6 text-white group-hover:-translate-x-0.5 transition-transform" />
       </button>
@@ -117,7 +123,7 @@ export const Hero: React.FC = () => {
       <button
         onClick={handleNext}
         aria-label="Next Slide"
-        className="absolute right-4 sm:right-8 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-black/30 hover:bg-black/60 text-white backdrop-blur-md border border-white/10 flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-lg group cursor-pointer"
+        className="absolute right-4 sm:right-8 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-zinc-950/70 hover:bg-zinc-950 text-white backdrop-blur-md border border-zinc-700/40 flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-xl group cursor-pointer"
       >
         <ChevronRight className="w-6 h-6 text-white group-hover:translate-x-0.5 transition-transform" />
       </button>
@@ -131,8 +137,8 @@ export const Hero: React.FC = () => {
             aria-label={`Go to slide ${index + 1}`}
             className={`transition-all duration-500 rounded-full cursor-pointer ${
               index === currentIndex
-                ? 'w-8 h-2 bg-white shadow-md'
-                : 'w-2 h-2 bg-white/40 hover:bg-white/70'
+                ? 'w-8 h-2 bg-zinc-950 shadow-md'
+                : 'w-2 h-2 bg-zinc-400/60 hover:bg-zinc-800'
             }`}
           />
         ))}
