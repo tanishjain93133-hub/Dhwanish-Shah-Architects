@@ -9,7 +9,6 @@ interface ProjectCardItem {
   id: string;
   filterName: string;
   title: string;
-  subtitle: string;
   image: string;
 }
 
@@ -18,28 +17,24 @@ const projectCards: ProjectCardItem[] = [
     id: 'all',
     filterName: 'All',
     title: 'ALL',
-    subtitle: 'Complete Portfolio',
     image: '/images/all-portfolio-bg.jpg',
   },
   {
     id: 'residential',
     filterName: 'Residential',
     title: 'RESIDENTIAL',
-    subtitle: 'Luxury Homes, Villas & Apartments',
     image: '/images/residential-category-bg.jpg',
   },
   {
     id: 'commercial',
     filterName: 'Commercial',
     title: 'COMMERCIAL',
-    subtitle: 'Corporate Offices, Retail & Hospitality',
     image: '/images/commercial-category-bg.jpg',
   },
   {
     id: 'sphere',
     filterName: 'Sphere',
     title: 'SPHERE',
-    subtitle: '3D Visualization, Planning & Execution',
     image: '/images/1XibxVzxzjgvmI85XDUywtUpJTUus7bzM.jpg',
   },
 ];
@@ -55,7 +50,7 @@ export const OurProjectsSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-white py-20 border-b border-zinc-200/60 relative overflow-hidden">
+    <section className="bg-white pt-8 pb-16 border-b border-zinc-200/60 relative overflow-hidden">
       {/* Subtle ambient light glow */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
         <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/5 rounded-full blur-[140px]" />
@@ -69,17 +64,17 @@ export const OurProjectsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-3xl mx-auto mb-14"
+          className="text-center max-w-4xl mx-auto mb-16"
         >
           <span className="text-amber-600 text-[10px] font-mono font-black tracking-[0.8em] uppercase block mb-3">
             OUR PROJECTS
           </span>
-          <h2 className="text-zinc-950 text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight uppercase leading-tight">
+          <h2 className="text-zinc-950 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-medium tracking-tight uppercase leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
             Luxury Residential &amp; Commercial Projects
           </h2>
         </motion.div>
 
-        {/* 4 Cards Grid */}
+        {/* 4 Cards Grid - Squarer cards & lighter overlay */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
           {projectCards.map((card, index) => {
             const isActive = selectedFilter === card.filterName;
@@ -93,7 +88,7 @@ export const OurProjectsSection: React.FC = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 onClick={() => handleCardClick(card.filterName)}
                 className={cn(
-                  "relative h-[280px] sm:h-[340px] rounded-[24px] overflow-hidden group transition-all duration-500 cursor-pointer shadow-md hover:shadow-2xl hover:scale-[1.03] border bg-zinc-900 our-projects-card",
+                  "relative h-[210px] sm:h-[260px] rounded-[24px] overflow-hidden group transition-all duration-500 cursor-pointer shadow-md hover:shadow-2xl hover:scale-[1.03] border bg-zinc-900 our-projects-card",
                   isActive
                     ? "ring-2 ring-blue-600 ring-offset-2 ring-offset-white border-blue-600 shadow-xl"
                     : "border-zinc-200/80 hover:border-blue-500/50"
@@ -107,10 +102,12 @@ export const OurProjectsSection: React.FC = () => {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
                 />
 
-                {/* Premium dark gradient overlay for optimal readability */}
+                {/* Premium luxury gradient overlay */}
                 <div 
                   className="absolute inset-0 z-10 transition-opacity duration-500" 
-                  style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.2) 100%)' }}
+                  style={{ 
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0) 100%)' 
+                  }}
                 />
 
                 {/* Highlight blue tint when active or hovered */}
@@ -121,25 +118,15 @@ export const OurProjectsSection: React.FC = () => {
                   )} 
                 />
 
-                {/* Content Overlay */}
+                {/* Content Overlay - Only Main Title */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end z-20">
-                  <span 
-                    className="text-zinc-300 text-xs sm:text-sm font-sans font-medium leading-snug mb-2 card-subtitle"
-                    style={{
-                      color: 'rgba(255, 255, 255, 0.9)',
-                      fontWeight: 500,
-                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.6)'
-                    }}
-                  >
-                    {card.subtitle}
-                  </span>
-
                   <h3 
-                    className="text-2xl sm:text-3xl font-display font-bold text-white tracking-wider uppercase card-title"
+                    className="text-xl sm:text-2xl font-display font-bold text-white tracking-[2px] uppercase card-title"
                     style={{
                       color: '#ffffff',
                       fontWeight: 700,
-                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.6)'
+                      letterSpacing: '2px',
+                      textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)'
                     }}
                   >
                     {card.title}
@@ -148,7 +135,7 @@ export const OurProjectsSection: React.FC = () => {
                   {/* Blue Underline when active or hovered */}
                   <div 
                     className={cn(
-                      "h-[3px] bg-blue-600 mt-4 transition-all duration-500 rounded-full",
+                      "h-[3px] bg-blue-600 mt-3 transition-all duration-500 rounded-full",
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     )} 
                   />
