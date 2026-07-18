@@ -43,7 +43,7 @@ function getDynamicBlogIds(): string[] {
 }
 
 function generateSitemap() {
-  const domain = "https://dhwanishshaharchitects.com";
+  const domain = "https://dhwanish-shah-architects.vercel.app";
   const staticPages = [
     "",
     "/about",
@@ -108,7 +108,7 @@ function generateRobots() {
   const robotsTxt = `User-agent: *
 Allow: /
 
-Sitemap: https://dhwanishshaharchitects.com/sitemap.xml`;
+Sitemap: https://dhwanish-shah-architects.vercel.app/sitemap.xml`;
 
   const distDir = path.join(process.cwd(), "dist");
   if (!fs.existsSync(distDir)) {

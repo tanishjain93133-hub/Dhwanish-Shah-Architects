@@ -470,14 +470,14 @@ async function startServer() {
 
   // Dynamic SEO HTML Hydration Injector
   function injectSeoTags(html: string, reqPath: string): string {
-    const domain = "https://dhwanishshaharchitects.com";
+    const domain = "https://dhwanish-shah-architects.vercel.app";
     const canonicalUrl = `${domain}${reqPath === "/" ? "" : reqPath}`;
     
-    let title = "DSA | Dhwanish Shah Architects";
+    let title = "DSA | Dhwanish Shah Architects | Luxury Architecture & Interior Design";
     let description = "Dhwanish Shah Architects (DSA) is a premium architecture and interior design firm in Ahmedabad specializing in luxury homes, villas, commercial spaces, interior design, renovations, and 3D visualization across India.";
     
     if (reqPath === "/" || reqPath === "") {
-      title = "DSA | Dhwanish Shah Architects";
+      title = "DSA | Dhwanish Shah Architects | Luxury Architecture & Interior Design";
       description = "Dhwanish Shah Architects (DSA) is a premium architecture and interior design firm in Ahmedabad specializing in luxury homes, villas, commercial spaces, interior design, renovations, and 3D visualization across India.";
     } else if (reqPath === "/about") {
       title = "About Dhwanish Shah Architects | Luxury Architecture & Interior Designers";
@@ -540,7 +540,7 @@ async function startServer() {
       "@type": "Architect",
       "name": "Dhwanish Shah Architects",
       "alternateName": "DSA",
-      "url": "https://dhwanishshaharchitects.com",
+      "url": "https://dhwanish-shah-architects.vercel.app",
       "logo": `${domain}/logo.png`,
       "image": `${domain}/logo.png`
     };
@@ -573,7 +573,7 @@ async function startServer() {
       "@type": "WebSite",
       "name": "DSA",
       "alternateName": "Dhwanish Shah Architects",
-      "url": "https://dhwanishshaharchitects.com"
+      "url": "https://dhwanish-shah-architects.vercel.app"
     };
 
     const breadcrumbItems = [
@@ -611,6 +611,7 @@ async function startServer() {
     <meta property="og:title" content="${title}" />
     <meta property="og:description" content="${description}" />
     <meta property="og:image" content="${domain}/logo.png" />
+    <meta property="og:site_name" content="DSA" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -639,7 +640,7 @@ async function startServer() {
 
   // 1. Dynamic Sitemap.xml Route
   app.get("/sitemap.xml", (req, res) => {
-    const domain = "https://dhwanishshaharchitects.com";
+    const domain = "https://dhwanish-shah-architects.vercel.app";
     const staticPages = [
       "",
       "/about",
@@ -691,7 +692,7 @@ ${sitemapEntries.join("\n")}
     const robotsTxt = `User-agent: *
 Allow: /
 
-Sitemap: https://dhwanishshaharchitects.com/sitemap.xml`;
+Sitemap: https://dhwanish-shah-architects.vercel.app/sitemap.xml`;
 
     res.header("Content-Type", "text/plain");
     return res.status(200).send(robotsTxt);

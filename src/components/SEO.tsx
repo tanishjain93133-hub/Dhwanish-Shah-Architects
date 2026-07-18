@@ -26,7 +26,7 @@ export const SEO: React.FC<SEOProps> = ({ title, description, canonicalUrl }) =>
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    const productionDomain = "https://dhwanishshaharchitects.com";
+    const productionDomain = "https://dhwanish-shah-architects.vercel.app";
     const cleanPath = window.location.pathname === "/" ? "" : window.location.pathname;
     const href = canonicalUrl || `${productionDomain}${cleanPath}`;
     canonical.setAttribute('href', href);
