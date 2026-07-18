@@ -58,24 +58,27 @@ export const OurProjectsSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Header Section - Exactly matching Our Services typography */}
+        {/* Header Section - Identical match to Our Services typography & tagline style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-5xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-14"
         >
           <span className="text-amber-600 text-[10px] font-mono font-black tracking-[0.8em] uppercase block mb-3">
             OUR PROJECTS
           </span>
-          <h2 className="text-zinc-950 text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight uppercase leading-tight">
+          <h2 className="text-zinc-950 text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight uppercase leading-tight mb-4">
             Luxury Residential &amp; Commercial Projects
           </h2>
+          <p className="text-zinc-600 text-sm sm:text-base leading-relaxed tracking-wide font-normal max-w-2xl mx-auto">
+            Thoughtfully designed spaces that blend timeless aesthetics, intelligent planning, and exceptional craftsmanship.
+          </p>
         </motion.div>
 
         {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
           {projectCards.map((card, index) => {
             const isActive = selectedFilter === card.filterName;
 
