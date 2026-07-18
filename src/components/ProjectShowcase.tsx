@@ -251,10 +251,10 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
                   key={cat.name}
                   onClick={() => handleFilterChange(cat.name)}
                   className={cn(
-                    "relative h-[150px] sm:h-[220px] rounded-2xl overflow-hidden text-left group transition-all duration-700 outline-none cursor-pointer",
+                    "relative h-[150px] sm:h-[220px] rounded-2xl overflow-hidden text-left group transition-all duration-700 outline-none cursor-pointer project-category-card",
                     isActive
                       ? "ring-2 ring-blue-600 ring-offset-4 ring-offset-white shadow-lg"
-                      : "ring-1 ring-zinc-200 opacity-80 hover:opacity-100"
+                      : "ring-1 ring-zinc-200 opacity-90 hover:opacity-100"
                   )}
                 >
                   {/* Category Image Cover */}
@@ -264,26 +264,43 @@ export default function ProjectShowcase({ lightMode }: ProjectShowcaseProps) {
                     objectFit="cover"
                     className="absolute inset-0 w-full h-full object-top transition-transform duration-[1.5s] group-hover:scale-110"
                   />
-                  {/* Immersive overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  {/* Dark gradient overlay for optimal readability */}
+                  <div 
+                    className="absolute inset-0 z-10" 
+                    style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.15))' }}
+                  />
                   
-                  {/* Highlight neon-cyan tint */}
+                  {/* Highlight blue tint */}
                   <div
                     className={cn(
-                      "absolute inset-0 transition-opacity duration-1000 bg-blue-600/10",
+                      "absolute inset-0 z-10 transition-opacity duration-1000 bg-blue-600/10",
                       isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                     )}
                   />
 
                   {/* Inner text content card */}
                   <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end z-20">
-                    <span className={cn(
-                      "text-[9px] font-mono tracking-[0.4em] uppercase transition-all mb-1.5",
-                      isActive ? "text-blue-400 font-bold" : "text-zinc-400"
-                    )}>
+                    <span 
+                      className={cn(
+                        "text-[9px] sm:text-[10px] font-mono tracking-[0.3em] uppercase transition-all mb-1.5 font-medium category-subtitle",
+                        isActive ? "text-blue-300" : "text-white/90"
+                      )}
+                      style={{
+                        color: isActive ? '#93c5fd' : 'rgba(255, 255, 255, 0.9)',
+                        fontWeight: 500,
+                        textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)'
+                      }}
+                    >
                       {cat.type}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-display font-medium text-white tracking-widest uppercase">
+                    <h3 
+                      className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-white tracking-widest uppercase category-title"
+                      style={{
+                        color: '#ffffff',
+                        fontWeight: 700,
+                        textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)'
+                      }}
+                    >
                       {cat.name}
                     </h3>
 

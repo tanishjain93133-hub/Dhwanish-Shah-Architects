@@ -456,6 +456,26 @@
     -webkit-text-fill-color: #ffffff !important;
     text-shadow: none !important;
   }
+
+  /* Project Category Card White Text Overrides */
+  .project-category-card h3,
+  .project-category-card .category-title {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+    --tw-text-opacity: 1 !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  .project-category-card span.category-subtitle,
+  .project-category-card .category-subtitle {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+    opacity: 1 !important;
+    --tw-text-opacity: 1 !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+  }
 }
 
 @layer utilities {
