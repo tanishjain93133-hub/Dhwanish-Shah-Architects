@@ -33,37 +33,33 @@ const services: ServiceItem[] = [
 
 export const Services: React.FC = () => {
   return (
-    <section id="services" className="py-20 bg-zinc-50 border-b border-zinc-200/60 relative overflow-hidden">
+    <section id="services" className="pt-12 pb-20 relative overflow-hidden bg-zinc-950">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.span 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-amber-600 text-[11px] font-mono font-black tracking-[0.6em] uppercase block mb-3"
-          >
-            OUR SERVICES
-          </motion.span>
+        {/* Exact Original Section Header */}
+        <div className="text-center mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-zinc-950 text-3xl sm:text-4xl md:text-5xl font-['Montserrat',sans-serif] font-bold tracking-tight uppercase leading-tight mb-4"
+            className="text-6xl md:text-9xl font-bold mb-10 tracking-tighter text-white"
           >
-            Tailored Architecture &amp; Design Solutions
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-white to-electric-purple">Services.</span>
           </motion.h2>
-          <motion.p 
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-[#555555] text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto"
+            transition={{ delay: 0.1 }}
+            className="max-w-3xl mx-auto space-y-4"
           >
-            Comprehensive design and planning services tailored to deliver functional, modern, and elegant environments.
-          </motion.p>
+            <p className="text-white text-xl md:text-3xl font-light tracking-wide">
+              Complete design and execution solutions.
+            </p>
+            <p className="text-white/60 text-base md:text-xl font-light">
+              Tailored for functional, modern, and elegant spaces.
+            </p>
+          </motion.div>
         </div>
 
         {/* 4 Premium Service Cards */}
@@ -75,7 +71,7 @@ export const Services: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white border border-zinc-200/80 rounded-[28px] p-8 sm:p-10 shadow-sm transition-all duration-350 ease-out hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(200,169,106,0.25)] hover:border-[#C8A96A]/40 flex flex-col justify-between group cursor-pointer"
+              className="bg-white border border-zinc-200/80 rounded-[28px] p-8 sm:p-10 shadow-md transition-all duration-350 ease-out hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(200,169,106,0.3)] hover:border-[#C8A96A]/40 flex flex-col justify-between group cursor-pointer"
             >
               <div>
                 {/* 80x80px White Icon Container with 18px Border Radius */}
