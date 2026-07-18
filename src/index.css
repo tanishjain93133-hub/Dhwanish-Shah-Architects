@@ -423,21 +423,38 @@
     stroke: #111111 !important;
   }
 
-  /* Force pure white text (#FFFFFF) for the Continue/Next button in Stepper */
+  /* Force pure white text (#FFFFFF) and perfect centering for the Continue/Next button in Stepper */
+  button.next-button,
+  .next-button,
   .inquire-modal-card .next-button,
   .inquire-modal-container .next-button,
-  .step-circle-container .next-button,
-  .next-button {
+  .step-circle-container .next-button {
     background-color: #111111 !important;
     color: #ffffff !important;
-  }
-  .inquire-modal-card .next-button *,
-  .inquire-modal-container .next-button *,
-  .step-circle-container .next-button *,
-  .next-button * {
-    color: #ffffff !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  button.next-button span,
+  button.next-button *,
+  .next-button span,
+  .next-button *,
+  .inquire-modal-card .next-button span,
+  .inquire-modal-card .next-button *,
+  .inquire-modal-container .next-button span,
+  .inquire-modal-container .next-button *,
+  .step-circle-container .next-button span,
+  .step-circle-container .next-button * {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     --tw-text-opacity: 1 !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: none !important;
   }
 }
 
