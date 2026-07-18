@@ -16,7 +16,10 @@ const getHeroImages = (): string[] => {
     '/hero-images/slide-2.jpg',
     '/hero-images/slide-3.jpg',
     '/hero-images/slide-4.jpg',
-    '/hero-images/slide-5.jpg'
+    '/hero-images/slide-5.jpg',
+    '/hero-images/slide-6.jpg',
+    '/hero-images/slide-7.jpg',
+    '/hero-images/slide-8.jpg'
   ];
 };
 
