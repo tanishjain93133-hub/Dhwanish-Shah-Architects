@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import BlurText from './BlurText';
 
 const getHeroImages = (): string[] => {
   try {
@@ -115,17 +114,41 @@ export const Hero: React.FC = () => {
         }}
       />
 
-      {/* Hero Title & Branding Overlay */}
+      {/* Hero Title & Luxury Gold Branding Overlay */}
       <div className="absolute top-[84px] md:top-[105px] left-0 right-0 z-20 flex justify-center text-center px-6 pointer-events-none">
-        <div className="flex flex-col items-center w-full">
-          <BlurText
-            text="Dhwanish Shah Architects"
-            delay={150}
-            animateBy="words"
-            direction="top"
-            className="dsa-title-sub text-[16px] sm:text-[20px] md:text-[24px] lg:text-[28px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-white font-extrabold select-none justify-center w-full drop-shadow-md"
-          />
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="flex flex-col items-center max-w-5xl mx-auto w-full"
+        >
+          {/* Main Title: DHWANISH SHAH ARCHITECTS */}
+          <h1 
+            className="text-[20px] sm:text-[30px] md:text-[40px] lg:text-[48px] uppercase select-none leading-none text-center"
+            style={{
+              fontFamily: "'Cinzel', 'Cormorant Garamond', 'Playfair Display', serif",
+              fontWeight: 700,
+              letterSpacing: '0.16em',
+              backgroundImage: 'linear-gradient(135deg, #FDF0A6 0%, #F6D77A 25%, #D4AF37 55%, #AA771C 85%, #8B6508 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              filter: 'drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.95)) drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.75)) drop-shadow(0px 0px 20px rgba(212, 175, 55, 0.25))'
+            }}
+          >
+            DHWANISH SHAH ARCHITECTS
+          </h1>
+
+          {/* Thin Gold Divider Line with Center Monogram Icon */}
+          <div className="flex items-center justify-center gap-3 mt-3 opacity-90">
+            <div className="h-[1px] w-16 sm:w-28 md:w-40 bg-gradient-to-r from-transparent via-[#D4AF37] to-[#D4AF37]" />
+            <div className="flex items-center gap-1.5 px-1">
+              <span className="text-[#F6D77A] text-[9px] sm:text-[11px] font-mono tracking-[0.3em] font-bold uppercase drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+                ❖ DSA ❖
+              </span>
+            </div>
+            <div className="h-[1px] w-16 sm:w-28 md:w-40 bg-gradient-to-l from-transparent via-[#D4AF37] to-[#D4AF37]" />
+          </div>
+        </motion.div>
       </div>
 
       {/* Minimal Slide Indicator Dots */}
