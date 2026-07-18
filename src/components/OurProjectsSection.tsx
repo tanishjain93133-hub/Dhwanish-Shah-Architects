@@ -50,7 +50,7 @@ export const OurProjectsSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-white pt-12 pb-20 border-b border-zinc-200/60 relative overflow-hidden">
+    <section className="bg-white pt-10 pb-16 border-b border-zinc-200/60 relative overflow-hidden">
       {/* Subtle ambient light glow */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
         <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/5 rounded-full blur-[140px]" />
@@ -58,23 +58,23 @@ export const OurProjectsSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Header Section */}
+        {/* Header Section - Refined Smaller Font Sizes */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-[1200px] mx-auto"
+          className="text-center max-w-[950px] mx-auto"
         >
           <h2 
-            className="text-[40px] sm:text-[58px] md:text-[76px] lg:text-[88px] font-[900] tracking-[-0.04em] leading-[0.9] text-center mb-6 font-['Geist','Inter',sans-serif]"
+            className="text-[26px] sm:text-[34px] md:text-[42px] lg:text-[50px] font-[800] tracking-[-0.03em] leading-[1.15] text-center mb-4 font-['Geist','Inter',sans-serif]"
           >
             <span style={{ color: '#0D0D0D' }}>Luxury Residential</span>{' '}
             <span style={{ color: '#4A4A4A' }}>&amp; bespoke Commercial Projects</span>
           </h2>
 
           <p 
-            className="text-[16px] sm:text-[18px] lg:text-[22px] font-normal tracking-normal leading-[1.8] text-[#6B7280] text-center max-w-[850px] mx-auto mt-0 mb-[60px] font-['Geist','Inter',sans-serif]"
+            className="text-[14px] sm:text-[16px] lg:text-[18px] font-normal tracking-normal leading-[1.7] text-[#6B7280] text-center max-w-[700px] mx-auto mt-0 mb-[40px] font-['Geist','Inter',sans-serif]"
           >
             Thoughtfully designed spaces that blend timeless aesthetics, intelligent planning, and exceptional craftsmanship.
           </p>
