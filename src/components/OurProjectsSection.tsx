@@ -58,23 +58,23 @@ export const OurProjectsSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        {/* Header Section - Refined Smaller Font Sizes */}
+        {/* Header Section - Larger Headline (66px) & Compact Smaller Tagline (16px) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-[950px] mx-auto"
+          className="text-center max-w-[1050px] mx-auto"
         >
           <h2 
-            className="text-[26px] sm:text-[34px] md:text-[42px] lg:text-[50px] font-[800] tracking-[-0.03em] leading-[1.15] text-center mb-4 font-['Geist','Inter',sans-serif]"
+            className="text-[30px] sm:text-[42px] md:text-[54px] lg:text-[66px] font-[900] tracking-[-0.03em] leading-[1.08] text-center mb-5 font-['Geist','Inter',sans-serif]"
           >
             <span style={{ color: '#0D0D0D' }}>Luxury Residential</span>{' '}
             <span style={{ color: '#4A4A4A' }}>&amp; bespoke Commercial Projects</span>
           </h2>
 
           <p 
-            className="text-[14px] sm:text-[16px] lg:text-[18px] font-normal tracking-normal leading-[1.7] text-[#6B7280] text-center max-w-[700px] mx-auto mt-0 mb-[40px] font-['Geist','Inter',sans-serif]"
+            className="text-[13px] sm:text-[15px] lg:text-[16px] font-normal tracking-normal leading-[1.6] text-[#6B7280] text-center max-w-[650px] mx-auto mt-0 mb-[48px] font-['Geist','Inter',sans-serif]"
           >
             Thoughtfully designed spaces that blend timeless aesthetics, intelligent planning, and exceptional craftsmanship.
           </p>
