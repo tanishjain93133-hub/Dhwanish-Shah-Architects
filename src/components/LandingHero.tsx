@@ -116,84 +116,53 @@ export const Hero: React.FC = () => {
 
       {/* Hero Title & Centered Branding Overlay */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 pointer-events-none">
-        <div className="flex flex-col items-center max-w-5xl mx-auto w-full select-none">
+        <div className="flex flex-col items-center max-w-6xl mx-auto w-full select-none">
           
           {/* Top Thin Accent Line */}
           <motion.div 
             initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 0.8, scaleX: 1 }}
+            animate={{ opacity: 0.85, scaleX: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mb-4 sm:mb-6"
+            className="w-full max-w-2xl sm:max-w-4xl md:max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mb-4 sm:mb-6"
           />
 
-          {/* Main Title Container: DHWANISH SHAH */}
-          <div className="relative py-1 px-2">
+          {/* Single Line Main Title: DHWANISH SHAH ARCHITECTS */}
+          <div className="relative py-1 px-2 w-full">
             {/* Layer 1: Transparent Inside with Solid Black Outline (Visible Initially) */}
             <h1
-              className="text-[28px] sm:text-[50px] md:text-[68px] lg:text-[84px] font-['Montserrat',sans-serif] font-[900] tracking-[0.05em] uppercase leading-none text-center select-none"
+              className="text-[13px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[44px] font-['Montserrat',sans-serif] font-[800] tracking-[0.22em] sm:tracking-[0.3em] uppercase leading-none text-center select-none whitespace-nowrap"
               style={{
-                WebkitTextStroke: '3.5px #000000',
+                WebkitTextStroke: '1.8px #000000',
                 WebkitTextFillColor: 'transparent',
                 textShadow: '0 4px 20px rgba(0,0,0,0.5)'
               }}
             >
-              DHWANISH SHAH
+              DHWANISH SHAH ARCHITECTS
             </h1>
 
-            {/* Layer 2: Pure White Fill Sweeping Left-to-Right Slower (2.4 Seconds) */}
+            {/* Layer 2: Pure White Fill Sweeping Left-to-Right Over 2.4 Seconds */}
             <motion.h1
               initial={{ clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' }}
               animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
               transition={{ duration: 2.4, ease: [0.65, 0, 0.35, 1] }}
-              className="text-[28px] sm:text-[50px] md:text-[68px] lg:text-[84px] font-['Montserrat',sans-serif] font-[900] tracking-[0.05em] uppercase text-white leading-none text-center select-none absolute inset-0 py-1 px-2"
+              className="text-[13px] sm:text-[22px] md:text-[30px] lg:text-[38px] xl:text-[44px] font-['Montserrat',sans-serif] font-[800] tracking-[0.22em] sm:tracking-[0.3em] uppercase text-white leading-none text-center select-none absolute inset-0 py-1 px-2 whitespace-nowrap"
               style={{
-                WebkitTextStroke: '3.5px #000000',
+                WebkitTextStroke: '1.8px #000000',
                 WebkitTextFillColor: '#FFFFFF',
                 paintOrder: 'stroke fill',
                 textShadow: '0 4px 20px rgba(0,0,0,0.5)'
               }}
             >
-              DHWANISH SHAH
+              DHWANISH SHAH ARCHITECTS
             </motion.h1>
-          </div>
-
-          {/* Subtitle Container: ARCHITECTS */}
-          <div className="relative mt-4 sm:mt-6 py-1 px-2">
-            {/* Layer 1: Transparent Inside with Black Outline */}
-            <div
-              className="text-[12px] sm:text-[18px] md:text-[22px] font-['Montserrat',sans-serif] font-[800] tracking-[0.4em] uppercase leading-none text-center select-none pl-[0.4em]"
-              style={{
-                WebkitTextStroke: '1.5px #000000',
-                WebkitTextFillColor: 'transparent',
-                textShadow: '0 2px 10px rgba(0,0,0,0.7)'
-              }}
-            >
-              ARCHITECTS
-            </div>
-
-            {/* Layer 2: Pure White Fill Sweeping Left-to-Right Slower (2.4 Seconds) */}
-            <motion.div
-              initial={{ clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' }}
-              animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-              transition={{ delay: 0.4, duration: 2.4, ease: [0.65, 0, 0.35, 1] }}
-              className="text-[12px] sm:text-[18px] md:text-[22px] font-['Montserrat',sans-serif] font-[800] tracking-[0.4em] uppercase text-white leading-none text-center select-none absolute inset-0 py-1 px-2 pl-[0.4em]"
-              style={{
-                WebkitTextStroke: '1.5px #000000',
-                WebkitTextFillColor: '#FFFFFF',
-                paintOrder: 'stroke fill',
-                textShadow: '0 2px 10px rgba(0,0,0,0.7)'
-              }}
-            >
-              ARCHITECTS
-            </motion.div>
           </div>
 
           {/* Bottom Thin Accent Line */}
           <motion.div 
             initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 0.8, scaleX: 1 }}
+            animate={{ opacity: 0.85, scaleX: 1 }}
             transition={{ delay: 0.5, duration: 1.0, ease: "easeOut" }}
-            className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mt-5 sm:mt-7"
+            className="w-full max-w-2xl sm:max-w-4xl md:max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mt-4 sm:mt-6"
           />
 
         </div>
