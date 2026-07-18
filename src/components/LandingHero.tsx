@@ -118,31 +118,17 @@ export const Hero: React.FC = () => {
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 pointer-events-none">
         <div className="flex flex-col items-center max-w-5xl mx-auto w-full select-none">
           
-          {/* DSA Monogram Logo */}
-          <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-4 sm:mb-6"
-          >
-            <img 
-              src="/logo.png" 
-              alt="DSA Logo" 
-              className="h-14 sm:h-18 md:h-22 w-auto object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] brightness-0 invert" 
-            />
-          </motion.div>
-
           {/* Top Thin Accent Line */}
           <motion.div 
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 0.8, scaleX: 1 }}
-            transition={{ duration: 1.0, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mb-4 sm:mb-6"
           />
 
           {/* Main Title Container: DHWANISH SHAH */}
           <div className="relative py-1 px-2">
-            {/* Layer 1: Black Outline Always Visible First */}
+            {/* Layer 1: Transparent Inside with Solid Black Outline (Visible Initially) */}
             <h1
               className="text-[28px] sm:text-[50px] md:text-[68px] lg:text-[84px] font-['Montserrat',sans-serif] font-[900] tracking-[0.05em] uppercase leading-none text-center select-none"
               style={{
@@ -154,11 +140,11 @@ export const Hero: React.FC = () => {
               DHWANISH SHAH
             </h1>
 
-            {/* Layer 2: White Fill Smoothly Sweeping Left-to-Right Over 1.2 Seconds */}
+            {/* Layer 2: White Fill Smoothly Sweeping Left-to-Right Over 1.4 Seconds */}
             <motion.h1
               initial={{ clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' }}
               animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-              transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
+              transition={{ duration: 1.4, ease: [0.65, 0, 0.35, 1] }}
               className="text-[28px] sm:text-[50px] md:text-[68px] lg:text-[84px] font-['Montserrat',sans-serif] font-[900] tracking-[0.05em] uppercase text-white leading-none text-center select-none absolute inset-0 py-1 px-2"
               style={{
                 WebkitTextStroke: '3.5px #000000',
@@ -170,28 +156,44 @@ export const Hero: React.FC = () => {
             </motion.h1>
           </div>
 
-          {/* Subtitle: ARCHITECTS (20-30px Spacing, 0.4em Letter Spacing) */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-            className="mt-5 sm:mt-7 text-[12px] sm:text-[18px] md:text-[22px] font-['Montserrat',sans-serif] font-[800] tracking-[0.4em] uppercase text-white text-center pl-[0.4em]"
-            style={{
-              WebkitTextStroke: '1.2px #000000',
-              paintOrder: 'stroke fill',
-              textShadow: '0 2px 10px rgba(0,0,0,0.7)'
-            }}
-          >
-            ARCHITECTS
-          </motion.div>
+          {/* Subtitle Container: ARCHITECTS */}
+          <div className="relative mt-4 sm:mt-6 py-1 px-2">
+            {/* Layer 1: Transparent Inside with Black Outline */}
+            <div
+              className="text-[12px] sm:text-[18px] md:text-[22px] font-['Montserrat',sans-serif] font-[800] tracking-[0.4em] uppercase leading-none text-center select-none pl-[0.4em]"
+              style={{
+                WebkitTextStroke: '1.5px #000000',
+                WebkitTextFillColor: 'transparent',
+                textShadow: '0 2px 10px rgba(0,0,0,0.7)'
+              }}
+            >
+              ARCHITECTS
+            </div>
+
+            {/* Layer 2: White Fill Smoothly Sweeping Left-to-Right Over 1.4 Seconds */}
+            <motion.div
+              initial={{ clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' }}
+              animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+              transition={{ delay: 0.3, duration: 1.4, ease: [0.65, 0, 0.35, 1] }}
+              className="text-[12px] sm:text-[18px] md:text-[22px] font-['Montserrat',sans-serif] font-[800] tracking-[0.4em] uppercase text-white leading-none text-center select-none absolute inset-0 py-1 px-2 pl-[0.4em]"
+              style={{
+                WebkitTextStroke: '1.5px #000000',
+                paintOrder: 'stroke fill',
+                textShadow: '0 2px 10px rgba(0,0,0,0.7)'
+              }}
+            >
+              ARCHITECTS
+            </motion.div>
+          </div>
 
           {/* Bottom Thin Accent Line */}
           <motion.div 
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 0.8, scaleX: 1 }}
-            transition={{ delay: 0.8, duration: 1.0, ease: "easeOut" }}
+            transition={{ delay: 0.5, duration: 1.0, ease: "easeOut" }}
             className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-white to-transparent mt-5 sm:mt-7"
           />
+
         </div>
       </div>
 
