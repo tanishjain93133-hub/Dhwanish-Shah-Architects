@@ -49,7 +49,6 @@ export const About: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-zinc-900">What is Dhwanish Shah Architects?</h2>
             <p className="text-zinc-600 text-lg mb-12 leading-relaxed font-light bg-[#F8F8F8]/92 border border-[#E5E5E5] p-5 md:p-6 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
               <strong className="text-zinc-900 font-semibold">Dhwanish Shah Architects</strong> is a creative studio dedicated to designing modern, functional, and elegant spaces. 
               Founded in 2018 by Ar. Dhwanish Shah, our firm focuses on delivering high-quality architectural and interior solutions that reflect both style and practicality.
