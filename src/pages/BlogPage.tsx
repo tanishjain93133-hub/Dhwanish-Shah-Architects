@@ -28,6 +28,34 @@ interface BlogPost {
 
 const BLOG_POSTS: BlogPost[] = [
   {
+    id: 'seven-mistakes-building-dream-home',
+    title: '7 Mistakes to Avoid While Building Your Dream Home',
+    excerpt: 'Building a home? Avoid these costly mistakes.',
+    date: 'July 25, 2026',
+    postTime: '11:00 AM',
+    author: 'Tanish Jain',
+    image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1200',
+    content: [
+      { type: 'p', text: "Building your dream home is one of the biggest investments you'll ever make. A well-planned home not only looks beautiful but also provides comfort, functionality, and long-term value. However, many homeowners make common mistakes that can lead to unnecessary expenses and future problems." },
+      { type: 'h3', text: '1. Starting Without Proper Planning' },
+      { type: 'p', text: 'Every successful home begins with a detailed architectural plan. Planning room layouts, ventilation, parking, storage, and future expansion saves both time and money.' },
+      { type: 'h3', text: '2. Ignoring Natural Light & Ventilation' },
+      { type: 'p', text: 'Natural lighting and airflow make your home healthier, brighter, and more energy-efficient.' },
+      { type: 'h3', text: '3. Choosing Cheap Materials' },
+      { type: 'p', text: 'Quality construction materials ensure durability, safety, and lower maintenance costs over the years.' },
+      { type: 'h3', text: '4. Poor Space Utilization' },
+      { type: 'p', text: 'Every square foot matters. Smart space planning creates a home that feels larger and more functional.' },
+      { type: 'h3', text: '5. Forgetting Waterproofing' },
+      { type: 'p', text: 'Water leakage is one of the most common issues in new homes. Proper waterproofing protects your investment.' },
+      { type: 'h3', text: '6. Poor Electrical & Plumbing Planning' },
+      { type: 'p', text: 'Always plan future electrical points, internet wiring, and plumbing connections before construction begins.' },
+      { type: 'h3', text: '7. Not Hiring a Professional Architect' },
+      { type: 'p', text: 'A professional architect helps optimize your budget while designing a home that perfectly matches your lifestyle.' },
+      { type: 'h3', text: 'Final Thoughts' },
+      { type: 'p', text: "A dream home isn't built by chance—it is built through careful planning, quality construction, and expert design. Investing in professional architectural services today can save significant costs in the future." }
+    ]
+  },
+  {
     id: 'minimal-luxury-philosophy',
     title: 'The Philosophy of Minimal Luxury: Creating Homes That Feel Timeless',
     excerpt: 'True luxury isn\'t about spending more—it\'s about creating a home that feels comfortable, functional, and timeless every single day.',
