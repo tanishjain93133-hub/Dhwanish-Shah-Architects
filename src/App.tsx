@@ -30,7 +30,6 @@ import { SyncPage } from './pages/SyncPage';
 import { BlogPage } from './pages/BlogPage';
 import { ContactPage } from './pages/ContactPage';
 import { LightsPage } from './pages/LightsPage';
-import { AchiraPage } from './pages/AchiraPage';
 import { SEO } from './components/SEO';
 
 const HomePage: React.FC = () => (
@@ -92,8 +91,6 @@ export default function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/lights" element={<LightsPage />} />
-          <Route path="/achira" element={<AchiraPage />} />
-          <Route path="/jewellery" element={<AchiraPage />} />
           <Route path="/sync" element={<SyncPage />} />
         </Routes>
       </div>
