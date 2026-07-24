@@ -34,7 +34,7 @@ const BLOG_POSTS: BlogPost[] = [
     date: 'July 25, 2026',
     postTime: '11:00 AM',
     author: 'Tanish Jain',
-    image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1200',
+    image: '/images/dream-home-mistakes.jpg',
     content: [
       { type: 'p', text: "Building your dream home is one of the biggest investments you'll ever make. A well-planned home not only looks beautiful but also provides comfort, functionality, and long-term value. However, many homeowners make common mistakes that can lead to unnecessary expenses and future problems." },
       { type: 'h3', text: '1. Starting Without Proper Planning' },
