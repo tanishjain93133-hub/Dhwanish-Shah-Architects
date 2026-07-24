@@ -62,7 +62,7 @@ const BLOG_POSTS: BlogPost[] = [
     date: 'July 10, 2026',
     postTime: '01:30 PM',
     author: 'Tanish Jain',
-    image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1200',
+    image: '/images/minimal-luxury-philosophy.jpg',
     content: [
       { type: 'h3', text: 'A Home Is More Than Just Four Walls' },
       { type: 'p', text: 'When people think about luxury, they often imagine expensive materials or large spaces. But true luxury isn\'t about spending more—it\'s about creating a home that feels comfortable, functional, and timeless every single day.' },
