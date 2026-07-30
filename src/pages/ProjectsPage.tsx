@@ -11,6 +11,13 @@ import { SEO } from '../components/SEO';
 
 const PROJECTS_IMAGES = [
   {
+    id: 'res-dsa-11',
+    src: '/images/the-grand-bungalow-03.jpg',
+    alt: 'The Grand Bungalow',
+    category: 'Residential',
+    description: 'The Grand Bungalow is a luxury residential estate featuring custom sage green wall paneling, elegant wood wainscoting, bespoke wardrobes, handcrafted mandir niches, and serene modern spaces.'
+  },
+  {
     id: 'comm-dsa-04',
     src: '/images/drive_16UwjT1SSzMIS4bVDiB8ZcntJuJcSwtrQ.jpg',
     alt: 'A & A Wealth',
@@ -227,7 +234,7 @@ export const ProjectsPage: React.FC = () => {
             className="w-full h-full"
           >
             <SafeImage 
-              src="/images/drive_151kmI4LQypjKjzhQatTQCO-aAXyGuBhE.jpg" 
+              src="/images/the-grand-bungalow-03.jpg" 
               alt="Architectural Masterpiece" 
               loading="eager"
               decoding="async"
@@ -251,7 +258,7 @@ export const ProjectsPage: React.FC = () => {
         {/* Mobile View Background Image (Overlay) */}
         <div className="lg:hidden absolute inset-0 -z-10 opacity-30">
           <SafeImage 
-            src="/images/drive_151kmI4LQypjKjzhQatTQCO-aAXyGuBhE.jpg" 
+            src="/images/the-grand-bungalow-03.jpg" 
             alt="Mobile Bg" 
             objectFit="cover"
             className="w-full h-full grayscale-0"
@@ -430,6 +437,11 @@ export const ProjectsPage: React.FC = () => {
           >
             <DomeGallery 
               images={[
+                '/images/the-grand-bungalow-01.jpg',
+                '/images/the-grand-bungalow-02.jpg',
+                '/images/the-grand-bungalow-03.jpg',
+                '/images/the-grand-bungalow-04.jpg',
+                '/images/the-grand-bungalow-05.jpg',
                 '/images/drive_1IvJZ2tMlDc86dsptcjWoTjVBbn2GLJXe.jpg',
                 '/images/drive_1WC-BXDJSfS3GKFozaBavmZkHfrGeWE8k.jpg',
                 '/images/drive_1cb-sHqV2zBhZm-q_xzutywoL5Mk38mOx.jpg',

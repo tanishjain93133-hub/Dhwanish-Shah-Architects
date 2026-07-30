@@ -16,6 +16,27 @@ export interface ProjectImageItem {
 
 export const PROJECTS_IMAGES: ProjectImageItem[] = [
   {
+    id: "res-dsa-11",
+    src: "/images/the-grand-bungalow-03.jpg",
+    alt: "The Grand Bungalow",
+    category: "Residential",
+    description: "The Grand Bungalow is a luxury residential estate featuring custom sage green wall paneling, elegant wood wainscoting, bespoke wardrobes, handcrafted mandir niches, and serene modern spaces.",
+    gallery: [
+      "/images/the-grand-bungalow-01.jpg",
+      "/images/the-grand-bungalow-02.jpg",
+      "/images/the-grand-bungalow-03.jpg",
+      "/images/the-grand-bungalow-04.jpg",
+      "/images/the-grand-bungalow-05.jpg"
+    ],
+    specs: {
+      location: "Ahmedabad, Gujarat",
+      area: "14,000 SQ. FT.",
+      year: "2025",
+      architect: "Ar. Dhwanish Shah",
+      materials: ["Sage Green Paneling", "Teak Wainscoting", "Bespoke Wardrobes", "Handcrafted Mandir Niches"]
+    }
+  },
+  {
     id: "comm-dsa-04",
     src: "/images/1JHPhEFvokVoMViai2JRY2C97I_wcZ5Ap.jpg",
     alt: "A & A Wealth",

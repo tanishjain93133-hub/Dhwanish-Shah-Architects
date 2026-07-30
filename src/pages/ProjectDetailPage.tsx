@@ -262,7 +262,29 @@ const SERENE_SANCTUARY_GALLERY = [
   { image: '/images/drive_1fRywdtBR8KPW3elUsh2gVq1DDGUKaCZO.jpg', text: 'Serene Sanctuary 15' },
 ];
 
+const THE_GRAND_BUNGALOW_GALLERY = [
+  { image: '/images/the-grand-bungalow-01.jpg', text: 'The Grand Bungalow 01' },
+  { image: '/images/the-grand-bungalow-02.jpg', text: 'The Grand Bungalow 02' },
+  { image: '/images/the-grand-bungalow-03.jpg', text: 'The Grand Bungalow 03' },
+  { image: '/images/the-grand-bungalow-04.jpg', text: 'The Grand Bungalow 04' },
+  { image: '/images/the-grand-bungalow-05.jpg', text: 'The Grand Bungalow 05' },
+];
+
 const PROJECTS_DATA = [
+  {
+    id: 'res-dsa-11',
+    title: 'The Grand Bungalow',
+    subtitle: 'Luxury Residence & Villa',
+    description: 'The Grand Bungalow is a luxury residential estate showcasing bespoke interior craftsmanship, custom sage green wall paneling, elegant wood wainscoting, handcrafted temple niches, and master suite detailing.',
+    fullStory: 'The Grand Bungalow is a luxury residential estate showcasing bespoke interior craftsmanship, custom sage green wall paneling, elegant wood wainscoting, handcrafted temple niches, and master suite detailing. Designed with an emphasis on harmonious spatial planning, natural light, and refined material selections, every corner represents the signature Dhwanish Shah Architects aesthetic.',
+    metadata: [
+      { label: 'Location', value: 'Ahmedabad, Gujarat', icon: <MapPin size={16} /> },
+      { label: 'Year', value: '2025', icon: <Calendar size={16} /> },
+      { label: 'Area', value: '14,000 sq.ft', icon: <Layers size={16} /> },
+      { label: 'Status', value: 'Completed', icon: <ExternalLink size={16} /> },
+    ],
+    galleryItems: THE_GRAND_BUNGALOW_GALLERY
+  },
   {
     id: 'res-dsa-01',
     title: 'Subtle Sanctuary',
