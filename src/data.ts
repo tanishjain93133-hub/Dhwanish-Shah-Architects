@@ -17,7 +17,7 @@ export interface ProjectImageItem {
 export const PROJECTS_IMAGES: ProjectImageItem[] = [
   {
     id: "res-dsa-11",
-    src: "/images/the-grand-bungalow-34.jpg",
+    src: "/images/the-grand-bungalow-cover.jpg",
     alt: "The Grand Bungalow",
     category: "Residential",
     description: "The Grand Bungalow is a luxury residential estate featuring custom sage green wall paneling, elegant wood wainscoting, bespoke wardrobes, handcrafted mandir niches, and serene modern spaces.",

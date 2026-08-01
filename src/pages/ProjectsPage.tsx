@@ -234,7 +234,7 @@ export const ProjectsPage: React.FC = () => {
             className="w-full h-full"
           >
             <SafeImage 
-              src="/images/the-grand-bungalow-34.jpg" 
+              src="/images/the-grand-bungalow-cover.jpg" 
               alt="Architectural Masterpiece" 
               loading="eager"
               decoding="async"
@@ -258,7 +258,7 @@ export const ProjectsPage: React.FC = () => {
         {/* Mobile View Background Image (Overlay) */}
         <div className="lg:hidden absolute inset-0 -z-10 opacity-30">
           <SafeImage 
-            src="/images/the-grand-bungalow-34.jpg" 
+            src="/images/the-grand-bungalow-cover.jpg" 
             alt="Mobile Bg" 
             objectFit="cover"
             className="w-full h-full grayscale-0"
