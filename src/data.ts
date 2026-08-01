@@ -41,7 +41,12 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
       "/images/the-grand-bungalow-17.jpg",
       "/images/the-grand-bungalow-18.jpg",
       "/images/the-grand-bungalow-19.jpg",
-      "/images/the-grand-bungalow-20.jpg"
+      "/images/the-grand-bungalow-20.jpg",
+      "/images/the-grand-bungalow-21.jpg",
+      "/images/the-grand-bungalow-22.jpg",
+      "/images/the-grand-bungalow-23.jpg",
+      "/images/the-grand-bungalow-24.jpg",
+      "/images/the-grand-bungalow-25.jpg"
     ],
     specs: {
       location: "Ahmedabad, Gujarat",
