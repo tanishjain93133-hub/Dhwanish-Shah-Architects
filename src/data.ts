@@ -38,6 +38,7 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
       "/images/the-grand-bungalow-25.jpg",
       "/images/the-grand-bungalow-05.jpg",
       "/images/the-grand-bungalow-03.jpg",
+      "/images/the-grand-bungalow-35.jpg",
       "/images/the-grand-bungalow-02.jpg",
       "/images/the-grand-bungalow-01.jpg",
       "/images/the-grand-bungalow-15.jpg",
