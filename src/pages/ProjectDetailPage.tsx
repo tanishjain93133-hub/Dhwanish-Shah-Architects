@@ -278,6 +278,11 @@ const THE_GRAND_BUNGALOW_GALLERY = [
   { image: '/images/the-grand-bungalow-13.jpg', text: 'The Grand Bungalow 13' },
   { image: '/images/the-grand-bungalow-14.jpg', text: 'The Grand Bungalow 14' },
   { image: '/images/the-grand-bungalow-15.jpg', text: 'The Grand Bungalow 15' },
+  { image: '/images/the-grand-bungalow-16.jpg', text: 'The Grand Bungalow 16' },
+  { image: '/images/the-grand-bungalow-17.jpg', text: 'The Grand Bungalow 17' },
+  { image: '/images/the-grand-bungalow-18.jpg', text: 'The Grand Bungalow 18' },
+  { image: '/images/the-grand-bungalow-19.jpg', text: 'The Grand Bungalow 19' },
+  { image: '/images/the-grand-bungalow-20.jpg', text: 'The Grand Bungalow 20' },
 ];
 
 const PROJECTS_DATA = [
