@@ -234,7 +234,7 @@ export const ProjectsPage: React.FC = () => {
             className="w-full h-full"
           >
             <SafeImage 
-              src="/images/the-grand-bungalow-03.jpg" 
+              src="/images/the-grand-bungalow-34.jpg" 
               alt="Architectural Masterpiece" 
               loading="eager"
               decoding="async"
@@ -258,7 +258,7 @@ export const ProjectsPage: React.FC = () => {
         {/* Mobile View Background Image (Overlay) */}
         <div className="lg:hidden absolute inset-0 -z-10 opacity-30">
           <SafeImage 
-            src="/images/the-grand-bungalow-03.jpg" 
+            src="/images/the-grand-bungalow-34.jpg" 
             alt="Mobile Bg" 
             objectFit="cover"
             className="w-full h-full grayscale-0"
@@ -437,40 +437,40 @@ export const ProjectsPage: React.FC = () => {
           >
             <DomeGallery 
               images={[
-                '/images/the-grand-bungalow-01.jpg',
-                '/images/the-grand-bungalow-02.jpg',
-                '/images/the-grand-bungalow-03.jpg',
-                '/images/the-grand-bungalow-04.jpg',
+                '/images/the-grand-bungalow-34.jpg',
+                '/images/the-grand-bungalow-21.jpg',
+                '/images/the-grand-bungalow-26.jpg',
+                '/images/the-grand-bungalow-23.jpg',
+                '/images/the-grand-bungalow-27.jpg',
+                '/images/the-grand-bungalow-24.jpg',
+                '/images/the-grand-bungalow-29.jpg',
+                '/images/the-grand-bungalow-28.jpg',
+                '/images/the-grand-bungalow-30.jpg',
+                '/images/the-grand-bungalow-22.jpg',
+                '/images/the-grand-bungalow-16.jpg',
+                '/images/the-grand-bungalow-17.jpg',
+                '/images/the-grand-bungalow-19.jpg',
+                '/images/the-grand-bungalow-25.jpg',
                 '/images/the-grand-bungalow-05.jpg',
-                '/images/the-grand-bungalow-06.jpg',
+                '/images/the-grand-bungalow-03.jpg',
+                '/images/the-grand-bungalow-02.jpg',
+                '/images/the-grand-bungalow-01.jpg',
+                '/images/the-grand-bungalow-15.jpg',
+                '/images/the-grand-bungalow-13.jpg',
+                '/images/the-grand-bungalow-14.jpg',
+                '/images/the-grand-bungalow-20.jpg',
+                '/images/the-grand-bungalow-18.jpg',
                 '/images/the-grand-bungalow-07.jpg',
                 '/images/the-grand-bungalow-08.jpg',
                 '/images/the-grand-bungalow-09.jpg',
+                '/images/the-grand-bungalow-12.jpg',
                 '/images/the-grand-bungalow-10.jpg',
                 '/images/the-grand-bungalow-11.jpg',
-                '/images/the-grand-bungalow-12.jpg',
-                '/images/the-grand-bungalow-13.jpg',
-                '/images/the-grand-bungalow-14.jpg',
-                '/images/the-grand-bungalow-15.jpg',
-                '/images/the-grand-bungalow-16.jpg',
-                '/images/the-grand-bungalow-17.jpg',
-                '/images/the-grand-bungalow-18.jpg',
-                '/images/the-grand-bungalow-19.jpg',
-                '/images/the-grand-bungalow-20.jpg',
-                '/images/the-grand-bungalow-21.jpg',
-                '/images/the-grand-bungalow-22.jpg',
-                '/images/the-grand-bungalow-23.jpg',
-                '/images/the-grand-bungalow-24.jpg',
-                '/images/the-grand-bungalow-25.jpg',
-                '/images/the-grand-bungalow-26.jpg',
-                '/images/the-grand-bungalow-27.jpg',
-                '/images/the-grand-bungalow-28.jpg',
-                '/images/the-grand-bungalow-29.jpg',
-                '/images/the-grand-bungalow-30.jpg',
-                '/images/the-grand-bungalow-31.jpg',
-                '/images/the-grand-bungalow-32.jpg',
                 '/images/the-grand-bungalow-33.jpg',
-                '/images/the-grand-bungalow-34.jpg',
+                '/images/the-grand-bungalow-32.jpg',
+                '/images/the-grand-bungalow-31.jpg',
+                '/images/the-grand-bungalow-06.jpg',
+                '/images/the-grand-bungalow-04.jpg',
                 '/images/drive_1IvJZ2tMlDc86dsptcjWoTjVBbn2GLJXe.jpg',
                 '/images/drive_1WC-BXDJSfS3GKFozaBavmZkHfrGeWE8k.jpg',
                 '/images/drive_1cb-sHqV2zBhZm-q_xzutywoL5Mk38mOx.jpg',
