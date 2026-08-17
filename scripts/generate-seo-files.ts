@@ -39,7 +39,7 @@ function getDynamicBlogIds(): string[] {
   } catch (err) {
     // ignore
   }
-  return ['minimal-luxury-philosophy'];
+  return ['minimal-luxury-philosophy', 'seven-mistakes-building-dream-home', 'how-premium-materials-improve-home-interior'];
 }
 
 function generateSitemap() {

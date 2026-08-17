@@ -422,7 +422,7 @@ async function startServer() {
       // ignore
     }
     // Return the hardcoded ones if directory doesn't exist yet but has matching routes
-    return ['minimal-luxury-philosophy'];
+    return ['minimal-luxury-philosophy', 'seven-mistakes-building-dream-home', 'how-premium-materials-improve-home-interior'];
   }
 
   // Helper to get detailed metadata for a single project

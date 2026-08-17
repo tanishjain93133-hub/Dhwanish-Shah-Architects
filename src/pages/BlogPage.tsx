@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, BookOpen, Clock, Calendar, User } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { SafeImage } from '../components/SafeImage';
@@ -124,18 +124,75 @@ const BLOG_POSTS: BlogPost[] = [
       { type: 'p', text: 'Architecture isn\'t just about buildings—it\'s about improving the way people live.' },
       { type: 'p', text: 'At Dhwanish Shah Architects, every project is designed with care, creativity, and attention to detail. We aim to create homes and spaces that remain functional, elegant, and meaningful for generations.' }
     ]
+  },
+  {
+    id: 'how-premium-materials-improve-home-interior',
+    title: 'How Premium Materials Improve the Life of Your Home Interior',
+    excerpt: 'Beautiful interiors are important, but choosing the right materials is equally important. Discover how quality materials impact durability, aesthetics, and the life of your home.',
+    date: 'August 17, 2026',
+    postTime: '04:00 PM',
+    author: 'Tanish Jain',
+    image: '/images/premium-materials-interior.jpg',
+    content: [
+      { type: 'p', text: 'When designing a home, beautiful interiors are important, but choosing the right materials is equally important. The quality of materials used in furniture, flooring, kitchens, wardrobes, and other interior elements directly affects how your home looks, feels, and performs over time.' },
+      { type: 'p', text: 'At DSA – Dhwanish Shah Architects, we believe that a well-designed home should not only look elegant when it is completed but should also remain comfortable, functional, and durable for years to come.' },
+      { type: 'h3', text: 'Why Material Quality Matters in Interior Design' },
+      { type: 'p', text: 'A good interior design is a combination of aesthetics, functionality, and durability. Even the best design can lose its appeal if low-quality materials are used during execution.' },
+      { type: 'p', text: 'Premium materials generally offer better strength, finish, resistance, and longevity. They also help maintain the overall appearance of the space and reduce the need for frequent repairs or replacements.' },
+      { type: 'h3', text: 'Choosing the Right Materials for Your Home' },
+      { type: 'p', text: 'Every part of a home has different requirements. Materials should be selected according to their purpose, usage, environment, and maintenance needs.' },
+      { type: 'h3', text: '1. Premium Plywood for Furniture' },
+      { type: 'p', text: 'Plywood is commonly used for wardrobes, kitchen cabinets, storage units, and custom furniture. Choosing quality plywood can provide better strength and stability, especially for furniture that is used regularly.' },
+      { type: 'p', text: 'For areas exposed to moisture, the right type of moisture-resistant material becomes particularly important.' },
+      { type: 'h3', text: '2. Durable Kitchen Materials' },
+      { type: 'p', text: 'The kitchen experiences regular exposure to heat, moisture, stains, and heavy usage. Therefore, materials used for kitchen cabinets, countertops, hardware, and finishes should be selected carefully.' },
+      { type: 'p', text: 'A well-planned modular kitchen with durable materials can remain functional and visually appealing for a longer period.' },
+      { type: 'h3', text: '3. Quality Finishes and Surfaces' },
+      { type: 'p', text: 'Wall finishes, laminates, veneers, tiles, and flooring contribute significantly to the overall appearance of an interior. Premium finishes can provide better texture, consistency, and durability while helping the space maintain its refined look.' },
+      { type: 'h3', text: '4. Hardware Makes a Difference' },
+      { type: 'p', text: 'Small components such as hinges, drawer channels, handles, and other hardware are used every day. Choosing reliable hardware can improve the smooth functioning and long-term usability of wardrobes, kitchens, and storage furniture.' },
+      { type: 'h3', text: 'Premium Does Not Always Mean Unnecessarily Expensive' },
+      { type: 'p', text: 'A premium interior does not simply mean choosing the most expensive material available. The goal is to select the right material for the right application.' },
+      { type: 'p', text: 'A professional architect or interior designer can help balance quality, functionality, aesthetics, and budget. This approach allows homeowners to invest more in areas where durability matters most while keeping the overall project cost practical.' },
+      { type: 'h3', text: 'Better Materials, Fewer Future Problems' },
+      { type: 'p', text: 'Using appropriate materials during the initial construction or interior design stage can help reduce common issues such as swelling, surface damage, loose hardware, frequent repairs, and premature replacement.' },
+      { type: 'p', text: 'This is especially important when designing a long-term family home where interiors need to handle everyday use.' },
+      { type: 'h3', text: 'Material Selection Should Be Part of the Design Process' },
+      { type: 'p', text: 'Material selection should not be treated as an afterthought. It should be considered alongside space planning, lighting, furniture design, colour selection, and overall architectural planning.' },
+      { type: 'p', text: 'When all these elements work together, the result is an interior that feels cohesive, comfortable, and built to last.' },
+      { type: 'h3', text: 'Final Thoughts' },
+      { type: 'p', text: 'A beautiful home is not only about how it looks on the day of completion. The real value of good interior design is seen in how comfortably and efficiently the space continues to work over the years.' },
+      { type: 'p', text: 'By choosing quality materials, planning every detail carefully, and focusing on both aesthetics and functionality, homeowners can create interiors that remain elegant, practical, and durable.' },
+      { type: 'link', linkText: '👉 Contact Dhwanish Shah Architects', href: '/contact' }
+    ]
   }
 ];
 
 export const BlogPage: React.FC = () => {
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
   const [activePost, setActivePost] = React.useState<BlogPost | null>(null);
+
+  React.useEffect(() => {
+    if (id) {
+      const post = BLOG_POSTS.find(p => p.id === id);
+      if (post) {
+        setActivePost(post);
+        window.scrollTo({ top: 0 });
+      } else {
+        // If invalid ID, redirect to blog home
+        setActivePost(null);
+        navigate('/blog', { replace: true });
+      }
+    } else {
+      setActivePost(null);
+    }
+  }, [id, navigate]);
 
   const handleBack = (e: React.MouseEvent) => {
     e.preventDefault();
     if (activePost) {
-      setActivePost(null);
-      window.scrollTo({ top: 0 });
+      navigate('/blog');
     } else {
       navigate('/');
     }
@@ -190,8 +247,7 @@ export const BlogPage: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
                     onClick={() => {
-                      setActivePost(post);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      navigate(`/blog/${post.id}`);
                     }}
                     className="group relative bg-black/30 border border-black/10 rounded-xl overflow-hidden hover:border-neon-cyan/30 cursor-pointer transition-all duration-500 flex flex-col h-full shadow-sm"
                   >
@@ -324,8 +380,7 @@ export const BlogPage: React.FC = () => {
               <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
                 <button 
                   onClick={() => {
-                    setActivePost(null);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    navigate('/blog');
                   }}
                   className="inline-flex items-center gap-2 text-neon-cyan text-xs font-bold tracking-[0.3em] uppercase hover:translate-x-[-8px] transition-transform cursor-pointer"
                 >

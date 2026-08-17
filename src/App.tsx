@@ -89,6 +89,7 @@ export default function App() {
           <Route path="/jd-office-review" element={<JDOfficeReviewGalleryPage />} />
           <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/lights" element={<LightsPage />} />
           <Route path="/sync" element={<SyncPage />} />
