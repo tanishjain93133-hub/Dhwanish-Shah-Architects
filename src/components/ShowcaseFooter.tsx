@@ -18,7 +18,7 @@ export default function Footer() {
         {/* Center: Social icons inside circles */}
         <div className="flex items-center justify-center gap-4">
           <a
-            href="https://www.instagram.com/dsa.architects.and.interiors"
+            href="https://www.instagram.com/dhwanish_shah_architects/"
             target="_blank"
             rel="noreferrer"
             className="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-blue-500 hover:border-blue-500 transition-all duration-300"

@@ -196,7 +196,7 @@ export const ProjectsPage: React.FC = () => {
             {/* High-End Social Links */}
             <div className="flex items-center gap-10 text-[11px] tracking-[0.4em] font-bold uppercase">
               <a 
-                href="https://www.instagram.com/dsa.architects.and.interiors" 
+                href="https://www.instagram.com/dhwanish_shah_architects/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-white/80 hover:text-white transition-all duration-500 hover:scale-105"

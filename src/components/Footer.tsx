@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
           <div className="flex-1 flex justify-center">
             <div className="flex gap-4 items-center">
               <a 
-                href="https://www.instagram.com/dsa.architects.and.interiors?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+                href="https://www.instagram.com/dhwanish_shah_architects/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="footer-social-icon p-3 transition-all duration-300 transform hover:scale-110 active:scale-95"
