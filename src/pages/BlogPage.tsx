@@ -34,7 +34,7 @@ const BLOG_POSTS: BlogPost[] = [
     date: 'August 29, 2026',
     postTime: '12:00 PM',
     author: 'Tanish Jain',
-    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200',
+    image: '/images/natural-light-transform.jpg',
     content: [
       { type: 'p', text: 'Imagine walking into your home in the morning and seeing soft sunlight falling across the living room, making the space feel warm, open, and peaceful. No extra decoration, no complicated lighting—just natural light doing what it does best.' },
       { type: 'p', text: 'Natural light is one of the most important yet often overlooked elements of home interior design. When planned properly, it can completely change how a space looks and feels while also making everyday living more comfortable.' },
