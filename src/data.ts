@@ -161,8 +161,50 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
       materials: ["Poured Solid Chalk Concrete", "White Thassos Marble", "Extra-clear Optiwhite Glazing"]
     }
   },
-
-
+  {
+    id: "res-dsa-03",
+    src: "/images/1T8U7brn4ddyC2AvlBXLJe_Q6lR9r8gEB.jpg",
+    alt: "Serene Sanctuary",
+    category: "Residential",
+    description: "Serene Sanctuary is an elegant luxury residential interior showcasing magnificent spatial design, sophisticated bespoke fittings, warm lighting, and a modern minimal layout that provides the ultimate cozy and premium comfort.",
+    gallery: [
+      "/images/serene-sanctuary-custom-11.jpg",
+      "/images/serene-sanctuary-custom-7.jpg",
+      "/images/serene-sanctuary-custom-26.jpg",
+      "/images/serene-sanctuary-custom-1.jpg",
+      "/images/serene-sanctuary-custom-14.jpg",
+      "/images/serene-sanctuary-custom-15.jpg",
+      "/images/serene-sanctuary-custom-4.jpg",
+      "/images/serene-sanctuary-custom-13.jpg",
+      "/images/serene-sanctuary-custom-3.jpg",
+      "/images/serene-sanctuary-custom-19.jpg",
+      "/images/serene-sanctuary-custom-22.jpg",
+      "/images/serene-sanctuary-custom-12.jpg",
+      "/images/serene-sanctuary-custom-2.jpg",
+      "/images/serene-sanctuary-custom-24.jpg",
+      "/images/serene-sanctuary-custom-20.jpg",
+      "/images/serene-sanctuary-custom-5.jpg",
+      "/images/serene-sanctuary-custom-8.jpg",
+      "/images/serene-sanctuary-custom-23.jpg",
+      "/images/serene-sanctuary-custom-16.jpg",
+      "/images/serene-sanctuary-custom-17.jpg",
+      "/images/serene-sanctuary-custom-6.jpg",
+      "/images/serene-sanctuary-custom-10.jpg",
+      "/images/serene-sanctuary-custom-27.jpg",
+      "/images/serene-sanctuary-custom-21.jpg",
+      "/images/serene-sanctuary-custom-25.jpg",
+      "/images/serene-sanctuary-custom-30.jpg",
+      "/images/serene-sanctuary-custom-9.jpg",
+      "/images/serene-sanctuary-custom-28.jpg"
+    ],
+    specs: {
+      location: "Kyoto Outskirts, Japan",
+      area: "6,800 SQ. FT.",
+      year: "2025",
+      architect: "DSA Kyoto Branch",
+      materials: ["Hinoki Cedar Timber", "Honed Charcoal Limestone", "Washi Paper Panels"]
+    }
+  },
   {
     id: "comm-dsa-06",
     src: "/images/1w2v0x_u3_eykFh4KxJHv9UdmK4AL_PrY.jpg",
