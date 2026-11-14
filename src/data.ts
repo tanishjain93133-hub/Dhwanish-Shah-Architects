@@ -626,7 +626,12 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
       "/images/art-of-living-custom-12.jpg",
       "/images/art-of-living-custom-13.jpg",
       "/images/art-of-living-custom-14.jpg",
-      "/images/art-of-living-custom-15.jpg"
+      "/images/art-of-living-custom-15.jpg",
+      "/images/art-of-living-custom-16.jpg",
+      "/images/art-of-living-custom-17.jpg",
+      "/images/art-of-living-custom-18.jpg",
+      "/images/art-of-living-custom-19.jpg",
+      "/images/art-of-living-custom-20.jpg"
     ],
     specs: {
       location: "Ahmedabad, India",
