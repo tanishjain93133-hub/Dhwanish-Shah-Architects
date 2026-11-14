@@ -602,6 +602,27 @@ export const PROJECTS_IMAGES: ProjectImageItem[] = [
     }
   },
   {
+    id: "res-dsa-10",
+    src: "/images/cp-house-kids-room-1.jpg",
+    alt: "CP House",
+    category: "Residential",
+    description: "CP House is a vibrant and thoughtfully designed residential interior featuring a playful tropical-themed kids' room with a custom bunk bed, warm wood accents, and a serene master bedroom with natural light and built-in storage.",
+    gallery: [
+      "/images/cp-house-kids-room-1.jpg",
+      "/images/cp-house-kids-room-2.jpg",
+      "/images/cp-house-kids-room-3.jpg",
+      "/images/cp-house-master-room-1.jpg",
+      "/images/cp-house-master-room-2.jpg"
+    ],
+    specs: {
+      location: "Ahmedabad, India",
+      area: "1,600 SQ. FT.",
+      year: "2025",
+      architect: "DSA Studio",
+      materials: ["Teak Wood Bunk Bed", "Tropical Mural Wallpaper", "Linen Upholstery", "Engineered Wood Cabinetry"]
+    }
+  },
+  {
     id: "comm-dsa-07",
     src: "/images/10bqHIbfF1VJqrGk1I_iC9AyLh_aKscph.jpg",
     alt: "Shlip Aaron",
